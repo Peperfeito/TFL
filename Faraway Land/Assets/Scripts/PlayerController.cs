@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed = 5f;
     public Transform movePoint;
+    [SerializeField] private GameObject Sidescroll;
+    [SerializeField] private GameObject Grid;
+    [SerializeField] private Transform Saida;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +31,7 @@ public class PlayerController : MonoBehaviour
             if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, colisores))
             {
             movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+            
             }
         }
 
@@ -36,8 +40,24 @@ public class PlayerController : MonoBehaviour
             if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, colisores))
             {
             movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+            
             }
         }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+       
+        if (collision.CompareTag("Porta"))
+        {
+            Sidescroll.SetActive(true);
+            Grid.SetActive(false);
+            movePoint.position = Saida.position;
+            transform.position = Saida.position;
+            
+            
+            
         }
     }
 }

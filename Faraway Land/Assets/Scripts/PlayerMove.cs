@@ -13,6 +13,11 @@ public class PlayerMove : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     private bool isGrounded;
+    [SerializeField] private GameObject Sidescroll;
+    [SerializeField] private GameObject Grid;
+    [SerializeField] private Transform Saida;
+
+    
 
     private void Awake()
     {
@@ -42,6 +47,21 @@ public class PlayerMove : MonoBehaviour
         movedirection = Input.GetAxis("Horizontal");
 
         rb.velocity = new Vector2(movedirection * moveSpeed, rb.velocity.y);
+
+      
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if (collision.CompareTag("Porta"))
+        {
+            Sidescroll.SetActive(false);
+            Grid.SetActive(true);
+            transform.position = Saida.position;
+            
+
+        }
     }
 
     void Jump()
