@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
             Grid.SetActive(false);
             movePoint.position = Saida.position;
             transform.position = Saida.position;
-            
+            FindObjectOfType<FadeEffect>().FadeOut();
             
             
         }
