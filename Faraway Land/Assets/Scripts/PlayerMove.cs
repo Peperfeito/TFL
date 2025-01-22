@@ -76,6 +76,9 @@ public class PlayerMove : MonoBehaviour
         {
             Sidescroll.SetActive(false);
             Grid.SetActive(true);
+            
+           
+            
             transform.position = Saida.position;
             FindObjectOfType<FadeEffect>().FadeOut();
 
