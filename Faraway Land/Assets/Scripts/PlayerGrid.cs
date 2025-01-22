@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerGrid : Player
 {
     public LayerMask colisores;
 
-    public float moveSpeed = 5f;
+    
     public Transform movePoint;
-    [SerializeField] private GameObject Sidescroll;
-    [SerializeField] private GameObject Grid;
-    [SerializeField] private Transform Saida;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +19,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        InputHandler();
+
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
         if(Vector3.Distance(transform.position, movePoint.position) <= .05f)
@@ -46,9 +46,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void InputHandler()
     {
-       
+        base.InputHandler();
+
+    }
+
+    protected override void OnTriggerEnter2DReaction(Collider2D collision)
+    {
         if (collision.CompareTag("Porta"))
         {
             Sidescroll.SetActive(true);
@@ -57,7 +62,25 @@ public class PlayerController : MonoBehaviour
             transform.position = Saida.position;
             FindObjectOfType<FadeEffect>().FadeOut();
             
-            
+            return;
         }
+
+        base.OnTriggerEnter2DReaction(collision);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+       
+        OnTriggerEnter2DReaction(collision);
+    }
+
+    protected override void OnTriggerExit2DReaction(Collider2D collision)
+    {
+        base.OnTriggerExit2DReaction(collision);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        OnTriggerExit2DReaction(collision);
     }
 }

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerSideScroll : Player
 {
-    public float moveSpeed;
+    
     private Rigidbody2D rb;
     private bool facingDireita = true;
     private float movedirection;
@@ -13,9 +13,7 @@ public class PlayerMove : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     private bool isGrounded;
-    [SerializeField] private GameObject Sidescroll;
-    [SerializeField] private GameObject Grid;
-    [SerializeField] private Transform Saida;
+    
     
 
     private void Awake()
@@ -26,7 +24,9 @@ public class PlayerMove : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {    
+    {
+        InputHandler();
+
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
          if (Input.GetButtonDown("Jump") && isGrounded)
@@ -50,8 +50,8 @@ public class PlayerMove : MonoBehaviour
       
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {  
+    protected override void OnTriggerEnter2DReaction(Collider2D collision)
+    {
         if (collision.CompareTag("Porta"))
         {
             Sidescroll.SetActive(false);
@@ -59,7 +59,23 @@ public class PlayerMove : MonoBehaviour
             transform.position = Saida.position;
             FindObjectOfType<FadeEffect>().FadeOut();
 
+            return;
+
         }
+
+        base.OnTriggerEnter2DReaction(collision);
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {  
+       OnTriggerEnter2DReaction(collision);
+    }
+
+    protected override void InputHandler()
+    {
+        base.InputHandler();
+
     }
 
     void Jump()
@@ -82,5 +98,15 @@ public class PlayerMove : MonoBehaviour
     {
         facingDireita = !facingDireita;
         transform.Rotate(0f, 180f,0f);
+    }
+
+    protected override void OnTriggerExit2DReaction(Collider2D collision)
+    {
+        base.OnTriggerExit2DReaction(collision);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        OnTriggerExit2DReaction(collision);
     }
 }
