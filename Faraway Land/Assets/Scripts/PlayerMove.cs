@@ -13,13 +13,9 @@ public class PlayerMove : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     private bool isGrounded;
-    private bool isdentro = false;
     [SerializeField] private GameObject Sidescroll;
     [SerializeField] private GameObject Grid;
     [SerializeField] private Transform Saida;
-    [SerializeField] private GameObject DescricaoCilindro;
-    [SerializeField] private GameObject Indicador;
-
     
 
     private void Awake()
@@ -30,16 +26,7 @@ public class PlayerMove : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-
-         if(Input.GetKeyDown(KeyCode.E) && (isdentro == true))
-         {
-            DescricaoCilindro.SetActive(true);
-            Indicador.SetActive(false);
-            moveSpeed = 0f;
-            jumpForce = 0f;
-         }
-         
+    {    
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
          if (Input.GetButtonDown("Jump") && isGrounded)
@@ -64,32 +51,14 @@ public class PlayerMove : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        if (collision.CompareTag("Item"))
-        {
-            isdentro = true;
-            Indicador.SetActive(true);    
-        }
-        
+    {  
         if (collision.CompareTag("Porta"))
         {
             Sidescroll.SetActive(false);
             Grid.SetActive(true);
-            
-           
-            
             transform.position = Saida.position;
             FindObjectOfType<FadeEffect>().FadeOut();
 
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Item"))
-        {
-            Indicador.SetActive(false);
         }
     }
 
