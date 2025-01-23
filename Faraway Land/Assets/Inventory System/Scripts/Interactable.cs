@@ -15,7 +15,14 @@ public class Interactable : MonoBehaviour
         Debug.Log(dialogo.neutra);
         if(consu == null) return;
 
-        Debug.Log(Inventario.Singleton.RemoveItem(consu));
+        if(Inventario.Singleton.RemoveItem(consu))
+        {
+            Debug.Log(dialogo.positiva);
+        }
+        else 
+        { 
+            Debug.Log(dialogo.negativa); 
+        }
         
     }
 

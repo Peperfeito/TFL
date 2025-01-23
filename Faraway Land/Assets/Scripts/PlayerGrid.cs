@@ -21,6 +21,8 @@ public class PlayerGrid : Player
     {
         InputHandler();
 
+        if (!playerPodeSeMover) return;
+
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
         if(Vector3.Distance(transform.position, movePoint.position) <= .05f)

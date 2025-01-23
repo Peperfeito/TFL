@@ -9,24 +9,51 @@ public class Player : MonoBehaviour
     [SerializeField] protected GameObject Sidescroll;
     [SerializeField] protected GameObject Grid;
     [SerializeField] protected Transform Saida;
+    protected ItemProp itemProp;
+    protected bool playerPodeSeMover = true;
 
     
 
     protected virtual void InputHandler()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.Q))
         {
-           if(objetos.Count > 0 )
-           {
-            Interacting();
-           }
+            playerPodeSeMover = !Inventario.Singleton.VisualizarInventario();
+        }
+
+       
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(itemProp != null) 
+            {
+                Debug.Log("Encontrei um Item");
+                Inventario.Singleton.AddItem(itemProp.GetItem());
+                itemProp.gameObject.SetActive(false);
+
+                itemProp = null;
+                
+            
+            }
+            else if(objetos.Count > 0 )
+            {
+                Interacting();
+            }
         }
         
     }
 
     protected virtual void OnTriggerEnter2DReaction(Collider2D collision)
     {
-        Debug.Log("entrou");
+
+        if (collision.CompareTag("Item"))
+        {
+            itemProp = collision.gameObject.GetComponent<ItemProp>();
+
+
+            return;
+        }
+       
         Interactable objetoA = collision.gameObject.GetComponent<Interactable>();
 
         if(objetoA != null)
@@ -35,13 +62,20 @@ public class Player : MonoBehaviour
 
         }
 
-        Debug.Log("entrou mais");
+        
 
     }
 
     protected virtual void OnTriggerExit2DReaction(Collider2D collision)
     {
-        Debug.Log("saiu");
+        if (collision.CompareTag("Item"))
+        {
+            itemProp = null;
+
+
+            return;
+        }
+
         Interactable objetoA = collision.gameObject.GetComponent<Interactable>();
 
         if(objetoA != null && objetos.Contains(objetoA))
@@ -50,7 +84,7 @@ public class Player : MonoBehaviour
 
         }
         
-        Debug.Log("saiu mais");
+        
     }
 
     private void Interacting()

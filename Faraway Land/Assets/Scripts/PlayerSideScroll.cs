@@ -28,7 +28,7 @@ public class PlayerSideScroll : Player
         InputHandler();
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
+        if(!playerPodeSeMover) return;
          if (Input.GetButtonDown("Jump") && isGrounded)
         {
             Jump();
