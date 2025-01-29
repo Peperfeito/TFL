@@ -6,6 +6,7 @@ using UnityEngine;
 public class Inventario : MonoBehaviour
 {
     [SerializeField] GameObject inventario;
+    [SerializeField] GameObject inventarioContent;
     [SerializeField] GameObject itemPrefab;
     public static Inventario Singleton;
     List<Item> itens = new List<Item>();
@@ -25,9 +26,9 @@ public class Inventario : MonoBehaviour
 
     public void UpdateUI()
     {
-        foreach (Transform itemUI in inventario.GetComponentsInChildren<Transform>()) 
+        foreach (Transform itemUI in inventarioContent.GetComponentsInChildren<Transform>()) 
         {
-            if (itemUI.gameObject == inventario) 
+            if (itemUI.gameObject == inventarioContent) 
             { continue; }
             Destroy(itemUI.gameObject);
         
@@ -36,7 +37,7 @@ public class Inventario : MonoBehaviour
 
         for (int i=0; i < itens.Count; i++)
         {
-            GameObject itemNaTela = Instantiate(itemPrefab,inventario.transform);
+            GameObject itemNaTela = Instantiate(itemPrefab, inventarioContent.transform);
             itemNaTela.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = itens[i].itemName;
             itemNaTela.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = itens[i].itemDescri;
         }
