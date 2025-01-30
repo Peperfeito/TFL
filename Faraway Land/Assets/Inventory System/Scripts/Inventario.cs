@@ -9,7 +9,12 @@ public class Inventario : MonoBehaviour
     [SerializeField] GameObject inventarioContent;
     [SerializeField] GameObject itemPrefab;
     public static Inventario Singleton;
-    List<Item> itens = new List<Item>();
+    [SerializeField] GameObject DescriPrefab;
+    [SerializeField] GameObject DescriContent;
+
+    public List<Item> itens = new List<Item>();
+
+    
 
     public bool AddItem(Item item)
     {
@@ -42,6 +47,28 @@ public class Inventario : MonoBehaviour
             itemNaTela.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = itens[i].itemDescri;
         }
         
+    }
+
+
+    public void UpdateDescriUI()
+    {
+        foreach (Transform ditemUI in DescriContent.GetComponentsInChildren<Transform>())
+        {
+            if (ditemUI.gameObject == DescriContent)
+            { continue; }
+            Destroy(ditemUI.gameObject);
+
+
+        }
+        Debug.Log("Encontrei nada");
+
+        for (int i = 0; i < Inventario.Singleton.itens.Count; i++)
+        {
+            Debug.Log("Encontrei slaaaa");
+            GameObject dialogoNaTela = Instantiate(DescriPrefab, DescriContent.transform);
+            Debug.Log("Encontrei sla");
+            dialogoNaTela.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = Inventario.Singleton.itens[i].itemName;
+        }
     }
 
     public bool VisualizarInventario()

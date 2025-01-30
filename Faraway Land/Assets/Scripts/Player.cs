@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,6 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] protected GameObject Sidescroll;
     [SerializeField] protected GameObject Grid;
     [SerializeField] protected Transform Saida;
+    [SerializeField] GameObject eventsys;
+    
     protected ItemProp itemProp;
     protected bool playerPodeSeMover = true;
 
@@ -28,8 +31,14 @@ public class Player : MonoBehaviour
             if(itemProp != null) 
             {
                 Debug.Log("Encontrei um Item");
+                
+
+
+
                 Inventario.Singleton.AddItem(itemProp.GetItem());
+                Inventario.Singleton.UpdateDescriUI();
                 itemProp.gameObject.SetActive(false);
+                eventsys.SetActive(false);
 
                 itemProp = null;
                 
@@ -40,8 +49,9 @@ public class Player : MonoBehaviour
                 Interacting();
             }
         }
-        
+
     }
+   
 
     protected virtual void OnTriggerEnter2DReaction(Collider2D collision)
     {
