@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] protected GameObject Sidescroll;
     [SerializeField] protected GameObject Grid;
     [SerializeField] protected Transform Saida;
-    [SerializeField] GameObject eventsys;
+    [SerializeField] GameObject buttons;
     
     protected ItemProp itemProp;
     protected bool playerPodeSeMover = true;
@@ -30,15 +30,13 @@ public class Player : MonoBehaviour
         {
             if(itemProp != null) 
             {
-                Debug.Log("Encontrei um Item");
+
+
+
+
                 
-
-
-
-                Inventario.Singleton.AddItem(itemProp.GetItem());
-                Inventario.Singleton.UpdateDescriUI();
-                itemProp.gameObject.SetActive(false);
-                eventsys.SetActive(false);
+                buttons.SetActive(true);
+                Inventario.Singleton.AddItemDes(itemProp.GetItem());
 
                 itemProp = null;
                 
@@ -50,6 +48,30 @@ public class Player : MonoBehaviour
             }
         }
 
+    }
+
+    public void PegarIten()
+    {
+        if (itemProp != null)
+        {
+
+
+
+
+
+            Inventario.Singleton.AddItem(itemProp.GetItem());
+            
+            itemProp.gameObject.SetActive(false);
+            
+
+            itemProp = null;
+
+
+        }
+        else if (objetos.Count > 0)
+        {
+            Interacting();
+        }
     }
    
 

@@ -10,11 +10,13 @@ public class Inventario : MonoBehaviour
     [SerializeField] GameObject itemPrefab;
     public static Inventario Singleton;
     [SerializeField] GameObject DescriPrefab;
+    private GameObject dialogoNaTela;
     [SerializeField] GameObject DescriContent;
 
     public List<Item> itens = new List<Item>();
+    public List<Item> itensDesc = new List<Item>();
 
-    
+
 
     public bool AddItem(Item item)
     {
@@ -48,7 +50,18 @@ public class Inventario : MonoBehaviour
         }
         
     }
+    public bool AddItemDes(Item item)
+    {
+        if (itensDesc.Contains(item)) return false;
 
+        itensDesc.Add(item);
+        UpdateDescriUI();
+
+        return true;
+
+
+
+    }
 
     public void UpdateDescriUI()
     {
@@ -62,15 +75,23 @@ public class Inventario : MonoBehaviour
         }
         Debug.Log("Encontrei nada");
 
-        for (int i = 0; i < Inventario.Singleton.itens.Count; i++)
+        for (int i = 0; i < itensDesc.Count; i++)
         {
             Debug.Log("Encontrei slaaaa");
-            GameObject dialogoNaTela = Instantiate(DescriPrefab, DescriContent.transform);
-            Debug.Log("Encontrei sla");
-            dialogoNaTela.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = Inventario.Singleton.itens[i].itemName;
+            dialogoNaTela = Instantiate(DescriPrefab, DescriContent.transform);
+            
+            dialogoNaTela.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = itensDesc[i].itemName;
         }
     }
 
+    public bool RemoveItem(Item item)
+    {
+        if (!itens.Contains(item)) return false;
+
+        itens.Remove(item);
+        UpdateUI();
+        return true;
+    }
     public bool VisualizarInventario()
     {
         bool aux = !inventario.activeSelf;
@@ -81,20 +102,28 @@ public class Inventario : MonoBehaviour
 
     }
 
-    public bool RemoveItem(Item item)
+    public bool RemoveItemDesc(Item item)
     {
-        if(!itens.Contains(item)) return false;
+        if(!itensDesc.Contains(item)) return false;
 
-        itens.Remove(item);
-        UpdateUI();
+        itensDesc.Remove(item);
+        UpdateDescriUI();
+
         return true;
     }
 
-    
+
+    public void DestruirInstancia()
+    {
+        if (dialogoNaTela != null)
+        {
+            Destroy(dialogoNaTela);
+            dialogoNaTela = null; 
+        }
+    }
 
 
 
-    
     private void Awake()
     {
         Singleton = this;
