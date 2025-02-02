@@ -25,6 +25,10 @@ public class PlayerSideScroll : Player
     // Update is called once per frame
     void Update()
     {
+        if (!playerPodeSeMover)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
         InputHandler();
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -46,6 +50,7 @@ public class PlayerSideScroll : Player
         movedirection = Input.GetAxis("Horizontal");
 
         rb.velocity = new Vector2(movedirection * moveSpeed, rb.velocity.y);
+        
 
       
     }

@@ -19,15 +19,19 @@ public class Player : MonoBehaviour
 
     protected virtual void InputHandler()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        
+        if (Input.GetKeyDown(KeyCode.Q) && !Inventario.Singleton.dialogoNaTela.activeSelf)
         {
-            playerPodeSeMover = !Inventario.Singleton.VisualizarInventario();
+
+            Inventario.Singleton.VisualizarInventario();
         }
 
        
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !Inventario.Singleton.inventario.activeSelf)
         {
+            
+
             if(itemProp != null) 
             {
 
@@ -36,7 +40,7 @@ public class Player : MonoBehaviour
 
                 
                 buttons.SetActive(true);
-                Inventario.Singleton.AddItemDes(itemProp.GetItem());
+                Inventario.Singleton.UpdateItemBuff(itemProp);
 
                 itemProp = null;
                 
@@ -46,33 +50,15 @@ public class Player : MonoBehaviour
             {
                 Interacting();
             }
+
+            
         }
+
+        playerPodeSeMover = !Inventario.Singleton.dialogoNaTela.activeSelf && !Inventario.Singleton.inventario.activeSelf;
 
     }
 
-    public void PegarIten()
-    {
-        if (itemProp != null)
-        {
-
-
-
-
-
-            Inventario.Singleton.AddItem(itemProp.GetItem());
-            
-            itemProp.gameObject.SetActive(false);
-            
-
-            itemProp = null;
-
-
-        }
-        else if (objetos.Count > 0)
-        {
-            Interacting();
-        }
-    }
+    
    
 
     protected virtual void OnTriggerEnter2DReaction(Collider2D collision)

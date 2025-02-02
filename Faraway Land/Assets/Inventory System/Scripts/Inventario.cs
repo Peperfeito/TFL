@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class Inventario : MonoBehaviour
 {
-    [SerializeField] GameObject inventario;
+    [SerializeField] public GameObject inventario;
     [SerializeField] GameObject inventarioContent;
     [SerializeField] GameObject itemPrefab;
     public static Inventario Singleton;
-    [SerializeField] GameObject DescriPrefab;
-    private GameObject dialogoNaTela;
+    public GameObject dialogoNaTela;
     [SerializeField] GameObject DescriContent;
 
+
     public List<Item> itens = new List<Item>();
-    public List<Item> itensDesc = new List<Item>();
+    public ItemProp marcelo;
 
 
 
@@ -50,37 +50,42 @@ public class Inventario : MonoBehaviour
         }
         
     }
-    public bool AddItemDes(Item item)
+    
+
+    public void UpdateItemBuff(ItemProp itemProp)
     {
-        if (itensDesc.Contains(item)) return false;
+        marcelo = itemProp;
+        UpdateDescriUI(true);
+    }
 
-        itensDesc.Add(item);
-        UpdateDescriUI();
-
-        return true;
-
+    public void UpdateDescriUI(bool ativo)
+    {
+        dialogoNaTela.SetActive(ativo);
+        if(dialogoNaTela.activeSelf)
+        {
+            dialogoNaTela.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = marcelo.GetItem().itemName;
+        }
 
 
     }
 
-    public void UpdateDescriUI()
+    public void PegarMarcelo()
     {
-        foreach (Transform ditemUI in DescriContent.GetComponentsInChildren<Transform>())
+        if (marcelo != null)
         {
-            if (ditemUI.gameObject == DescriContent)
-            { continue; }
-            Destroy(ditemUI.gameObject);
 
 
-        }
-        Debug.Log("Encontrei nada");
 
-        for (int i = 0; i < itensDesc.Count; i++)
-        {
-            Debug.Log("Encontrei slaaaa");
-            dialogoNaTela = Instantiate(DescriPrefab, DescriContent.transform);
-            
-            dialogoNaTela.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = itensDesc[i].itemName;
+
+
+            Inventario.Singleton.AddItem(marcelo.GetItem());
+
+            marcelo.gameObject.SetActive(false);
+
+
+            marcelo = null;
+
+
         }
     }
 
@@ -102,25 +107,10 @@ public class Inventario : MonoBehaviour
 
     }
 
-    public bool RemoveItemDesc(Item item)
-    {
-        if(!itensDesc.Contains(item)) return false;
-
-        itensDesc.Remove(item);
-        UpdateDescriUI();
-
-        return true;
-    }
+    
 
 
-    public void DestruirInstancia()
-    {
-        if (dialogoNaTela != null)
-        {
-            Destroy(dialogoNaTela);
-            dialogoNaTela = null; 
-        }
-    }
+    
 
 
 
