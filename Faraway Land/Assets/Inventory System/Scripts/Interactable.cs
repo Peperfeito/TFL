@@ -2,29 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
+using UnityEngine.EventSystems;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] Item consu;
-    [SerializeField] Dialogos dialogo;
     
+    [SerializeField] Dialogos dialogo;
+    [SerializeField] public GameObject eventSys;
+    [SerializeField] GameObject botoesInteragir;
+    [SerializeField] GameObject botaoSim;
+   
+
 
     public void AtivarInteracao()
     {
         
-        Debug.Log(dialogo.neutra);
-        if(consu == null) return;
-
-        if(Inventario.Singleton.RemoveItem(consu))
-        {
-            Debug.Log(dialogo.positiva);
-        }
-        else 
-        { 
-            Debug.Log(dialogo.negativa); 
-        }
+        eventSys.GetComponent<EventSystem>().SetSelectedGameObject(botaoSim);
+        botoesInteragir.SetActive(true);
+        Inventario.Singleton.UpdateDescriUI(true, dialogo.neutra);
+        
+        
         
     }
+
+    
+
+    
+
+
 
 
 

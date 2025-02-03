@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class Player : MonoBehaviour
     [SerializeField] protected GameObject Grid;
     [SerializeField] protected Transform Saida;
     [SerializeField] GameObject buttons;
-    
+    [SerializeField] GameObject buttonsPegar;
+    public Interactable interactable;
+
     protected ItemProp itemProp;
     protected bool playerPodeSeMover = true;
 
@@ -38,7 +41,7 @@ public class Player : MonoBehaviour
 
 
 
-                
+                interactable.eventSys.GetComponent<EventSystem>().SetSelectedGameObject(buttonsPegar);
                 buttons.SetActive(true);
                 Inventario.Singleton.UpdateItemBuff(itemProp);
 

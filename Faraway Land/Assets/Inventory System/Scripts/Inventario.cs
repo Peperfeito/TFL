@@ -14,7 +14,7 @@ public class Inventario : MonoBehaviour
 
 
     public List<Item> itens = new List<Item>();
-    public ItemProp marcelo;
+    public ItemProp marcelo; //O marcelo eh um buffer
 
 
 
@@ -55,15 +55,15 @@ public class Inventario : MonoBehaviour
     public void UpdateItemBuff(ItemProp itemProp)
     {
         marcelo = itemProp;
-        UpdateDescriUI(true);
+        UpdateDescriUI(true, marcelo.GetItem().itemName);
     }
 
-    public void UpdateDescriUI(bool ativo)
+    public void UpdateDescriUI(bool ativo, string textoDia = "")
     {
         dialogoNaTela.SetActive(ativo);
         if(dialogoNaTela.activeSelf)
         {
-            dialogoNaTela.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = marcelo.GetItem().itemName;
+            dialogoNaTela.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = textoDia;
         }
 
 

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68ced4de72cb4d4ab7a8a2cddcec1f8, type: 3}
   m_Name: DialogosDaOutraChaveFoda
   m_EditorClassIdentifier: 
-  neutra: 
-  negativa: 
-  positiva: 
+  neutra: Uma OUTRA porta
+  negativa: Parece prescisar de OUTRA coisa
+  positiva: A OUTRA CHAVE FODA foi usada
