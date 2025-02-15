@@ -27,15 +27,17 @@ public class InimgoEstatua : MonoBehaviour
 
 
             }
-            else
-            {
-                Node [] nodes = FindObjectsOfType<Node>();
-                while (path == null || path.Count == 0)
-                {
-                    path = AStrella.instance.GeneratePath(currentNode, nodes[Random.Range(0, nodes.Length)]);
-                }
-            }
+           
         
+        }
+
+        else
+        {
+            Node[] nodes = FindObjectsOfType<Node>();
+            while (path == null || path.Count == 0)
+            {
+                path = AStrella.instance.GeneratePath(currentNode, nodes[Random.Range(0, nodes.Length)]);
+            }
         }
     }
 
