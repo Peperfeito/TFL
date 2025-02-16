@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AStrella : MonoBehaviour
@@ -78,6 +79,46 @@ public class AStrella : MonoBehaviour
         
         return null;
     }
+
+    public Node FindNearestNode(Vector2 position)
+    {
+        Node foundNode = null;
+        float minDistance = float.MaxValue;
+
+        foreach(Node node in NodesInScene())
+        {
+            float currentDistance = Vector2.Distance(position, node.transform.position);
+            if(currentDistance < minDistance)
+            {
+                minDistance = currentDistance;
+                foundNode = node;
+            }
+        }
+        return foundNode;
+    }
+
+    public Node FindNFurthestNode(Vector2 position)
+    {
+        Node foundNode = null;
+        float maxDistance = 0;
+
+        foreach(Node node in NodesInScene())
+        {
+            float currentDistance = Vector2.Distance(position, node.transform.position);
+            if(currentDistance > maxDistance)
+            {
+                maxDistance = currentDistance;
+                foundNode = node;
+            }
+        }
+        return foundNode;
+    }
+
+    public Node[] NodesInScene()
+    {
+        return FindObjectsOfType<Node>();
+    }
+
 
 
 

@@ -5,42 +5,100 @@ using UnityEngine;
 public class InimgoEstatua : MonoBehaviour
 {
     public Node currentNode;
-    public List<Node> path = new List<Node>();
+    public List<Node> path;
+
+    public Player player;
+    private float speed = 3;
+
+    public enum StateMachine
+    {
+        Patrol,
+        Engage,
+        Stop
+    }
+
+    public StateMachine currentState;
+
+    private void Start()
+    {
+        currentState = StateMachine.Patrol;
+    }
 
     private void Update()
     {
+        switch(currentState)
+        {
+            case StateMachine.Patrol:
+                Patrol();
+                break;
+            case StateMachine.Engage:
+                Engage();
+                break;
+            case StateMachine.Stop:
+                Stop();
+                break;
+        }
+
+        bool playerSeen = Vector2.Distance(transform.position, player.transform.position) < 5.0f;
+
+        if(playerSeen == false && currentState != StateMachine.Patrol)
+        {
+            currentState = StateMachine.Patrol;
+            path.Clear();
+        }
+        else if(playerSeen == true && currentState != StateMachine.Engage)
+        {
+            currentState = StateMachine.Engage;
+            path.Clear();
+        }
+        else if (currentState != StateMachine.Engage)
+        {
+            currentState = StateMachine.Engage;
+            path.Clear();
+        }
+
         CreatePath();
     }
 
-    public void CreatePath()
+    void Patrol()
     {
-        if(path.Count > 0)
+        if(path.Count == 0)
         {
-            int x = 0;
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(path[x].transform.position.x , path[x].transform.position.y ), 3 * Time.deltaTime);
-
-            if (Vector2.Distance(transform.position, path[x].transform.position) < 0.1f)
-            {
-                currentNode = path[x];
-                path.RemoveAt(x);
-
-
-
-            }
-           
-        
+            path = AStrella.instance.GeneratePath(currentNode, AStrella.instance.NodesInScene()[Random.Range(0, AStrella.instance.NodesInScene().Length)]);
         }
 
-        else
+    }
+
+    void Engage()
+    {
+        if (path.Count == 0)
         {
-            Node[] nodes = FindObjectsOfType<Node>();
-            while (path == null || path.Count == 0)
-            {
-                path = AStrella.instance.GeneratePath(currentNode, nodes[Random.Range(0, nodes.Length)]);
-            }
+            path = AStrella.instance.GeneratePath(currentNode, AStrella.instance.FindNearestNode(player.transform.position));
         }
     }
 
+    void Stop()
+    {
+        if (path.Count == 0)
+        {
+            path = null;
+        }
+    }
+
+    void CreatePath()
+    {
+        if (path.Count > 0)
+        {
+            int x = 0;
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(path[x].transform.position.x, path[x].transform.position.y, -2), speed * Time.deltaTime);
+            
+            if(Vector2.Distance(transform.position, path[x].transform.position) < 0.1f )
+            {
+                currentNode = path[x];
+                path.RemoveAt(x);
+            }
+        }
+    }
 
 
 
