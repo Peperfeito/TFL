@@ -4931,6 +4931,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentNode: {fileID: 975796851}
   path: []
+  player: {fileID: 1920838340}
+  currentState: 0
 --- !u!1 &1398268160
 GameObject:
   m_ObjectHideFlags: 0
