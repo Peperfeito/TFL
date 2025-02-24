@@ -9,6 +9,7 @@ public class InimgoEstatua : MonoBehaviour
 
     public Player player;
     private float speed = 3;
+    [SerializeField] GameObject telaMorte;
 
     public enum StateMachine
     {
@@ -100,6 +101,14 @@ public class InimgoEstatua : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            telaMorte.SetActive(true);
+            Destroy(collision);
+        }
+    }
 
 
 
