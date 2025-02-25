@@ -9,6 +9,7 @@ public class CameraSmooth : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
 
     [SerializeField] private Transform target;
+    
     // Start is called before the first frame update
     void Start()
     {
