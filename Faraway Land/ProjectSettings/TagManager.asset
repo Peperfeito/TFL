@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Porta
   - Item
+  - Inimigo
   layers:
   - Default
   - TransparentFX

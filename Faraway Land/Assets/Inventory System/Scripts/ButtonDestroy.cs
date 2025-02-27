@@ -39,6 +39,7 @@ public class ButtonDestroy : MonoBehaviour
 
         if (Inventario.Singleton.RemoveItem(consu))
         {
+            interactable.eventSys.GetComponent<EventSystem>().SetSelectedGameObject(Xbutton);
             buttonsPegar.SetActive(false);
             Xbutton.SetActive(true);
             Inventario.Singleton.UpdateDescriUI(true, dialogo.positiva);
