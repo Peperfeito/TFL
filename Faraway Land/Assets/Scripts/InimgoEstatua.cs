@@ -103,10 +103,12 @@ public class InimgoEstatua : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("entrou?");
+
         if(collision.CompareTag("Player"))
         {
             telaMorte.SetActive(true);
-            Destroy(collision);
+            //Destroy(collision.gameObject);
         }
     }
 
