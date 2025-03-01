@@ -13,13 +13,14 @@ public class ButtonDestroy : MonoBehaviour
     [SerializeField] Item consu;
     protected ItemProp itemProp;
     public Interactable interactable;
-    
+    private Inventario inventarioAcess;
+
 
 
     public void Deixar()
     {
         buttons.SetActive(false);
-        Inventario.Singleton.UpdateDescriUI(false );
+        inventarioAcess.UpdateDescriUI(false );
         
 
     }
@@ -27,9 +28,9 @@ public class ButtonDestroy : MonoBehaviour
     public void Pegar()
     {
         buttons.SetActive(false);
-        Inventario.Singleton.UpdateDescriUI(false);
+        inventarioAcess.UpdateDescriUI(false);
 
-        Inventario.Singleton.PegarMarcelo();
+        inventarioAcess.PegarMarcelo();
 
     }
 
@@ -37,19 +38,19 @@ public class ButtonDestroy : MonoBehaviour
     {
         if (consu == null) return;
 
-        if (Inventario.Singleton.RemoveItem(consu))
+        if (inventarioAcess.RemoveItem(consu))
         {
             interactable.eventSys.GetComponent<EventSystem>().SetSelectedGameObject(Xbutton);
             buttonsPegar.SetActive(false);
             Xbutton.SetActive(true);
-            Inventario.Singleton.UpdateDescriUI(true, dialogo.positiva);
+            inventarioAcess.UpdateDescriUI(true, dialogo.positiva);
         }
         else 
         {
             interactable.eventSys.GetComponent<EventSystem>().SetSelectedGameObject(Xbutton);
             buttonsPegar.SetActive(false);
             Xbutton.SetActive(true);
-            Inventario.Singleton.UpdateDescriUI(true, dialogo.negativa);
+            inventarioAcess.UpdateDescriUI(true, dialogo.negativa);
 
         }
         
@@ -62,8 +63,13 @@ public class ButtonDestroy : MonoBehaviour
     {
         buttonsPegar.SetActive(false);
         Xbutton.SetActive(false);
-        Inventario.Singleton.UpdateDescriUI(false);
+        inventarioAcess.UpdateDescriUI(false);
     }
 
-    
+    private void Awake()
+    {
+        inventarioAcess = GameObject.Find("Inventario").GetComponent<Inventario>();
+    }
+
+
 }

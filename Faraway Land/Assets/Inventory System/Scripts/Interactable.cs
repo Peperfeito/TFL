@@ -12,7 +12,8 @@ public class Interactable : MonoBehaviour
     [SerializeField] public GameObject eventSys;
     [SerializeField] GameObject botoesInteragir;
     [SerializeField] GameObject botaoSim;
-   
+    private Inventario inventarioAcess;
+
 
 
     public void AtivarInteracao()
@@ -20,15 +21,18 @@ public class Interactable : MonoBehaviour
         
         eventSys.GetComponent<EventSystem>().SetSelectedGameObject(botaoSim);
         botoesInteragir.SetActive(true);
-        Inventario.Singleton.UpdateDescriUI(true, dialogo.neutra);
+        inventarioAcess.UpdateDescriUI(true, dialogo.neutra);
         
         
         
     }
 
-    
+    private void Awake()
+    {
+        inventarioAcess = GameObject.Find("Inventario").GetComponent<Inventario>();
+    }
 
-    
+
 
 
 

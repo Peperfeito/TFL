@@ -8,7 +8,7 @@ public class Inventario : MonoBehaviour
     [SerializeField] public GameObject inventario;
     [SerializeField] GameObject inventarioContent;
     [SerializeField] GameObject itemPrefab;
-    public static Inventario Singleton;
+    
     public GameObject dialogoNaTela;
     [SerializeField] GameObject DescriContent;
 
@@ -78,7 +78,7 @@ public class Inventario : MonoBehaviour
 
 
 
-            Inventario.Singleton.AddItem(marcelo.GetItem());
+            AddItem(marcelo.GetItem());
 
             marcelo.gameObject.SetActive(false);
 
@@ -116,8 +116,8 @@ public class Inventario : MonoBehaviour
 
     private void Awake()
     {
-        Singleton = this;
-        //DontDestroyOnLoad(this.gameObject);
+      
+        DontDestroyOnLoad(this.gameObject);
         
     }
 }
