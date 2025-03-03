@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Afk : MonoBehaviour
 {
-    private new CameraSmooth camera;
+    private CameraSmooth cameraSmooth;
     [SerializeField] private Transform novoalvo;
+    public bool ativar = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +23,13 @@ public class Afk : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
+
+
         if (collision.CompareTag("Player"))
         {
-            Debug.Log(novoalvo.gameObject);
-            camera.Setarget(novoalvo);
+            ativar = true;
+           
             
         }
 

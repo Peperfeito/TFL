@@ -7,6 +7,10 @@ TagManager:
   - Porta
   - Item
   - Inimigo
+  - M
+  - espaco
+  - espaco1
+  - espaco2
   layers:
   - Default
   - TransparentFX
