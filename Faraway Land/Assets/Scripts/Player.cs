@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] protected Transform Saida;
     [SerializeField] GameObject buttons;
     [SerializeField] GameObject buttonsPegar;
-    public Interactable interactable;
+    private Interactable interactable;
     private Inventario inventarioAcess;
 
     protected ItemProp itemProp;
