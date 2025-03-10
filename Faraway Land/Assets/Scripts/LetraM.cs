@@ -35,13 +35,13 @@ public class LetraM : MonoBehaviour
 
     private void OnMouseEnter()
     {
-
+        stopDrag = false;
         GetComponent<SpriteRenderer>().color = new Color(objectColor.r, objectColor.g, objectColor.b, 0.5f);
     }
 
     private void OnMouseExit()
     {
-        stopDrag = false;
+        
         GetComponent<SpriteRenderer>().color = objectColor;
     }
 
