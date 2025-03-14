@@ -11,6 +11,7 @@ TagManager:
   - espaco
   - espaco1
   - espaco2
+  - PlayerG
   layers:
   - Default
   - TransparentFX

@@ -16,6 +16,7 @@ public class CameraSmooth : MonoBehaviour
     void Start()
     {
         
+        
     }
 
     // Update is called once per frame
@@ -29,6 +30,7 @@ public class CameraSmooth : MonoBehaviour
         {
             Setarget();
         }
+        
     }
 
     public void Setarget()
