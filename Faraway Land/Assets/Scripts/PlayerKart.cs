@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+
 
 public class PlayerKart : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class PlayerKart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        movePoint.parent = null;
     }
 
     // Update is called once per frame
@@ -28,6 +28,7 @@ public class PlayerKart : MonoBehaviour
 
     private void AndaGrid()
     {
+       
         bool moveflag = (transform.position - movePoint.position).magnitude > 0.2f;
         Vector2 directionRayCast = new Vector2(horizontal, vertical);
 
@@ -42,9 +43,9 @@ public class PlayerKart : MonoBehaviour
 
 
 
-        
 
-        
+
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
@@ -69,6 +70,15 @@ public class PlayerKart : MonoBehaviour
         }
 
 
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Coin"))
+        {
+            Destroy(collision.gameObject);
+        }
 
     }
 

@@ -12,6 +12,7 @@ TagManager:
   - espaco1
   - espaco2
   - PlayerG
+  - Coin
   layers:
   - Default
   - TransparentFX
