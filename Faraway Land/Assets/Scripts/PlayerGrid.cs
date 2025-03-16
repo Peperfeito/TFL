@@ -13,7 +13,7 @@ public class PlayerGrid : Player
     public Transform movePoint;
     private float horizontal;
     private float vertical;
-
+    Player player;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,7 @@ public class PlayerGrid : Player
     // Update is called once per frame
     void Update()
     {
-        InputHandler();
+        player.InputHandler();
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         AndaGrid();
@@ -78,11 +78,7 @@ public class PlayerGrid : Player
 
     }
 
-    protected override void InputHandler()
-    {
-        base.InputHandler();
-
-    }
+    
 
     protected override void OnTriggerEnter2DReaction(Collider2D collision)
     {

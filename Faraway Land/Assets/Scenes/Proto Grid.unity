@@ -1076,7 +1076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &142736035
 Transform:
   m_ObjectHideFlags: 0
@@ -2059,6 +2059,7 @@ MonoBehaviour:
     m_Bits: 64
   groundCheck: {fileID: 1030377542}
   groundCheckRadius: 0.5
+  player: {fileID: 1349313671}
 --- !u!212 &369516779
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5521,7 +5522,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -5675,7 +5676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1086360073
 Transform:
   m_ObjectHideFlags: 0
@@ -6699,8 +6700,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 369516775}
-  newtarget: {fileID: 0}
-  afk: {fileID: 0}
+  newtarget: {fileID: 1349313670}
+  afk: {fileID: 600219588}
 --- !u!114 &1344492883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6910,6 +6911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1349313670}
+  - component: {fileID: 1349313671}
   m_Layer: 0
   m_Name: Nada
   m_TagString: Untagged
@@ -6932,6 +6934,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1349313671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349313669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4065ec080738094c841b481cf19c5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  Sidescroll: {fileID: 1349313669}
+  Grid: {fileID: 1349313669}
+  Saida: {fileID: 1349313670}
+  buttons: {fileID: 1349313669}
+  buttonsPegar: {fileID: 1349313669}
 --- !u!1001 &1352234381
 PrefabInstance:
   m_ObjectHideFlags: 0
