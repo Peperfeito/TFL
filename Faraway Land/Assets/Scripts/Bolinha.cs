@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +19,11 @@ public class Bolinha : MonoBehaviour
     private int i;
     public Vector3 direction;
     private bool stop = false;
+    private bool errou = false;
+    private bool move = true;
+    [SerializeField] GameObject spawn;
     
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +35,9 @@ public class Bolinha : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
+
         if(Force > MaxForce)
         {
             Force = 0f;
@@ -58,20 +67,32 @@ public class Bolinha : MonoBehaviour
                 }
             }
             transform.position = Vector2.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
-
+            move = true;
         }
     }
 
     private void OnMouseDown()
     {
-        
+        if(errou)
+        {
+            move = false;
+            stop = false;
+            errou = false;
+            speed = 20;
+            Force = 0;
+            ForceBar.fillAmount = 0;
+
+
+        }
 
         if (stop)
         {
             press = true;
         }
-
-        stop = true;
+        if (move)
+        {
+            stop = true;
+        }
     }
 
     private void OnMouseUp()
@@ -95,12 +116,42 @@ public class Bolinha : MonoBehaviour
         while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+            
+
             yield return null;
         }
 
+
+
         transform.position = targetPosition;
-        
+
+        yield return new WaitForSeconds(1f);
+
+        transform.position = lastPosition;
+        errou = true;
+       
+
+
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Fora"))
+        {
+            StopAllCoroutines();
+            transform.position = spawn.transform.position;
+            errou = true;
+            
+        }
 
+        if (collision.gameObject.CompareTag("Objetivo"))
+        {
+            Destroy(gameObject);// diminuir a hit box de ambos
+        }
+    }
+
+    private void StopAllCoroutines(IEnumerator enumerator)
+    {
+        throw new NotImplementedException();
+    }
 }
