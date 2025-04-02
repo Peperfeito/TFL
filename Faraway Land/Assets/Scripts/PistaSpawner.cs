@@ -6,36 +6,43 @@ public class PistaSpawner : MonoBehaviour
 {
     public GameObject roadPrefab;
     public int numberOfRoads = 5;
-    public float roadLength = 10f;
-    public float speed = 10f;
+    public float roadLength = 5f;
+    public float speed = 2f;
+    public GameObject roadContent;
 
-    private Queue<GameObject> roadPieces = new Queue<GameObject>();
+    private List<GameObject> roadPieces = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < numberOfRoads; i++)
         {
-            Vector3 spawnPos = new Vector3(0, 0, i * roadLength);
-            GameObject road = Instantiate(roadPrefab, spawnPos, Quaternion.identity);
-            roadPieces.Enqueue(road);
+            //Vector3 spawnPos = new Vector3(0, i * roadLength, 0); 
+            GameObject road = Instantiate(roadPrefab, roadContent.transform);
+            roadPieces.Add(road);
+            Debug.Log("funciona");
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach (GameObject road in roadPieces)
+        for (int i = 0; i < roadPieces.Count; i++)
         {
-            road.transform.position += Vector3.back * speed * Time.deltaTime;
+            roadPieces[i].transform.position += new Vector3(0, -speed * Time.deltaTime, 0);
         }
 
-        // Verificar se a pista mais antiga saiu da tela e precisa ser reciclada
-        if (roadPieces.Peek().transform.position.z < -roadLength)
+        if (roadPieces[0].transform.position.y < -roadLength)
         {
-            GameObject oldRoad = roadPieces.Dequeue();
-            oldRoad.transform.position = roadPieces.ToArray()[roadPieces.Count - 1].transform.position + new Vector3(0, 0, roadLength);
-            roadPieces.Enqueue(oldRoad);
+            GameObject oldRoad = roadPieces[0]; 
+            roadPieces.RemoveAt(0); 
+
+            
+            GameObject lastRoad = roadPieces[roadPieces.Count - 1];
+            Vector3 newPosition = lastRoad.transform.position + new Vector3(0, roadLength, 0);
+            oldRoad.transform.position = newPosition;
+
+            roadPieces.Add(oldRoad); 
         }
     }
 }

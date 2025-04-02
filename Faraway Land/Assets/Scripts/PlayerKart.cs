@@ -22,6 +22,8 @@ public class PlayerKart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position += Vector3.up * speed * Time.deltaTime;
+
         if (Input.GetKeyDown(KeyCode.LeftArrow) && lane > -1)
         {
             lane--;
@@ -31,8 +33,8 @@ public class PlayerKart : MonoBehaviour
             lane++;
         }
 
-        Vector3 targetPosition = startPosition + new Vector3(lane * laneWidth, 0, 0);
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * speed);
+        
+        transform.position = Vector3.Lerp(transform.position, startPosition, Time.deltaTime * speed);
     }
 
     
