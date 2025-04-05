@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PistaSpawner : MonoBehaviour
@@ -8,41 +7,37 @@ public class PistaSpawner : MonoBehaviour
     public int numberOfRoads = 5;
     public float roadLength = 5f;
     public float speed = 2f;
-    public GameObject roadContent;
 
     private List<GameObject> roadPieces = new List<GameObject>();
 
-    // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < numberOfRoads; i++)
         {
-            //Vector3 spawnPos = new Vector3(0, i * roadLength, 0); 
-            GameObject road = Instantiate(roadPrefab, roadContent.transform);
+            Vector3 spawnPos = new Vector3(0, i * roadLength, 0);
+            GameObject road = Instantiate(roadPrefab, spawnPos, Quaternion.identity);
             roadPieces.Add(road);
-            Debug.Log("funciona");
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < roadPieces.Count; i++)
+        foreach (GameObject road in roadPieces)
         {
-            roadPieces[i].transform.position += new Vector3(0, -speed * Time.deltaTime, 0);
+            road.transform.position += Vector3.down * speed * Time.deltaTime;
         }
 
+        // Recicla a primeira pista
         if (roadPieces[0].transform.position.y < -roadLength)
         {
-            GameObject oldRoad = roadPieces[0]; 
-            roadPieces.RemoveAt(0); 
+            GameObject oldRoad = roadPieces[0];
+            roadPieces.RemoveAt(0);
 
-            
             GameObject lastRoad = roadPieces[roadPieces.Count - 1];
-            Vector3 newPosition = lastRoad.transform.position + new Vector3(0, roadLength, 0);
-            oldRoad.transform.position = newPosition;
+            Vector3 newPos = lastRoad.transform.position + new Vector3(0, roadLength, 0);
+            oldRoad.transform.position = newPos;
 
-            roadPieces.Add(oldRoad); 
+            roadPieces.Add(oldRoad);
         }
     }
 }

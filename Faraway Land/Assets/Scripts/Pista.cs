@@ -1,48 +1,91 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Pista : MonoBehaviour
 {
     public Transform player;
+
+    [Header("Escala Horizontal baseada na distância Y")]
+    public float maxDistance = 30f;
+    public float minScaleX = 0.5f;
+    public float maxScaleX = 2f;
+
+    [Header("Reciclagem da Pista")]
+    public Transform referencePoint; // <- Novo: ponto base de reposição
+    public float recycleThreshold = -15f;
+
     private Vector3 initialScale;
-    private float initialDistance;
+    private static Pista[] allRoads;
+    private SpriteRenderer sr;
 
-    public float scaleMultiplier = 2f;
-    public float minScale = 0.05f; 
-    public float maxScale = 5f;
-
-    private Pista nextRoadPiece;
-
-    private void Start()
+    void Start()
     {
-        initialScale = transform.localScale;
-        initialDistance = Vector3.Distance(player.position, transform.position);
+        if (player == null)
+            player = GameObject.FindWithTag("Player")?.transform;
 
-        if (transform.parent != null)
+        if (player == null)
         {
-            int index = transform.GetSiblingIndex();
-            if (index < transform.parent.childCount - 1)
-            {
-                nextRoadPiece = transform.parent.GetChild(index + 1).GetComponent<Pista>();
-            }
+            Debug.LogError("Player não encontrado! Verifique se ele tem a tag 'Player'.");
+            return;
         }
+
+        if (referencePoint == null)
+        {
+            Debug.LogError("ReferencePoint não foi atribuído!");
+            return;
+        }
+
+        initialScale = transform.localScale;
+        sr = GetComponent<SpriteRenderer>();
+
+        if (allRoads == null || allRoads.Length == 0)
+            allRoads = transform.parent.GetComponentsInChildren<Pista>();
     }
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null || referencePoint == null) return;
 
-        float currentDistance = Vector3.Distance(player.position, transform.position);
-        float scaleFactor = (initialDistance / currentDistance) * scaleMultiplier;
-        scaleFactor = Mathf.Clamp(scaleFactor, minScale, maxScale);
-        transform.localScale = initialScale * scaleFactor;
+        float distanceY = Mathf.Abs(transform.position.y - player.position.y);
+        float t = Mathf.Clamp01(distanceY / maxDistance);
+        float scaleX = Mathf.Lerp(maxScaleX, minScaleX, t);
 
-        if (nextRoadPiece != null)
+        transform.localScale = new Vector3(scaleX, initialScale.y, initialScale.z);
+
+        if (transform.position.y < player.position.y + recycleThreshold)
+            Recycle();
+    }
+
+    void Recycle()
+    {
+        Pista topRoad = null;
+        float highestY = float.MinValue;
+
+        foreach (var road in allRoads)
         {
-            float newYPosition = transform.position.y - (transform.localScale.y * 10); 
-            nextRoadPiece.transform.position = new Vector3(transform.position.x, newYPosition, transform.position.z);
+            if (road != this && road.transform.position.y > highestY)
+            {
+                highestY = road.transform.position.y;
+                topRoad = road;
+            }
         }
+
+        if (topRoad == null) return;
+
+        float topHeight = topRoad.GetScaledHeight();
+        float myHeight = GetScaledHeight();
+
+        // Use referencePoint como base para calcular nova posição
+        transform.position = new Vector3(
+            referencePoint.position.x,
+            topRoad.transform.position.y + topHeight / 2 + myHeight / 2,
+            referencePoint.position.z
+        );
+    }
+
+    float GetScaledHeight()
+    {
+        if (sr == null) sr = GetComponent<SpriteRenderer>();
+        if (sr == null) return 1f;
+        return sr.bounds.size.y;
     }
 }
