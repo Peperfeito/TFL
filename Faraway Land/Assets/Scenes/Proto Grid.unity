@@ -3158,7 +3158,7 @@ Transform:
   m_GameObject: {fileID: 583801599}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.9, y: 3.9, z: 0}
+  m_LocalPosition: {x: -4.34, y: 4.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4090,9 +4090,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadPrefab: {fileID: 1373160083}
-  numberOfRoads: 5
-  roadLength: 5
+  numberOfRoads: 20
+  roadLength: 2
   speed: 2
+  spawnPoint: {fileID: 583801599}
 --- !u!1 &851800616
 GameObject:
   m_ObjectHideFlags: 0
@@ -10157,11 +10158,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8039534194847381969, guid: 9cbd4fb2fe6986d4f9270596ae1f4772, type: 3}
       propertyPath: maxScaleX
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8039534194847381969, guid: 9cbd4fb2fe6986d4f9270596ae1f4772, type: 3}
       propertyPath: minScaleX
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8039534194847381969, guid: 9cbd4fb2fe6986d4f9270596ae1f4772, type: 3}
       propertyPath: maxDistance
@@ -10174,7 +10175,7 @@ PrefabInstance:
     - target: {fileID: 8039534194847381969, guid: 9cbd4fb2fe6986d4f9270596ae1f4772, type: 3}
       propertyPath: referencePoint
       value: 
-      objectReference: {fileID: 1772355557}
+      objectReference: {fileID: 583801600}
     - target: {fileID: 8039534194847381969, guid: 9cbd4fb2fe6986d4f9270596ae1f4772, type: 3}
       propertyPath: scaleMultiplier
       value: 0.5

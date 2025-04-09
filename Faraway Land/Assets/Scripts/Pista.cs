@@ -30,8 +30,11 @@ public class Pista : MonoBehaviour
 
         if (referencePoint == null)
         {
-            Debug.LogError("ReferencePoint não foi atribuído!");
-            return;
+            Vector3 topOfCamera = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 1f, Camera.main.nearClipPlane + 1f));
+            topOfCamera.z = 0f;
+            GameObject temp = new GameObject("DynamicReferencePoint");
+            temp.transform.position = topOfCamera;
+            referencePoint = temp.transform;
         }
 
         initialScale = transform.localScale;
@@ -51,13 +54,21 @@ public class Pista : MonoBehaviour
 
         transform.localScale = new Vector3(scaleX, initialScale.y, initialScale.z);
 
-        if (transform.position.y < player.position.y + recycleThreshold)
+        Vector3 bottomOfCamera = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0f, Camera.main.nearClipPlane + 1f));
+        if (transform.position.y + GetScaledHeight() / 2 < bottomOfCamera.y)
+        {
             Recycle();
+        }
     }
 
     void Recycle()
     {
-        Pista topRoad = null;
+        if (referencePoint == null) return;
+
+        transform.position = referencePoint.position;
+
+
+        /* Pista topRoad = null;
         float highestY = float.MinValue;
 
         foreach (var road in allRoads)
@@ -79,10 +90,10 @@ public class Pista : MonoBehaviour
             referencePoint.position.x,
             topRoad.transform.position.y + topHeight / 2 + myHeight / 2,
             referencePoint.position.z
-        );
+        );*/
     }
 
-    float GetScaledHeight()
+    public float GetScaledHeight()
     {
         if (sr == null) sr = GetComponent<SpriteRenderer>();
         if (sr == null) return 1f;
