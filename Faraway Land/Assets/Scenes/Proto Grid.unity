@@ -4090,7 +4090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadPrefab: {fileID: 1373160083}
-  numberOfRoads: 20
+  numberOfRoads: 25
   roadLength: 2
   speed: 2
   spawnPoint: {fileID: 583801599}
@@ -4915,7 +4915,7 @@ GameObject:
   - component: {fileID: 932067463}
   - component: {fileID: 932067462}
   - component: {fileID: 932067461}
-  - component: {fileID: 932067460}
+  - component: {fileID: 932067464}
   m_Layer: 0
   m_Name: Main CameraCorrida
   m_TagString: MainCamera
@@ -4938,21 +4938,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 776165482}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &932067460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 932067458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b4e5ef33dd9b564aa39f4e4dc946a57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 1837127847}
-  newtarget: {fileID: 1349313670}
-  afk: {fileID: 600219588}
 --- !u!114 &932067461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5056,6 +5041,21 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &932067464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932067458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a911457e9f0f14f4c95be05209465784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1837127847}
+  bottomOffset: 4
+  smoothSpeed: 5
 --- !u!1 &957421034
 GameObject:
   m_ObjectHideFlags: 0
@@ -10158,7 +10158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8039534194847381969, guid: 9cbd4fb2fe6986d4f9270596ae1f4772, type: 3}
       propertyPath: maxScaleX
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8039534194847381969, guid: 9cbd4fb2fe6986d4f9270596ae1f4772, type: 3}
       propertyPath: minScaleX
@@ -10166,7 +10166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8039534194847381969, guid: 9cbd4fb2fe6986d4f9270596ae1f4772, type: 3}
       propertyPath: maxDistance
-      value: 60
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8039534194847381969, guid: 9cbd4fb2fe6986d4f9270596ae1f4772, type: 3}
       propertyPath: scaleFactor
