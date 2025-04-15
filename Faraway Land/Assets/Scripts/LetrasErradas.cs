@@ -7,8 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 public class LetrasErradas : MonoBehaviour
 {
     [SerializeField] GameObject ninho;
-    private bool stopDrag = false;
-    private bool drop = false;
+    public bool stopDrag = false;
     public Color objectColor;
     Vector3 mousePositionOffset;
     // Start is called before the first frame update
@@ -30,15 +29,15 @@ public class LetrasErradas : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        
+        stopDrag = false;
         GetComponent<SpriteRenderer>().color = new Color(objectColor.r, objectColor.g, objectColor.b, 0.5f);
     }
 
     private void OnMouseExit()
     {
-        stopDrag = false;
+       
         GetComponent<SpriteRenderer>().color = objectColor;
-        drop = true;
+        
     }
 
     private void OnMouseDrag()
@@ -52,7 +51,7 @@ public class LetrasErradas : MonoBehaviour
 
     private void OnMouseDown()
     {
-        drop = false;
+        
         mousePositionOffset = gameObject.transform.position - GetMouseWordPosition();
     }
 
@@ -66,7 +65,7 @@ public class LetrasErradas : MonoBehaviour
     {
 
 
-        if (drop && collision.gameObject.CompareTag("espaco"))
+        if (collision.gameObject.CompareTag("espaco"))
         {
 
             stopDrag = true;
@@ -76,7 +75,7 @@ public class LetrasErradas : MonoBehaviour
 
         }
         
-        if (drop && collision.gameObject.CompareTag("espaco1"))
+        if (collision.gameObject.CompareTag("espaco1"))
         {
 
             stopDrag = true;
@@ -86,7 +85,7 @@ public class LetrasErradas : MonoBehaviour
 
         }
         
-        if (drop && collision.gameObject.CompareTag("espaco2"))
+        if (collision.gameObject.CompareTag("espaco2"))
         {
 
             stopDrag = true;
@@ -100,7 +99,7 @@ public class LetrasErradas : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        //stopDrag = false;
+        
     }
 
 
