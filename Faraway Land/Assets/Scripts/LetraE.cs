@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LetraM : MonoBehaviour
+public class LetraE : MonoBehaviour
 {
-
-    [SerializeField] private GameObject letraM;
+    [SerializeField] private GameObject letraE;
     public Color objectColor;
     Vector3 mousePositionOffset;
     private bool stopDrag = false;
@@ -20,7 +19,7 @@ public class LetraM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ResetP()
@@ -41,7 +40,7 @@ public class LetraM : MonoBehaviour
 
     private void OnMouseExit()
     {
-        
+
         GetComponent<SpriteRenderer>().color = objectColor;
     }
 
@@ -60,14 +59,14 @@ public class LetraM : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
 
-        if (collision.gameObject.CompareTag("espaco"))
+
+        if (collision.gameObject.CompareTag("espaco1"))
         {
-            
+
             Destroy(collision.gameObject);
             Destroy(this.gameObject);
-            letraM.SetActive(true);
+            letraE.SetActive(true);
 
 
         }
@@ -80,7 +79,6 @@ public class LetraM : MonoBehaviour
 
     }
 
-    
 
 
 }
