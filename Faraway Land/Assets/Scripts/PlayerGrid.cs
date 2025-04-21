@@ -13,7 +13,7 @@ public class PlayerGrid : Player
     public Transform movePoint;
     private float horizontal;
     private float vertical;
-    Player player;
+    [SerializeField] Player  player;
     // Start is called before the first frame update
     void Start()
     {
