@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Afk : MonoBehaviour
 {
-    private CameraSmooth cameraSmooth;
-    [SerializeField] private Transform novoalvo;
-    public bool ativar = false;
+    private Camera cameraPlayer;
+    [SerializeField] private GameObject fakMiniGame;
+    public GameObject[] bagulhoQTemQSumir;
+
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = true;
-
+        cameraPlayer = Camera.main;
     }
 
     // Update is called once per frame
@@ -28,10 +29,30 @@ public class Afk : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            ativar = true;
+            fakMiniGame.SetActive(true);
+            cameraPlayer.gameObject.SetActive(false);
            
             
         }
 
+    }
+
+    public void Verificar()
+    {
+        bool dicalma = true;
+
+        for(int i = 0; i < bagulhoQTemQSumir.Length; i++)
+        {
+            if (bagulhoQTemQSumir[i].activeSelf)
+            {
+                dicalma = false;
+            }
+        }
+
+        if(dicalma)
+        {
+            fakMiniGame.SetActive(false);
+            cameraPlayer.gameObject.SetActive(true);
+        }
     }
 }

@@ -9,7 +9,6 @@ public class CameraSmooth : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
 
     [SerializeField] public Transform target;
-    [SerializeField] public Transform newtarget;
     [SerializeField] private Afk afk;
 
     // Start is called before the first frame update
@@ -25,14 +24,8 @@ public class CameraSmooth : MonoBehaviour
         Vector3 targetPosition = target.position + offset;
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
 
-        if (afk.ativar)
-        {
-            Setarget();
-        }
+        
     }
 
-    public void Setarget()
-    {
-        target = newtarget;
-    }
+    
 }
