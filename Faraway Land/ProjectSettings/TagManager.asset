@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Porta
   - Item
+  - Inimigo
+  - M
+  - espaco
+  - espaco1
+  - espaco2
   layers:
   - Default
   - TransparentFX
@@ -42,4 +47,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: NoShadow
+    uniqueID: 786518411
     locked: 0

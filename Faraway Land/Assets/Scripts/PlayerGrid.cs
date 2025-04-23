@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerGrid : Player
 {
     public LayerMask colisores;
+   
 
-    
+
     public Transform movePoint;
-    
+    private float horizontal;
+    private float vertical;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,32 +25,57 @@ public class PlayerGrid : Player
     void Update()
     {
         InputHandler();
+        horizontal = Input.GetAxisRaw("Horizontal");
+        vertical = Input.GetAxisRaw("Vertical");
+        AndaGrid();
+
+    }
+
+    private void AndaGrid()
+    {
+        bool moveflag = (transform.position - movePoint.position).magnitude > 0.2f;
+
+        Vector2 directionRayCast = new Vector2(horizontal, vertical);
+
+        if (!moveflag && Physics2D.Raycast(transform.position, directionRayCast, 1f, colisores))
+        {
+            Debug.DrawRay(transform.position, directionRayCast);
+            return;
+
+
+        }
+
+        
+
 
         if (!playerPodeSeMover) return;
 
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
-        if(Vector3.Distance(transform.position, movePoint.position) <= .05f)
+        if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
 
-        if(Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
-        {
-            if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, colisores))
+            if (Mathf.Abs(horizontal) == 1f)
             {
-            movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-            
+                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(horizontal, 0f, 0f), .2f, colisores))
+                {
+                    movePoint.position += new Vector3(horizontal, 0f, 0f);
+
+                }
+            }
+
+            if (Mathf.Abs(vertical) == 1f)
+            {
+                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, vertical, 0f), .2f, colisores))
+                {
+                    movePoint.position += new Vector3(0f, vertical, 0f);
+
+                }
             }
         }
 
-                if(Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
-        {
-            if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, colisores))
-            {
-            movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
-            
-            }
-        }
-        }
+       
+
     }
 
     protected override void InputHandler()
