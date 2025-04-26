@@ -1302,7 +1302,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 245282626}
-  newtarget: {fileID: 1349313670}
   afk: {fileID: 600219588}
 --- !u!114 &139622648
 MonoBehaviour:
@@ -1422,7 +1421,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &142736035
 Transform:
   m_ObjectHideFlags: 0
@@ -3523,7 +3522,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1920838339}
-  newtarget: {fileID: 2090900242}
   afk: {fileID: 600219588}
 --- !u!1 &537117939
 GameObject:
@@ -3722,8 +3720,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5893db9b5ab5be744970ebfd1d179843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  novoalvo: {fileID: 2090900242}
-  ativar: 0
+  fakMiniGame: {fileID: 0}
+  bagulhoQTemQSumir: []
 --- !u!61 &600219589
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7446,7 +7444,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 369516775}
-  newtarget: {fileID: 1349313670}
   afk: {fileID: 600219588}
 --- !u!114 &1344492883
 MonoBehaviour:
