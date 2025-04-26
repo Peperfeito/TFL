@@ -52,3 +52,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: NoShadow
+    uniqueID: 786518411
+    locked: 0
