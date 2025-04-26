@@ -13,6 +13,7 @@ public class PlayerSideScroll : Player
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     private bool isGrounded;
+    public Player player;
     
     
 
@@ -29,7 +30,7 @@ public class PlayerSideScroll : Player
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        InputHandler();
+        player.InputHandler();
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         if(!playerPodeSeMover) return;
@@ -77,11 +78,7 @@ public class PlayerSideScroll : Player
        OnTriggerEnter2DReaction(collision);
     }
 
-    protected override void InputHandler()
-    {
-        base.InputHandler();
-
-    }
+    
 
     void Jump()
     {

@@ -15,6 +15,7 @@ public class CameraSmooth : MonoBehaviour
     void Start()
     {
         
+        
     }
 
     // Update is called once per frame
@@ -23,8 +24,6 @@ public class CameraSmooth : MonoBehaviour
         if (target == null) return;
         Vector3 targetPosition = target.position + offset;
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-
-        
     }
 
     
