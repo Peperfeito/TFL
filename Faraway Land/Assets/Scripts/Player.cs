@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] protected Transform Saida;
     [SerializeField] GameObject buttons;
     [SerializeField] GameObject buttonsPegar;
-    public Interactable interactable;
+    private Interactable interactable;
+    private Inventario inventarioAcess;
 
     protected ItemProp itemProp;
     protected bool playerPodeSeMover = true;
@@ -23,15 +24,15 @@ public class Player : MonoBehaviour
     protected virtual void InputHandler()
     {
         
-        if (Input.GetKeyDown(KeyCode.Q) && !Inventario.Singleton.dialogoNaTela.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Q) && !inventarioAcess.dialogoNaTela.activeSelf)
         {
 
-            Inventario.Singleton.VisualizarInventario();
+            inventarioAcess.VisualizarInventario();
         }
 
        
 
-        if (Input.GetKeyDown(KeyCode.E) && !Inventario.Singleton.inventario.activeSelf)
+        if (Input.GetKeyDown(KeyCode.E) && !inventarioAcess.inventario.activeSelf)
         {
             
 
@@ -43,7 +44,7 @@ public class Player : MonoBehaviour
 
                 interactable.eventSys.GetComponent<EventSystem>().SetSelectedGameObject(buttonsPegar);
                 buttons.SetActive(true);
-                Inventario.Singleton.UpdateItemBuff(itemProp);
+                inventarioAcess.UpdateItemBuff(itemProp);
 
                 itemProp = null;
                 
@@ -57,12 +58,17 @@ public class Player : MonoBehaviour
             
         }
 
-        playerPodeSeMover = !Inventario.Singleton.dialogoNaTela.activeSelf && !Inventario.Singleton.inventario.activeSelf;
+        playerPodeSeMover = !inventarioAcess.dialogoNaTela.activeSelf && !inventarioAcess.inventario.activeSelf;
 
     }
 
-    
-   
+    private void Awake()
+    {
+        inventarioAcess = GameObject.Find("Inventario").GetComponent<Inventario>();
+    }
+
+
+
 
     protected virtual void OnTriggerEnter2DReaction(Collider2D collision)
     {
