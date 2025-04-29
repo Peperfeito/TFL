@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     
 
-    protected virtual void InputHandler()
+    public virtual void InputHandler()
     {
         
         if (Input.GetKeyDown(KeyCode.Q) && !inventarioAcess.dialogoNaTela.activeSelf)
