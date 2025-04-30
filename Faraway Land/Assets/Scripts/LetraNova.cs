@@ -83,6 +83,15 @@ public class LetraNova : MonoBehaviour
                     VerificarLetra();
                     
                 }
+                if (collision.gameObject.CompareTag("Vazio"))
+                {
+
+                    stopDrag = true;
+                    ResetP();
+
+
+
+                }
                 stopDrag = true;
                 ResetP();
                 break;
@@ -98,7 +107,16 @@ public class LetraNova : MonoBehaviour
 
 
                 }
+                if (collision.gameObject.CompareTag("Vazio"))
+                {
+
                     stopDrag = true;
+                    ResetP();
+
+
+
+                }
+                stopDrag = true;
                     ResetP();
        
                 break;
@@ -114,7 +132,16 @@ public class LetraNova : MonoBehaviour
 
 
                 }
+                if (collision.gameObject.CompareTag("Vazio"))
+                {
+
                     stopDrag = true;
+                    ResetP();
+
+
+
+                }
+                stopDrag = true;
                     ResetP();
                 break;
 
@@ -135,6 +162,15 @@ public class LetraNova : MonoBehaviour
 
                 }
                 if (collision.gameObject.CompareTag("espaco2"))
+                {
+
+                    stopDrag = true;
+                    ResetP();
+
+
+
+                }
+                if (collision.gameObject.CompareTag("Vazio"))
                 {
 
                     stopDrag = true;
