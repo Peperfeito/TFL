@@ -35,20 +35,46 @@ public class Bolinha : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 posAtual = transform.position;
+
+        bool xParado = Mathf.Approximately(posAtual.x, lastPosition.x);
+        bool yParado = Mathf.Approximately(posAtual.y, lastPosition.y);
+
+        if (xParado && yParado)
+        {
+            ReseteBola();
+        }
+
+        if (move)
+        {
+            if (Input.GetKey("space"))
+            {
+                Force += Time.deltaTime * 10f;
+                ForceBar.fillAmount = Force / MaxForce;
+                if (Force > MaxForce)
+                {
+                    Force = 0f;
+                }
+
+                stop = true;
+                press = true;
+            }
+        }
+        if (press)
+        {
+            if (Input.GetKeyUp("space"))
+            {
+                move = false;
+                speed = 5;
+                StartCoroutine(MoveForward());
+                Force = 0;
+                ForceBar.fillAmount = 0;
+
+            }
+        }
+
+            
         
-
-
-        if(Force > MaxForce)
-        {
-            Force = 0f;
-        }
-
-        if(press)
-        {
-            Force += Time.deltaTime * 10f;
-
-            ForceBar.fillAmount = Force / MaxForce;
-        }
         if (!stop)
         {
             Vector3 delta = transform.position - lastPosition;
@@ -73,36 +99,26 @@ public class Bolinha : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(errou)
-        {
-            move = false;
-            stop = false;
-            errou = false;
-            speed = 20;
-            Force = 0;
-            ForceBar.fillAmount = 0;
+        
+
+       
+    }
+
+    public void ReseteBola()
+    {
+        transform.position = points[startpoint].position;
+        move = false;
+        stop = false;
+        errou = false;
+        speed = 20;
+        press = false;
 
 
-        }
-
-        if (stop)
-        {
-            press = true;
-        }
-        if (move)
-        {
-            stop = true;
-        }
     }
 
     private void OnMouseUp()
     {
-        if (stop)
-        {
-            speed = 5;
-            press = false;
-            StartCoroutine(MoveForward());
-        }
+        
     }
 
     IEnumerator MoveForward()
@@ -127,9 +143,12 @@ public class Bolinha : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        transform.position = lastPosition;
-        errou = true;
-       
+        //transform.position = lastPosition;
+        if (transform.position == targetPosition)
+        {
+            ReseteBola();
+            
+        }
 
 
     }
@@ -140,13 +159,14 @@ public class Bolinha : MonoBehaviour
         {
             StopAllCoroutines();
             transform.position = spawn.transform.position;
-            errou = true;
+            ReseteBola();
             
         }
 
         if (collision.gameObject.CompareTag("Objetivo"))
         {
-            Destroy(gameObject);// diminuir a hit box de ambos
+            //Destroy(gameObject);// diminuir a hit box de ambos
+            ReseteBola();
         }
     }
 
