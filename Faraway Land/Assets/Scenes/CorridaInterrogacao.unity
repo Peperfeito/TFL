@@ -235,13 +235,13 @@ MonoBehaviour:
   screenHeight: 100
   pixelPref: {fileID: 0}
   treePref: {fileID: 0}
-  grassColor: {r: 0, g: 0, b: 0, a: 0}
-  grassLowColor: {r: 0, g: 0, b: 0, a: 0}
-  shoulderColor: {r: 0, g: 0, b: 0, a: 0}
-  shoulderLowColor: {r: 0, g: 0, b: 0, a: 0}
-  roadColor: {r: 0, g: 0, b: 0, a: 0}
+  grassColor: {r: 0.34825128, g: 0.23589355, b: 0.8773585, a: 0}
+  grassLowColor: {r: 0.19607078, g: 0.16037735, b: 0.6415094, a: 0}
+  shoulderColor: {r: 1, g: 0.6650944, b: 0.9779314, a: 0}
+  shoulderLowColor: {r: 1, g: 0.3443396, b: 0.94648737, a: 0}
+  roadColor: {r: 0.45181307, g: 0, b: 0.6886792, a: 0}
   treeColor: {r: 0, g: 0, b: 0, a: 0}
-  treeLowColor: {r: 0, g: 0, b: 0, a: 0}
+  treeLowColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0}
   vecTrack: []
   sumDistance: 0
   grassList: []

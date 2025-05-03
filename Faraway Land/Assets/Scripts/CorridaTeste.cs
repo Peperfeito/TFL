@@ -78,7 +78,7 @@ public class CorridaTeste : MonoBehaviour
                 float fRoadWidth = -0.05f + fPerspective * 1.2f;
                 float fClipWidth = fRoadWidth * 0.15f;
 
-                fRoadWidth += 0.5f;
+                fRoadWidth *= 0.5f;
 
                 float nLeftGrass = (fMiddlePoint - fRoadWidth - fClipWidth) * screenWidth;
                 float nLeftClip = (fMiddlePoint - fRoadWidth) * screenWidth;
@@ -88,7 +88,7 @@ public class CorridaTeste : MonoBehaviour
                 int nRow = screenHeight / 2 + y;
                 Color nTreeColor = Mathf.Sin(100f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) > 0.0f ? treeColor : treeLowColor;
 
-                if((x >= nLeftClip && x < nLeftClip - 19) || (x <= nRightClip + 20 && x > nRightClip - 19))
+                if((x >= nLeftClip - 20 && x < nLeftClip - 19) || (x <= nRightClip + 20 && x > nRightClip + 19))
                 {
                     SpriteRenderer treeTemp = (SpriteRenderer)Instantiate(treePref, new Vector3(x, nRow), Quaternion.identity); treeTemp.color = nTreeColor;
                     treeTemp.transform.parent = treeHolder.transform;
@@ -101,7 +101,7 @@ public class CorridaTeste : MonoBehaviour
 
         for(int y = 0; y < 2*screenHeight/3; y++)
         {
-            for(int x = -100; x < screenWidth +100; x++)
+            for(int x = -100; x < screenWidth + 100; x++)
             {
                 float fPerspective = (float)y / (screenHeight/ 2.0f);
 
@@ -109,7 +109,7 @@ public class CorridaTeste : MonoBehaviour
                 float fRoadWidth = 0.05f + fPerspective * 1.0f;
                 float fClipWidth = fRoadWidth * 0.15f;
 
-                fRoadWidth += 0.5f;
+                fRoadWidth *= 0.5f;
 
                 float nLeftGrass = (fMiddlePoint - fRoadWidth - fClipWidth) * screenWidth;
                 float nLeftClip = (fMiddlePoint - fRoadWidth) * screenWidth;
@@ -117,7 +117,7 @@ public class CorridaTeste : MonoBehaviour
                 float nRightClip = (fMiddlePoint + fRoadWidth) * screenWidth;
 
                 int nRow = screenHeight / 2 + y;
-                Color nGrassColor = Mathf.Sin(20f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) > 0.0f ? grassColor : grassLowColor;
+                Color nGrassColor = Mathf.Sin(20.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) > 0.0f ? grassColor : grassLowColor;
 
                 if(x >= -1000 && x < nLeftGrass)
                 {
@@ -127,7 +127,7 @@ public class CorridaTeste : MonoBehaviour
                     defaultGrassPoses.Add(grassPixTemp.transform.position);
                 }
 
-                if (x > nLeftGrass && x < nLeftClip)
+                if (x >= nLeftGrass && x < nLeftClip)
                 {
                     SpriteRenderer shoulderPixTemp = (SpriteRenderer)Instantiate(pixelPref, new Vector3(x, nRow), Quaternion.identity); shoulderPixTemp.color = shoulderColor;
                     shoulderPixTemp.transform.parent = shoulderHolder.transform;
@@ -187,7 +187,7 @@ public class CorridaTeste : MonoBehaviour
             fPlayerCurvature += 0.7f * Time.deltaTime;
         }
         
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.D))
         {
             fPlayerCurvature -= 0.7f * Time.deltaTime;
         }
@@ -201,7 +201,7 @@ public class CorridaTeste : MonoBehaviour
 
 
 
-        if (Mathf.Abs(fPlayerCurvature - 0.2f * fTrackCurvature) >= 0.8f)
+        if (Mathf.Abs(fPlayerCurvature - 0.2f - fTrackCurvature) >= 0.8f)
         {
             fSpeed -= 5.0f * Time.deltaTime;
         }
@@ -228,7 +228,7 @@ public class CorridaTeste : MonoBehaviour
         int nTrackSection = 0;
 
 
-        while(nTrackSection < vecTrack.Count && fOffset < fDistance)
+        while(nTrackSection < vecTrack.Count && fOffset <= fDistance)
         {
             fOffset += vecTrack[nTrackSection].distance;
             nTrackSection++;
@@ -245,28 +245,28 @@ public class CorridaTeste : MonoBehaviour
 
         for (int i = 0;  i < grassList.Count; i++)
         {
-            float fPerspective = (float)(grassList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2);
+            float fPerspective = (float)(grassList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
             grassList[i].color = Mathf.Sin(10.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? grassColor : grassLowColor;
             grassList[i].transform.position = new Vector2(defaultGrassPoses[i].x + (fCurvature + Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, grassList[i].transform.position.y);
         }
 
         for(int i = 0; i < shoulderList.Count; i++)
         {
-            float fPerspective = (float)(shoulderList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2);
+            float fPerspective = (float)(shoulderList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
             shoulderList[i].color = Mathf.Sin(15.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? shoulderColor : shoulderLowColor;
             shoulderList[i].transform.position = new Vector2(defaultShoulderPoses[i].x + (fCurvature + Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, shoulderList[i].transform.position.y);
         }
 
         for(int i = 0; i < roadList.Count; i++)
         {
-            float fPerspective = (float)(roadList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2);
+            float fPerspective = (float)(roadList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
             roadList[i].transform.position = new Vector2(defaultRoadPoses[i].x + (fCurvature + Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, roadList[i].transform.position.y);
         }
 
         for (int i = 0; i < treeList.Count; i++)
         {
-            float fPerspective = (float)(treeList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2);
-            treeList[i].color = Mathf.Sin(15.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? shoulderColor : shoulderLowColor;
+            float fPerspective = (float)(treeList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
+            treeList[i].color = Mathf.Sin(100.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? shoulderColor : shoulderLowColor;
             treeList[i].transform.position = new Vector2(defaultTreePoses[i].x + (fCurvature + Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, treeList[i].transform.position.y);
         }
 
@@ -280,7 +280,7 @@ public class CorridaTeste : MonoBehaviour
         Background.transform.position = new Vector3 (Background.transform.position.x - vecTrack[nTrackSection - 1].curva * fSpeed, Background.transform.position.y - fDistance/500000 * fSpeed);
 
 
-        if (fDistance < sumDistance - 200)
+        if (fDistance > sumDistance - 200)
         {
             fSpeed -= 5 * Time.deltaTime;
         }
