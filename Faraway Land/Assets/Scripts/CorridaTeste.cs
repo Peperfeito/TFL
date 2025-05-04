@@ -26,6 +26,7 @@ public class CorridaTeste : MonoBehaviour
     public int screenHeight = 100;
     public SpriteRenderer pixelPref, treePref;
     public Color grassColor, grassLowColor, shoulderColor, shoulderLowColor, roadColor, treeColor, treeLowColor;
+    public Sprite cagoSprite, treeSprite;
     private GameObject grassHolder, shoulderHolder, roadHolder, treeHolder;
 
     private List<Vector2> defaultRoadPoses = new List<Vector2>();
@@ -91,10 +92,12 @@ public class CorridaTeste : MonoBehaviour
                 if((x >= nLeftClip - 20 && x < nLeftClip - 19) || (x <= nRightClip + 20 && x > nRightClip + 19))
                 {
                     SpriteRenderer treeTemp = (SpriteRenderer)Instantiate(treePref, new Vector3(x, nRow), Quaternion.identity); treeTemp.color = nTreeColor;
+                    treeTemp.transform.Rotate(new Vector3(180f, 0f, 0f));
                     treeTemp.transform.parent = treeHolder.transform;
                     treeList.Add(treeTemp);
                     defaultTreePoses.Add(treeTemp.transform.position);
                     treeTemp.transform.localScale = new Vector2(2 * Mathf.Pow(-1.0f + fPerspective, 3) + 3, 2 * Mathf.Pow(-1.0f + fPerspective, 3) + 3);
+                    treeTemp.sortingOrder = y;
                 }
             }
         }
@@ -221,7 +224,7 @@ public class CorridaTeste : MonoBehaviour
         }
 
 
-        fDistance += (300f * fSpeed) * Time.deltaTime;
+        fDistance += (50f * fSpeed) * Time.deltaTime;
 
 
         float fOffset = 0;
@@ -266,7 +269,7 @@ public class CorridaTeste : MonoBehaviour
         for (int i = 0; i < treeList.Count; i++)
         {
             float fPerspective = (float)(treeList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
-            treeList[i].color = Mathf.Sin(100.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? treeColor : treeLowColor;
+            treeList[i].sprite = Mathf.Sin(100.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? cagoSprite : treeSprite;
             treeList[i].transform.position = new Vector2(defaultTreePoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, treeList[i].transform.position.y);
         }
 
