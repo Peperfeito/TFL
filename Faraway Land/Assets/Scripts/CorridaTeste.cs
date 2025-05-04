@@ -26,7 +26,7 @@ public class CorridaTeste : MonoBehaviour
     public int screenHeight = 100;
     public SpriteRenderer pixelPref, treePref;
     public Color grassColor, grassLowColor, shoulderColor, shoulderLowColor, roadColor, treeColor, treeLowColor;
-    public Sprite cagoSprite, treeSprite;
+    public Sprite mushroomSprite, treeSprite, emptySprite;
     private GameObject grassHolder, shoulderHolder, roadHolder, treeHolder;
 
     private List<Vector2> defaultRoadPoses = new List<Vector2>();
@@ -37,6 +37,8 @@ public class CorridaTeste : MonoBehaviour
     private float fCarPos = 0.0f;
     private float fDistance = 0.0f;
     private float fSpeed = 0.0f;
+    private float fMaxSpeed = 1.0f;
+    private Animator kartAnimation;
 
     private float fCurvature = 0.0f;
     private float fTrackCurvature = 0.0f;
@@ -55,7 +57,8 @@ public class CorridaTeste : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(VecTrack track in vecTrack)
+        kartAnimation = Car.GetComponent<Animator>();
+        foreach (VecTrack track in vecTrack)
         {
             sumDistance += track.distance;
         }
@@ -166,8 +169,80 @@ public class CorridaTeste : MonoBehaviour
     }
 
     public bool topGear = false;
-
     
+    public Sprite SpriteChooser(float sin)
+    {
+        /*if(sin < -0.9)
+        {
+            return mushroomSprite;
+        }
+
+        else if(sin < -0.7)
+        {
+            return emptySprite;
+        }
+
+        else if(sin < -0.2)
+        {
+            return treeSprite;
+        }
+
+        else if(sin < -0.19)
+        {
+            return emptySprite;
+        }
+
+        else if (sin < 0)
+        {
+            return mushroomSprite;
+        }
+
+        else if(sin < 0.2)
+        {
+            return emptySprite;
+        }
+
+        else if (sin < 0.5)
+        {
+            return mushroomSprite;
+        }
+
+        else if (sin < 0.7)
+        {
+            return emptySprite;
+        }
+
+        else if (sin < 0.71)
+        {
+            return treeSprite;
+        }
+
+        else if (sin < 0.9)
+        {
+            return emptySprite;
+        }
+
+        else
+        {
+            return mushroomSprite;
+        }*/
+
+        if(sin < -0.2)
+        {
+            return mushroomSprite;
+        }
+
+        else if (sin < 0.99)
+        {
+            return emptySprite;
+        }
+        else
+        {
+            return treeSprite;
+        }
+
+
+    }
     
     
     // Update is called once per frame
@@ -197,10 +272,10 @@ public class CorridaTeste : MonoBehaviour
 
         
         
-        if (Input.GetKeyDown(KeyCode.RightShift))
+        /*if (Input.GetKeyDown(KeyCode.RightShift))
         {
             topGear = !topGear;
-        }
+        }*/
 
 
 
@@ -210,7 +285,7 @@ public class CorridaTeste : MonoBehaviour
         }
 
 
-        float gearSpeed = topGear ? 1.8f : 1.0f;
+        //float gearSpeed = topGear ? 1.8f : 1.0f;
 
 
         if (fSpeed < 0.0f)
@@ -218,7 +293,7 @@ public class CorridaTeste : MonoBehaviour
             fSpeed = 0.0f;
         }
 
-        if (fSpeed > gearSpeed)
+        if (fSpeed > fMaxSpeed)
         {
             fSpeed = Mathf.Lerp(fSpeed, 1.0f, 5 * Time.deltaTime);
         }
@@ -269,7 +344,8 @@ public class CorridaTeste : MonoBehaviour
         for (int i = 0; i < treeList.Count; i++)
         {
             float fPerspective = (float)(treeList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
-            treeList[i].sprite = Mathf.Sin(100.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? cagoSprite : treeSprite;
+            treeList[i].sprite = SpriteChooser(Mathf.Sin(100.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f));
+            //treeList[i].sprite = Mathf.Sin(100.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? mushroomSprite : treeSprite;
             treeList[i].transform.position = new Vector2(defaultTreePoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, treeList[i].transform.position.y);
         }
 
@@ -278,12 +354,13 @@ public class CorridaTeste : MonoBehaviour
         int nCarPos = screenWidth / 2 + ((int)(screenWidth * fCarPos) / 2) - 7;
         Car.position = new Vector2 (nCarPos, Car.position.y);
 
-        Car.GetComponent<Animator>().SetInteger("InputH", (int)(vecTrack[nTrackSection - 1].curva * 10));
+        kartAnimation.SetInteger("InputH", (int)(vecTrack[nTrackSection - 1].curva * 10));
+        kartAnimation.SetFloat("AnimationSpeeders", fSpeed);
         
         Background.transform.position = new Vector3 (Background.transform.position.x - vecTrack[nTrackSection - 1].curva * fSpeed, Background.transform.position.y - fDistance/50000 * fSpeed);
 
 
-        if (fDistance > sumDistance - 200)
+        if (fDistance > sumDistance - 200) 
         {
             fSpeed -= 5 * Time.deltaTime;
         }
