@@ -70,7 +70,7 @@ public class CorridaTeste : MonoBehaviour
 
         for(int y = 0; y < screenHeight; y++)
         {
-            for(int x = -100;  x < screenWidth; x++)
+            for(int x = -100;  x < screenWidth + 100; x++)
             {
                 float fPerspective = (float)y/ (screenHeight/2.0f);
 
@@ -237,7 +237,7 @@ public class CorridaTeste : MonoBehaviour
         float fTargetCurvature = vecTrack[nTrackSection - 1].curva;
 
         float fTrackCurveDiff = (fTargetCurvature - fCurvature) * Time.deltaTime * fSpeed;
-        fCurvature = fTrackCurveDiff;
+        fCurvature += fTrackCurveDiff;
 
 
         fTrackCurvature += fCurvature * Time.deltaTime * fSpeed;
@@ -247,27 +247,27 @@ public class CorridaTeste : MonoBehaviour
         {
             float fPerspective = (float)(grassList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
             grassList[i].color = Mathf.Sin(10.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? grassColor : grassLowColor;
-            grassList[i].transform.position = new Vector2(defaultGrassPoses[i].x + (fCurvature + Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, grassList[i].transform.position.y);
+            grassList[i].transform.position = new Vector2(defaultGrassPoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, grassList[i].transform.position.y);
         }
 
         for(int i = 0; i < shoulderList.Count; i++)
         {
             float fPerspective = (float)(shoulderList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
             shoulderList[i].color = Mathf.Sin(15.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? shoulderColor : shoulderLowColor;
-            shoulderList[i].transform.position = new Vector2(defaultShoulderPoses[i].x + (fCurvature + Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, shoulderList[i].transform.position.y);
+            shoulderList[i].transform.position = new Vector2(defaultShoulderPoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, shoulderList[i].transform.position.y);
         }
 
         for(int i = 0; i < roadList.Count; i++)
         {
             float fPerspective = (float)(roadList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
-            roadList[i].transform.position = new Vector2(defaultRoadPoses[i].x + (fCurvature + Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, roadList[i].transform.position.y);
+            roadList[i].transform.position = new Vector2(defaultRoadPoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, roadList[i].transform.position.y);
         }
 
         for (int i = 0; i < treeList.Count; i++)
         {
             float fPerspective = (float)(treeList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
-            treeList[i].color = Mathf.Sin(100.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? shoulderColor : shoulderLowColor;
-            treeList[i].transform.position = new Vector2(defaultTreePoses[i].x + (fCurvature + Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, treeList[i].transform.position.y);
+            treeList[i].color = Mathf.Sin(100.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? treeColor : treeLowColor;
+            treeList[i].transform.position = new Vector2(defaultTreePoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, treeList[i].transform.position.y);
         }
 
 
@@ -277,7 +277,7 @@ public class CorridaTeste : MonoBehaviour
 
         Car.GetComponent<Animator>().SetInteger("InputH", (int)(vecTrack[nTrackSection - 1].curva * 10));
         
-        Background.transform.position = new Vector3 (Background.transform.position.x - vecTrack[nTrackSection - 1].curva * fSpeed, Background.transform.position.y - fDistance/500000 * fSpeed);
+        Background.transform.position = new Vector3 (Background.transform.position.x - vecTrack[nTrackSection - 1].curva * fSpeed, Background.transform.position.y - fDistance/50000 * fSpeed);
 
 
         if (fDistance > sumDistance - 200)
