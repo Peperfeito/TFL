@@ -25,7 +25,7 @@ public class CorridaTeste : MonoBehaviour
     public int screenWidth = 160;
     public int screenHeight = 100;
     public SpriteRenderer pixelPref, treePref;
-    public Color grassColor, grassLowColor, shoulderColor, shoulderLowColor, roadColor, treeColor, treeLowColor, lineColor, lineLowColor;
+    public Color grassColor, grassLowColor, shoulderColor, shoulderLowColor, roadColor, lineColor, lineLowColor;
     public Sprite mushroomSprite, treeSprite, emptySprite;
     private GameObject grassHolder, shoulderHolder, roadHolder, treeHolder, lineHolder;
 
@@ -98,11 +98,11 @@ public class CorridaTeste : MonoBehaviour
                 float nRightLineGirth = (fMiddlePoint + (fRoadWidth / 2) - 0.01f) * screenWidth;
                 */
                 int nRow = screenHeight / 2 + y;
-                Color nTreeColor = Mathf.Sin(100f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) > 0.0f ? treeColor : treeLowColor;
+                
 
                 if((x >= nLeftClip - 20 && x < nLeftClip - 19) || (x <= nRightClip + 20 && x > nRightClip + 19))
                 {
-                    SpriteRenderer treeTemp = (SpriteRenderer)Instantiate(treePref, new Vector3(x, nRow), Quaternion.identity); treeTemp.color = nTreeColor;
+                    SpriteRenderer treeTemp = (SpriteRenderer)Instantiate(treePref, new Vector3(x, nRow), Quaternion.identity); 
                     treeTemp.transform.Rotate(new Vector3(180f, 0f, 0f));
                     treeTemp.transform.parent = treeHolder.transform;
                     treeList.Add(treeTemp);
@@ -289,12 +289,12 @@ public class CorridaTeste : MonoBehaviour
 
         
         
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && fSpeed > 0)
         {
             fPlayerCurvature += 0.7f * Time.deltaTime;
         }
         
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && fSpeed > 0)
         {
             fPlayerCurvature -= 0.7f * Time.deltaTime;
         }
