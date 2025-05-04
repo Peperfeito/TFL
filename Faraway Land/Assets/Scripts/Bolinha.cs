@@ -8,9 +8,9 @@ using UnityEngine.UI;
 public class Bolinha : MonoBehaviour
 {
 
-    [SerializeField] Image ForceBar;
-    [SerializeField] float Force;
-    [SerializeField] float MaxForce = 100;
+    [SerializeField] Image forceBar;
+    [SerializeField] float force;
+    [SerializeField] float maxforce = 100;
     public int startpoint;
     public Transform[] points;
     public float speed;
@@ -19,22 +19,56 @@ public class Bolinha : MonoBehaviour
     private int i;
     public Vector3 direction;
     private bool stop = false;
-    private bool errou = false;
     private bool move = true;
     [SerializeField] GameObject spawn;
-    
+    private Camera cameraPlayer;
+    [SerializeField] private GameObject paiacuMinigame;
+    [SerializeField] private GameObject jail;
+    [SerializeField] private GameObject cam;
+    [SerializeField] private GameObject barrinha;
+    [SerializeField] private GameObject portaKano;
+    public Transform alvo; 
+    public float distanciaMaxima = 20f; 
+    public float escalaMinima = 0.02f;
+    private float multi = 100f;
+    Animator clownPuzzleAnimator;
+
+    private Vector3 escalaOriginal;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        
+        clownPuzzleAnimator = GameObject.Find("Geovanna").GetComponent<Animator>();
         transform.position = points[startpoint].position;
         lastPosition = transform.position;
+        cameraPlayer = Camera.main;
+        escalaOriginal = transform.localScale;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (alvo == null) return;
+
+        float distancia = Vector3.Distance(transform.position, alvo.position);
+        float t = Mathf.Clamp01(distancia / distanciaMaxima); 
+
+        float escalaAtual = Mathf.Lerp(escalaMinima, 1f, t);
+        transform.localScale = escalaOriginal * escalaAtual;
+
+
+
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            paiacuMinigame.SetActive(false);
+            cameraPlayer.gameObject.SetActive(true);
+            barrinha.SetActive(false);
+        }
+
         Vector3 posAtual = transform.position;
 
         bool xParado = Mathf.Approximately(posAtual.x, lastPosition.x);
@@ -49,11 +83,11 @@ public class Bolinha : MonoBehaviour
         {
             if (Input.GetKey("space"))
             {
-                Force += Time.deltaTime * 10f;
-                ForceBar.fillAmount = Force / MaxForce;
-                if (Force > MaxForce)
+                force += Time.deltaTime * multi;
+                forceBar.fillAmount = force / maxforce;
+                if (force >= maxforce || force <= 0)
                 {
-                    Force = 0f;
+                    multi *= -1;
                 }
 
                 stop = true;
@@ -67,9 +101,9 @@ public class Bolinha : MonoBehaviour
                 move = false;
                 speed = 5;
                 StartCoroutine(MoveForward());
-                Force = 0;
-                ForceBar.fillAmount = 0;
-
+                force = 0;
+                forceBar.fillAmount = 0;
+                
             }
         }
 
@@ -97,28 +131,15 @@ public class Bolinha : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
-    {
-        
-
-       
-    }
-
     public void ReseteBola()
     {
         transform.position = points[startpoint].position;
         move = false;
         stop = false;
-        errou = false;
         speed = 20;
         press = false;
 
 
-    }
-
-    private void OnMouseUp()
-    {
-        
     }
 
     IEnumerator MoveForward()
@@ -127,7 +148,7 @@ public class Bolinha : MonoBehaviour
 
         
 
-        Vector3 targetPosition = transform.position + new Vector3(0, Force, 0);
+        Vector3 targetPosition = transform.position + new Vector3(0, force, 0);
 
         while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
         {
@@ -150,7 +171,7 @@ public class Bolinha : MonoBehaviour
             
         }
 
-
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -165,8 +186,16 @@ public class Bolinha : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Objetivo"))
         {
-            //Destroy(gameObject);// diminuir a hit box de ambos
-            ReseteBola();
+            
+            
+            jail.SetActive(false);
+            clownPuzzleAnimator.Play("ClownPuzzleFinishedAnim");
+            Destroy(gameObject);
+            cam.SetActive(true);
+            barrinha.SetActive(false);
+            portaKano.SetActive(true);
+            paiacuMinigame.SetActive(false);
+
         }
     }
 

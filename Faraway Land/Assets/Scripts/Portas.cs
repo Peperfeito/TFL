@@ -5,8 +5,9 @@ using UnityEngine;
 public class Portas : MonoBehaviour
 {
 
-    [SerializeField] protected GameObject Desativar;
-    [SerializeField] protected GameObject Ativar;
+    [SerializeField] protected GameObject destino;
+    [SerializeField] private GameObject cam;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +23,10 @@ public class Portas : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerG"))
+        if (collision.CompareTag("Player"))
         {
-            Ativar.SetActive(true);
-            Desativar.SetActive(false);
+            collision.transform.position = destino.transform.position;
+            cam.transform.position = destino.transform.position;
             FindObjectOfType<FadeEffect>().FadeOut();
         }
     }

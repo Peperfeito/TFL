@@ -38,8 +38,9 @@ public class Afk : MonoBehaviour
         {
             fakMiniGame.SetActive(true);
             cameraPlayer.gameObject.SetActive(false);
-           
-            
+            FindObjectOfType<FadeEffect>().FadeOut();
+
+
         }
 
     }
