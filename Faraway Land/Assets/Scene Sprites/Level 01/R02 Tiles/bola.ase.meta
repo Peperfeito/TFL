@@ -1,0 +1,808 @@
+fileFormatVersion: 2
+guid: 4302ea008fef2494cba487eb6d524bdc
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: bola_Frame_0
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 32
+      height: 32
+    spriteID: 6adabed2151c43043a830e2f7b5574fd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: bola_Frame_1
+    originalName: 
+    pivot: {x: 0.516129, y: -0.54838705}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 163
+      width: 31
+      height: 31
+    spriteID: 89fb42a7aa6c3c843a7008e67b3c1a88
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 163}
+  - name: bola_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 44
+      width: 32
+      height: 32
+    spriteID: 172c2fd93a112ee41abba9673426bdf6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 44}
+  - name: bola_Frame_3
+    originalName: 
+    pivot: {x: 0.516129, y: -0.54838705}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 202
+      width: 31
+      height: 31
+    spriteID: e84d77542f9eba340b6097171c437b68
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 202}
+  - name: bola_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 84
+      width: 32
+      height: 32
+    spriteID: ff5e87a914a333b43aeb52b26e976edc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 84}
+  - name: bola_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 124
+      width: 32
+      height: 32
+    spriteID: 7602c36ebdc3c4b4d8d0c7b0ddfed296
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 124}
+  - name: bola_Frame_6
+    originalName: 
+    pivot: {x: 0.5, y: -0.516129}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 124
+      width: 32
+      height: 31
+    spriteID: 95f8a47a5d429c847a291f06521676c6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 124}
+  - name: bola_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 164
+      width: 32
+      height: 32
+    spriteID: 8faa53dbae97f4e49afc8b2311db15ab
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 164}
+  - name: bola_Frame_8
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 204
+      width: 32
+      height: 32
+    spriteID: e34ea89ee0024724c9aecf65c8938015
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 204}
+  - name: bola_Frame_9
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 4
+      width: 32
+      height: 32
+    spriteID: 522931105d840b843af3d0197bca3212
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 4}
+  - name: bola_Frame_10
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 44
+      width: 32
+      height: 32
+    spriteID: c271c674c54307744a0cef58a1511ed9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 44}
+  - name: bola_Frame_11
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 84
+      width: 32
+      height: 32
+    spriteID: e2733a1499a5c6c4680220216dc4c5ff
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 84}
+  - name: bola_Frame_12
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 124
+      width: 32
+      height: 32
+    spriteID: f7e45a5b3615ea14a90e52971d6782cf
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 124}
+  - name: bola_Frame_13
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 164
+      width: 32
+      height: 32
+    spriteID: 190a3be9616929d4ba930aa7d3d0f22e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 164}
+  - name: bola_Frame_14
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 204
+      width: 32
+      height: 32
+    spriteID: 3465dcaac82e85e4b950a1a39ece6733
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 204}
+  - name: bola_Frame_15
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 4
+      width: 32
+      height: 32
+    spriteID: ff1351eccaf22ce48be89fd431d32820
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 4}
+  - name: bola_Frame_16
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 44
+      width: 32
+      height: 32
+    spriteID: c424ae6130eb4d0449c72f60840de133
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 44}
+  - name: bola_Frame_17
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 84
+      width: 32
+      height: 32
+    spriteID: 8df38648dea2b06458a8eb60518b8406
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 84}
+  - name: bola_Frame_18
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 124
+      width: 32
+      height: 32
+    spriteID: 7b4dcb16d3da8a34690ff92272322dec
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 124}
+  - name: bola_Frame_19
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 164
+      width: 32
+      height: 32
+    spriteID: 8cda968b13ca4a64a987b8b90f5f59bf
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 164}
+  - name: bola_Frame_20
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 84
+      y: 204
+      width: 32
+      height: 32
+    spriteID: 45c1888ac319f1a4899bfcc835ab59fa
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 84, y: 204}
+  - name: bola_Frame_21
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 4
+      width: 32
+      height: 32
+    spriteID: 5746a21f1760eaf4eb95bc9e6fa09f53
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 4}
+  - name: bola_Frame_22
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 44
+      width: 32
+      height: 32
+    spriteID: 4d255d6aed11fe94bb0db02d4d378162
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 44}
+  - name: bola_Frame_23
+    originalName: 
+    pivot: {x: 0.5, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 124
+      y: 84
+      width: 32
+      height: 32
+    spriteID: 5dca8c411260ea94e95840dd4d35fd2d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 124, y: 84}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: -1340679142
+    name: bola
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: bola_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: 6adabed2151c43043a830e2f7b5574fd
+    - name: bola_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 16
+        y: 17
+        width: 31
+        height: 31
+      spriteId: 89fb42a7aa6c3c843a7008e67b3c1a88
+    - name: bola_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: 172c2fd93a112ee41abba9673426bdf6
+    - name: bola_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 16
+        y: 17
+        width: 31
+        height: 31
+      spriteId: e84d77542f9eba340b6097171c437b68
+    - name: bola_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: ff5e87a914a333b43aeb52b26e976edc
+    - name: bola_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: 7602c36ebdc3c4b4d8d0c7b0ddfed296
+    - name: bola_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 31
+      spriteId: 95f8a47a5d429c847a291f06521676c6
+    - name: bola_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: 8faa53dbae97f4e49afc8b2311db15ab
+    - name: bola_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: e34ea89ee0024724c9aecf65c8938015
+    - name: bola_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: 522931105d840b843af3d0197bca3212
+    - name: bola_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: c271c674c54307744a0cef58a1511ed9
+    - name: bola_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: e2733a1499a5c6c4680220216dc4c5ff
+    - name: bola_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: f7e45a5b3615ea14a90e52971d6782cf
+    - name: bola_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: 190a3be9616929d4ba930aa7d3d0f22e
+    - name: bola_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: 3465dcaac82e85e4b950a1a39ece6733
+    - name: bola_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: ff1351eccaf22ce48be89fd431d32820
+    - name: bola_Frame_16
+      frameIndex: 16
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: c424ae6130eb4d0449c72f60840de133
+    - name: bola_Frame_17
+      frameIndex: 17
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: 8df38648dea2b06458a8eb60518b8406
+    - name: bola_Frame_18
+      frameIndex: 18
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: 7b4dcb16d3da8a34690ff92272322dec
+    - name: bola_Frame_19
+      frameIndex: 19
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: 8cda968b13ca4a64a987b8b90f5f59bf
+    - name: bola_Frame_20
+      frameIndex: 20
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: 45c1888ac319f1a4899bfcc835ab59fa
+    - name: bola_Frame_21
+      frameIndex: 21
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: 5746a21f1760eaf4eb95bc9e6fa09f53
+    - name: bola_Frame_22
+      frameIndex: 22
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: 4d255d6aed11fe94bb0db02d4d378162
+    - name: bola_Frame_23
+      frameIndex: 23
+      cellRect:
+        x: 16
+        y: 16
+        width: 32
+        height: 32
+      spriteId: 5dca8c411260ea94e95840dd4d35fd2d
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 64, y: 64}
