@@ -30,7 +30,7 @@ public class PalhaçoManager : MonoBehaviour
             paiacuMiniGame.SetActive(true);
             barra.SetActive(true);
             cameraPlayer.gameObject.SetActive(false);
-
+            FindObjectOfType<FadeEffect>().FadeOut();
 
         }
 

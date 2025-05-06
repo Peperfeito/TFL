@@ -6,6 +6,8 @@ public class Afk : MonoBehaviour
 {
     private Camera cameraPlayer;
     [SerializeField] private GameObject fakMiniGame;
+    [SerializeField] private GameObject fakBlocos;
+    [SerializeField] private GameObject meiBlocos;
     public GameObject[] bagulhoQTemQSumir;
 
 
@@ -19,7 +21,13 @@ public class Afk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            fakMiniGame.SetActive(false);
+            cameraPlayer.gameObject.SetActive(true);
+        }
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,8 +38,9 @@ public class Afk : MonoBehaviour
         {
             fakMiniGame.SetActive(true);
             cameraPlayer.gameObject.SetActive(false);
-           
-            
+            FindObjectOfType<FadeEffect>().FadeOut();
+
+
         }
 
     }
@@ -52,6 +61,8 @@ public class Afk : MonoBehaviour
         {
             fakMiniGame.SetActive(false);
             cameraPlayer.gameObject.SetActive(true);
+            meiBlocos.SetActive(true);
+            fakBlocos.SetActive(false);
         }
     }
 }

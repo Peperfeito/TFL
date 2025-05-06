@@ -15,9 +15,11 @@ public class LetraNova : MonoBehaviour
     public Letra minhaLetra;
     public GameObject objetoCerto;
     SpriteRenderer lateral;
+    Rigidbody2D rigidbody2D;
     // Start is called before the first frame update
     void Start()
     {
+        rigidbody2D = GetComponent<Rigidbody2D>();
         lateral = GetComponent<SpriteRenderer>();
         ResetP();
         
@@ -43,7 +45,8 @@ public class LetraNova : MonoBehaviour
     private void OnMouseUp()
     {
         lateral.color = Color.white;
-        
+        rigidbody2D.gravityScale = 1;
+
 
     }
 
@@ -52,7 +55,8 @@ public class LetraNova : MonoBehaviour
         if (!stopDrag)
         {
             transform.position = GetMouseWordPosition() + mousePositionOffset;
-
+            rigidbody2D.gravityScale = 0;
+            
         }
     }
 
@@ -60,6 +64,7 @@ public class LetraNova : MonoBehaviour
     {
         lateral.color = objectColor;
         mousePositionOffset = gameObject.transform.position - GetMouseWordPosition();
+        
     }
 
 
@@ -83,6 +88,15 @@ public class LetraNova : MonoBehaviour
                     VerificarLetra();
                     
                 }
+                if (collision.gameObject.CompareTag("Vazio"))
+                {
+
+                    stopDrag = true;
+                    ResetP();
+
+
+
+                }
                 stopDrag = true;
                 ResetP();
                 break;
@@ -98,7 +112,16 @@ public class LetraNova : MonoBehaviour
 
 
                 }
+                if (collision.gameObject.CompareTag("Vazio"))
+                {
+
                     stopDrag = true;
+                    ResetP();
+
+
+
+                }
+                stopDrag = true;
                     ResetP();
        
                 break;
@@ -114,7 +137,16 @@ public class LetraNova : MonoBehaviour
 
 
                 }
+                if (collision.gameObject.CompareTag("Vazio"))
+                {
+
                     stopDrag = true;
+                    ResetP();
+
+
+
+                }
+                stopDrag = true;
                     ResetP();
                 break;
 
@@ -135,6 +167,15 @@ public class LetraNova : MonoBehaviour
 
                 }
                 if (collision.gameObject.CompareTag("espaco2"))
+                {
+
+                    stopDrag = true;
+                    ResetP();
+
+
+
+                }
+                if (collision.gameObject.CompareTag("Vazio"))
                 {
 
                     stopDrag = true;
