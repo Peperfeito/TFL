@@ -9,7 +9,7 @@ public class Inventario : MonoBehaviour
     [SerializeField] GameObject inventarioContent;
     [SerializeField] GameObject itemPrefab;
 
-    public GameObject dialogoNaTela;
+    [SerializeField] private LevelUIController _levelUIController; // serializado por preguica, dps mudar pra encontrar a instancia atual
 
     public List<Item> itens = new List<Item>();
     public ItemProp marcelo; // O marcelo eh um buffer
@@ -44,17 +44,19 @@ public class Inventario : MonoBehaviour
     public void UpdateItemBuff(ItemProp itemProp)
     {
         marcelo = itemProp;
-        UpdateDescriUI(true, marcelo.GetItem().itemName);
+        Item currentItem = marcelo.GetItem();
+        this._levelUIController.UpdateDialogBox(DialogBoxMode.ItemInteraction, currentItem.itemIcone, $"Voce encontrou <color=#ffff00>{currentItem.itemName}</color>");
     }
 
     public void UpdateDescriUI(bool ativo, string textoDia = "")
     {
-        dialogoNaTela.SetActive(ativo);
+        this._levelUIController.UpdateDialogBox(DialogBoxMode.ItemInteraction, marcelo.GetItem().itemIcone, textoDia); // PLACEHOLDER MT PORCO
+        //dialogoNaTela.SetActive(ativo);
 
-        if (dialogoNaTela.activeSelf)
-        {
-            dialogoNaTela.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = textoDia;
-        }
+        //if (dialogoNaTela.activeSelf)
+        //{
+        //    dialogoNaTela.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = textoDia;
+        //}
     }
 
     public void PegarMarcelo()
@@ -87,4 +89,6 @@ public class Inventario : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
     }
+
+    public bool DialogoNaTela() => this._levelUIController.DialogBox.activeSelf;
 }

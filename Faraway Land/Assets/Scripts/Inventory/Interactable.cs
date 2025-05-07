@@ -18,6 +18,6 @@ public class Interactable : MonoBehaviour
 
     private void Awake()
     {
-        inventarioAcess = GameObject.Find("Inventario").GetComponent<Inventario>();
+        inventarioAcess = GameObject.Find("Inventory").GetComponent<Inventario>();
     }
 }

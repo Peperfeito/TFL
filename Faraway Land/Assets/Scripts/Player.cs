@@ -11,8 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] protected GameObject Sidescroll;
     [SerializeField] protected GameObject Grid;
     [SerializeField] protected Transform Saida;
-    [SerializeField] GameObject buttons;
-    [SerializeField] GameObject buttonsPegar;
+    //[SerializeField] GameObject buttons;
+    //[SerializeField] GameObject buttonsPegar;
     private Interactable interactable;
     private Inventario inventarioAcess;
 
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     public virtual void InputHandler()
     {
         
-        if (Input.GetKeyDown(KeyCode.Q) && !inventarioAcess.dialogoNaTela.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Q) && !inventarioAcess.DialogoNaTela())
         {
 
             inventarioAcess.VisualizarInventario();
@@ -50,13 +50,13 @@ public class Player : MonoBehaviour
             
         }
 
-        playerPodeSeMover = !inventarioAcess.dialogoNaTela.activeSelf && !inventarioAcess.inventario.activeSelf;
+        playerPodeSeMover = !inventarioAcess.DialogoNaTela() && !inventarioAcess.inventario.activeSelf;
 
     }
 
     private void Awake()
     {
-        inventarioAcess = GameObject.Find("Inventario").GetComponent<Inventario>();
+        inventarioAcess = GameObject.Find("Inventory").GetComponent<Inventario>();
     }
 
 
