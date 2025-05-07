@@ -19,8 +19,6 @@ public class Player : MonoBehaviour
     protected ItemProp itemProp;
     protected bool playerPodeSeMover = true;
 
-    
-
     public virtual void InputHandler()
     {
         
@@ -38,12 +36,6 @@ public class Player : MonoBehaviour
 
             if(itemProp != null) 
             {
-
-
-
-
-                interactable.eventSys.GetComponent<EventSystem>().SetSelectedGameObject(buttonsPegar);
-                buttons.SetActive(true);
                 inventarioAcess.UpdateItemBuff(itemProp);
 
                 itemProp = null;
