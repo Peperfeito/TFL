@@ -114,18 +114,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 259
+        y: 64
         width: 64
         height: 64
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5649b2d2aaaee724db6d55b4d678f2e5
-      internalID: -821570969
+      spriteID: 880d9bf220b41a941bc0bfa12a88a218
+      internalID: 390455061
       vertices: []
       indices: 
       edges: []
@@ -135,18 +135,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 259
+        y: 64
         width: 64
         height: 64
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8069fc14306aa1b41bba99c982b03c89
-      internalID: -865896210
+      spriteID: 08f456c39321522449489e1b1b565910
+      internalID: 652538252
       vertices: []
       indices: 
       edges: []
@@ -155,19 +155,19 @@ TextureImporter:
       name: arcaders_floor_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 259
+        x: 0
+        y: 0
         width: 64
         height: 64
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d500f21d1dc6404ca9f327e85525214
-      internalID: 1919937521
+      spriteID: 3da405bd5338e054ca835e92634a195e
+      internalID: -362211576
       vertices: []
       indices: 
       edges: []
@@ -176,670 +176,19 @@ TextureImporter:
       name: arcaders_floor_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 259
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ca3fc7a1e268090409148f55b9128ed2
-      internalID: 1176735273
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 259
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8a6b7a9c573885a4cb6014f66186ad4e
-      internalID: 605418039
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 259
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: babf29669a926784d921314ff7db65e6
-      internalID: -1978438712
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 259
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1a3e0f6522b4d8246b86e4627c100d43
-      internalID: 1360865462
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_7
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 195
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8c4ed7c3583b26b499d40bf16f623b44
-      internalID: -1720309658
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_8
-      rect:
-        serializedVersion: 2
         x: 64
-        y: 195
+        y: 0
         width: 64
         height: 64
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ca1175b387d07047a8dcf3015730746
-      internalID: -2109770009
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_9
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 195
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38571d8390aabba438171bcac3f057ed
-      internalID: 1518780781
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_10
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 195
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d39c0e24e2a73da4197ab74a0416e5cf
-      internalID: -1801316398
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_11
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 195
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 06c2b91da4122e34aa884803a4d1f9a6
-      internalID: -611322590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_12
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 195
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bb677a41ba51fa640971fe5cd5d71842
-      internalID: 1502921369
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_13
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 195
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7d95799e0a90aaa468662c849c040f5e
-      internalID: -20290308
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_14
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 131
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0e173a0d33935d643be6a404709e0cb2
-      internalID: 2030896179
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_15
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 131
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0dce6b9aa89496445a0221a0888c015f
-      internalID: 1486601859
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_16
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 131
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f7c9ea044fb70084b814b1cc9d18917a
-      internalID: 1451800009
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_17
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 131
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8dfc9b78a66db194a8d621a3d68ff2ca
-      internalID: 1509331725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_18
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 131
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 605ed7321e0f90e448b9c37a86be7398
-      internalID: 2001613651
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_19
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 131
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 755eb9b1d00141e4aa6aadf3fb0a3ab8
-      internalID: -1230840949
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_20
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 131
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 489611a32c1c67047872354ea82fe4d4
-      internalID: 1402849839
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_21
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 67
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2dc15dc2bfb4d5a40839d0876f40b09d
-      internalID: -1833714673
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_22
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 67
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a28b60af988d8344095623dc0ae391ec
-      internalID: -1032486509
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_23
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 67
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3b695e04f86c034fba0bed8d5c7a8bb
-      internalID: 1861189158
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_24
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 67
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b0cd139695950a6448520dd71e2468b0
-      internalID: -623665933
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_25
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 67
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a2a40031f1d890547a3419b9cf1931db
-      internalID: -1812768038
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_26
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 67
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7c8c3177e0b13004dafd2cc8ac6497cc
-      internalID: -1947166138
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_27
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 67
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 92043ff0d60ab5741896679d720b34fc
-      internalID: -1522292510
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_28
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 3
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: acce7ec1465c9a949bf7f0a5d8669687
-      internalID: -1051954842
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_29
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 3
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2c1556b427c0bb6428de1700988062cf
-      internalID: -796238069
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_30
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 3
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 999ff8fa7a58e5c47b379003b0a6a1d2
-      internalID: 331122146
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_31
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 3
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8ed58090be3faec4091567fec6057eb4
-      internalID: -707360505
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_32
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 3
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ce0db26e7fd9644398c31eab923eae4
-      internalID: -1409958715
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_33
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 3
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8accd0918a1c77c4b9276732082940f7
-      internalID: 2075100671
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arcaders_floor_34
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 3
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 389c5e71942bafb42bf5e93a28525442
-      internalID: -1502608554
+      spriteID: ea98fd1b685d40b4497f8e356db1c293
+      internalID: 1730348898
       vertices: []
       indices: 
       edges: []
@@ -855,41 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      arcaders_floor_0: -821570969
-      arcaders_floor_1: -865896210
-      arcaders_floor_10: -1801316398
-      arcaders_floor_11: -611322590
-      arcaders_floor_12: 1502921369
-      arcaders_floor_13: -20290308
-      arcaders_floor_14: 2030896179
-      arcaders_floor_15: 1486601859
-      arcaders_floor_16: 1451800009
-      arcaders_floor_17: 1509331725
-      arcaders_floor_18: 2001613651
-      arcaders_floor_19: -1230840949
-      arcaders_floor_2: 1919937521
-      arcaders_floor_20: 1402849839
-      arcaders_floor_21: -1833714673
-      arcaders_floor_22: -1032486509
-      arcaders_floor_23: 1861189158
-      arcaders_floor_24: -623665933
-      arcaders_floor_25: -1812768038
-      arcaders_floor_26: -1947166138
-      arcaders_floor_27: -1522292510
-      arcaders_floor_28: -1051954842
-      arcaders_floor_29: -796238069
-      arcaders_floor_3: 1176735273
-      arcaders_floor_30: 331122146
-      arcaders_floor_31: -707360505
-      arcaders_floor_32: -1409958715
-      arcaders_floor_33: 2075100671
-      arcaders_floor_34: -1502608554
-      arcaders_floor_4: 605418039
-      arcaders_floor_5: -1978438712
-      arcaders_floor_6: 1360865462
-      arcaders_floor_7: -1720309658
-      arcaders_floor_8: -2109770009
-      arcaders_floor_9: 1518780781
+      arcaders_floor_0: 390455061
+      arcaders_floor_1: 652538252
+      arcaders_floor_2: -362211576
+      arcaders_floor_3: 1730348898
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
