@@ -5,13 +5,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public enum DialogBoxMode
-{
-    Default,
-    ItemInteraction,
-    ObjectInteraction,
-}
-
 public class LevelUIController : MonoBehaviour
 {
     [SerializeField] private EventSystem _eventSystem;
@@ -28,6 +21,8 @@ public class LevelUIController : MonoBehaviour
     private TextMeshProUGUI _dialogNegativeButtonText;
 
     private Sprite _lastDialogSprite;
+
+    private DialogBoxMode _modeBuffer;
 
     private void Start()
     {
@@ -65,11 +60,23 @@ public class LevelUIController : MonoBehaviour
         if (!this._dialogBox.activeSelf) { this._dialogBox.SetActive(true); }
 
         this._lastDialogSprite = profilePic;
+        this._modeBuffer = mode;
+
+        this._eventSystem.firstSelectedGameObject = this._dialogPositiveButton.gameObject;
     }
 
     public void OnDialogPositiveButtonPress()
     {
         Debug.Log("POSITIVO");
+        switch (this._modeBuffer)
+        {
+            case DialogBoxMode.Default: break;
+            case DialogBoxMode.ItemInteraction:
+                GameManager.Instance.Inventory.PegarMarcelo();
+                this.UpdateDialogBox(DialogBoxMode.Default, this._lastDialogSprite, "Pegou o item");
+                return;
+            case DialogBoxMode.ObjectInteraction: break;
+        }
         this.UpdateDialogBox(DialogBoxMode.Default, this._lastDialogSprite, "");
     }
 

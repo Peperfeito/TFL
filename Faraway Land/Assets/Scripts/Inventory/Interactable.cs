@@ -7,17 +7,10 @@ using UnityEngine.EventSystems;
 
 public class Interactable : MonoBehaviour
 {
-    
     [SerializeField] Dialogos dialogo;
-    private Inventario inventarioAcess;
 
     public void AtivarInteracao()
     {
-        inventarioAcess.UpdateDescriUI(true, dialogo.neutra);
-    }
-
-    private void Awake()
-    {
-        inventarioAcess = GameObject.Find("Inventory").GetComponent<Inventario>();
+        GameManager.Instance.Inventory.UpdateDescriUI(true, dialogo.neutra);
     }
 }

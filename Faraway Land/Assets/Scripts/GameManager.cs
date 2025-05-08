@@ -7,6 +7,16 @@ public class GameManager : IPersistentSingleton<GameManager>
 {
     private Minigame[] _minigames;
 
+    private Inventario _inventory;
+    public Inventario Inventory
+    {
+        get
+        {
+            if (this._inventory == null) { this._inventory = GameObject.Find("Inventory").GetComponent<Inventario>(); }
+            return this._inventory;
+        }
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -17,4 +27,5 @@ public class GameManager : IPersistentSingleton<GameManager>
         SceneManager.LoadScene(levelName);
         return true;
     }
+
 }

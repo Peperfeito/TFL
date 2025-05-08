@@ -45,12 +45,15 @@ public class Inventario : MonoBehaviour
     {
         marcelo = itemProp;
         Item currentItem = marcelo.GetItem();
+        this._spriteBuffer = currentItem.itemIcone;
         this._levelUIController.UpdateDialogBox(DialogBoxMode.ItemInteraction, currentItem.itemIcone, $"Voce encontrou <color=#ffff00>{currentItem.itemName}</color>");
     }
 
+    private Sprite _spriteBuffer;
+
     public void UpdateDescriUI(bool ativo, string textoDia = "")
     {
-        this._levelUIController.UpdateDialogBox(DialogBoxMode.ItemInteraction, marcelo.GetItem().itemIcone, textoDia); // PLACEHOLDER MT PORCO
+        this._levelUIController.UpdateDialogBox(DialogBoxMode.ObjectInteraction, this._spriteBuffer, textoDia); // PLACEHOLDER MT PORCO
         //dialogoNaTela.SetActive(ativo);
 
         //if (dialogoNaTela.activeSelf)
@@ -65,6 +68,7 @@ public class Inventario : MonoBehaviour
 
         AddItem(marcelo.GetItem());
         marcelo.gameObject.SetActive(false);
+        this._spriteBuffer = marcelo.GetItem().itemIcone;
         marcelo = null;
     }
 

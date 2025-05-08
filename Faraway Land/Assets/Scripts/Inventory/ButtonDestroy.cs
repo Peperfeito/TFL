@@ -13,61 +13,43 @@ public class ButtonDestroy : MonoBehaviour
     [SerializeField] Item consu;
     protected ItemProp itemProp;
     public Interactable interactable;
-    private Inventario inventarioAcess;
-
-
 
     public void Deixar()
     {
         buttons.SetActive(false);
-        inventarioAcess.UpdateDescriUI(false );
-        
-
+        GameManager.Instance.Inventory.UpdateDescriUI(false );
     }
 
     public void Pegar()
     {
         buttons.SetActive(false);
-        inventarioAcess.UpdateDescriUI(false);
+        GameManager.Instance.Inventory.UpdateDescriUI(false);
 
-        inventarioAcess.PegarMarcelo();
-
+        GameManager.Instance.Inventory.PegarMarcelo();
     }
 
     public void SimUsar()
     {
         if (consu == null) return;
 
-        if (inventarioAcess.RemoveItem(consu))
+        if (GameManager.Instance.Inventory.RemoveItem(consu))
         {
             buttonsPegar.SetActive(false);
             Xbutton.SetActive(true);
-            inventarioAcess.UpdateDescriUI(true, dialogo.positiva);
+            GameManager.Instance.Inventory.UpdateDescriUI(true, dialogo.positiva);
         }
         else 
         {
             buttonsPegar.SetActive(false);
             Xbutton.SetActive(true);
-            inventarioAcess.UpdateDescriUI(true, dialogo.negativa);
-
+            GameManager.Instance.Inventory.UpdateDescriUI(true, dialogo.negativa);
         }
-        
-
     }
-
-    
 
     public void X()
     {
         buttonsPegar.SetActive(false);
         Xbutton.SetActive(false);
-        inventarioAcess.UpdateDescriUI(false);
+        GameManager.Instance.Inventory.UpdateDescriUI(false);
     }
-
-    private void Awake()
-    {
-        inventarioAcess = GameObject.Find("Inventario").GetComponent<Inventario>();
-    }
-
-
 }
