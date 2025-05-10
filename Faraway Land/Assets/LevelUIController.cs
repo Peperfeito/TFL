@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class LevelUIController : MonoBehaviour
 {
-    [SerializeField] private EventSystem _eventSystem;
+    private EventSystem _eventSystem;
     [Header("Dialog")]
     [SerializeField] private GameObject _dialogBox;
     [SerializeField] private Image _dialogProfilePic;
@@ -26,6 +26,8 @@ public class LevelUIController : MonoBehaviour
 
     private void Start()
     {
+        this._eventSystem = EventSystem.current;
+
         this._dialogPositiveButtonText = this._dialogPositiveButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         this._dialogNegativeButtonText = this._dialogNegativeButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
     }
