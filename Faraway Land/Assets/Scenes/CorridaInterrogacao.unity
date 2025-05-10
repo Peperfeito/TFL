@@ -664,24 +664,29 @@ MonoBehaviour:
   roadColor: {r: 0.2784314, g: 0, b: 0.42745098, a: 1}
   lineColor: {r: 0.6866593, g: 0.5235849, b: 1, a: 1}
   lineLowColor: {r: 0.2784314, g: 0, b: 0.42745098, a: 1}
+  squareColor: {r: 0.72156864, g: 0.8117647, b: 0.8, a: 1}
+  squareLowColor: {r: 0.12941177, g: 0.22745098, b: 0.36862746, a: 1}
   mushroomSprite: {fileID: -6789949408788160647, guid: a08dbc615c75b6e45acdd3c56b3783a1, type: 3}
   treeSprite: {fileID: -4272996492061498179, guid: 0d6c1a9f36d021648a7529b5d17fbcf1, type: 3}
   emptySprite: {fileID: 0}
   vecTrack:
   - curva: -0.42
-    distance: 1000
+    distance: 100
   - curva: 0
-    distance: 1000
+    distance: 100
   - curva: 0.5
-    distance: 1000
+    distance: 100
   - curva: 0.3
-    distance: 1500
+    distance: 150
+  - curva: 0
+    distance: 100
   sumDistance: 0
   grassList: []
   roadList: []
   shoulderList: []
   treeList: []
   lineList: []
+  squareList: []
   topGear: 0
 --- !u!114 &2121018343
 MonoBehaviour:
