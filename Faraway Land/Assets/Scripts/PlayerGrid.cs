@@ -18,6 +18,11 @@ public class PlayerGrid : Player
     // Start is called before the first frame update
     void Start()
     {
+        Vector3 positionBuffer = transform.position;
+        positionBuffer.x = Mathf.Round(positionBuffer.x) + .5f;
+        positionBuffer.y = Mathf.Round(positionBuffer.y) + .3f;
+        transform.position = positionBuffer;
+
         movePoint.parent = null;
         
         this._boxCollider = this.GetComponent<BoxCollider2D>();
