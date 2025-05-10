@@ -11,73 +11,39 @@ public class Player : MonoBehaviour
     [SerializeField] protected GameObject Sidescroll;
     [SerializeField] protected GameObject Grid;
     [SerializeField] protected Transform Saida;
-    [SerializeField] GameObject buttons;
-    [SerializeField] GameObject buttonsPegar;
-    private Interactable interactable;
-    private Inventario inventarioAcess;
+    //[SerializeField] GameObject buttons;
+    //[SerializeField] GameObject buttonsPegar;
 
     protected ItemProp itemProp;
     protected bool playerPodeSeMover = true;
 
-    
-
     public virtual void InputHandler()
     {
-        
-        if (Input.GetKeyDown(KeyCode.Q) && !inventarioAcess.dialogoNaTela.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Q) && !GameManager.Instance.Inventory.DialogoNaTela())
         {
-
-            inventarioAcess.VisualizarInventario();
+            GameManager.Instance.Inventory.VisualizarInventario();
         }
 
-       
-
-        if (Input.GetKeyDown(KeyCode.E) && !inventarioAcess.inventario.activeSelf)
+        if (Input.GetKeyDown(KeyCode.E) && !GameManager.Instance.Inventory.inventario.activeSelf)
         {
-            
-
             if(itemProp != null) 
             {
-
-
-
-
-                interactable.eventSys.GetComponent<EventSystem>().SetSelectedGameObject(buttonsPegar);
-                buttons.SetActive(true);
-                inventarioAcess.UpdateItemBuff(itemProp);
-
+                GameManager.Instance.Inventory.UpdateItemBuff(itemProp);
                 itemProp = null;
-                
-            
             }
             else if(objetos.Count > 0 )
             {
                 Interacting();
             }
-
-            
         }
-
-        playerPodeSeMover = !inventarioAcess.dialogoNaTela.activeSelf && !inventarioAcess.inventario.activeSelf;
-
+        playerPodeSeMover = !GameManager.Instance.Inventory.DialogoNaTela() && !GameManager.Instance.Inventory.inventario.activeSelf;
     }
-
-    private void Awake()
-    {
-        inventarioAcess = GameObject.Find("Inventario").GetComponent<Inventario>();
-    }
-
-
-
 
     protected virtual void OnTriggerEnter2DReaction(Collider2D collision)
     {
-
         if (collision.CompareTag("Item"))
         {
             itemProp = collision.gameObject.GetComponent<ItemProp>();
-
-
             return;
         }
        
@@ -86,11 +52,7 @@ public class Player : MonoBehaviour
         if(objetoA != null)
         {
             objetos.Add(objetoA);
-
         }
-
-        
-
     }
 
     protected virtual void OnTriggerExit2DReaction(Collider2D collision)
@@ -98,8 +60,6 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("Item"))
         {
             itemProp = null;
-
-
             return;
         }
 
@@ -108,15 +68,11 @@ public class Player : MonoBehaviour
         if(objetoA != null && objetos.Contains(objetoA))
         {
             objetos.Remove(objetoA);
-
         }
-        
-        
     }
 
     private void Interacting()
     {
-        
         int indicAtual = 0;
         for(int i = 1; i < objetos.Count; i++)
         {
@@ -125,14 +81,8 @@ public class Player : MonoBehaviour
             if(distAtual < distAnter)
             {
                 indicAtual = i;
-
             }
-
-
         }
-
         objetos[indicAtual].AtivarInteracao();
     }
-
-    
 }

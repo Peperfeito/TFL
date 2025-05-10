@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSideScroll : Player
 {
-    
+
     private Rigidbody2D rb;
     private bool facingDireita = true;
     private float movedirection;
@@ -13,15 +13,12 @@ public class PlayerSideScroll : Player
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     private bool isGrounded;
-    public Player player;
-    
-    
 
-    private void Awake()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
-  
+
 
     // Update is called once per frame
     void Update()
@@ -30,20 +27,20 @@ public class PlayerSideScroll : Player
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        player.InputHandler();
+        InputHandler();
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        if(!playerPodeSeMover) return;
-         if (Input.GetButtonDown("Jump") && isGrounded)
+        if (!playerPodeSeMover) return;
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             Jump();
         }
 
-        if(movedirection > 0 && !facingDireita)
+        if (movedirection > 0 && !facingDireita)
         {
             Flip();
         }
-        else if(movedirection < 0 && facingDireita)
+        else if (movedirection < 0 && facingDireita)
         {
             Flip();
         }
@@ -51,9 +48,9 @@ public class PlayerSideScroll : Player
         movedirection = Input.GetAxis("Horizontal");
 
         rb.velocity = new Vector2(movedirection * moveSpeed, rb.velocity.y);
-        
 
-      
+
+
     }
 
     protected override void OnTriggerEnter2DReaction(Collider2D collision)
@@ -74,15 +71,15 @@ public class PlayerSideScroll : Player
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {  
-       OnTriggerEnter2DReaction(collision);
+    {
+        OnTriggerEnter2DReaction(collision);
     }
 
-    
+
 
     void Jump()
     {
-        
+
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
@@ -99,7 +96,7 @@ public class PlayerSideScroll : Player
     private void Flip()
     {
         facingDireita = !facingDireita;
-        transform.Rotate(0f, 180f,0f);
+        transform.Rotate(0f, 180f, 0f);
     }
 
     protected override void OnTriggerExit2DReaction(Collider2D collision)
