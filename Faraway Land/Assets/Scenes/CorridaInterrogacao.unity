@@ -671,22 +671,23 @@ MonoBehaviour:
   emptySprite: {fileID: 0}
   vecTrack:
   - curva: -0.42
-    distance: 100
+    distance: 500
   - curva: 0
-    distance: 100
+    distance: 400
   - curva: 0.5
-    distance: 100
+    distance: 700
   - curva: 0.3
     distance: 150
   - curva: 0
-    distance: 100
+    distance: 300
   sumDistance: 0
   grassList: []
   roadList: []
   shoulderList: []
   treeList: []
   lineList: []
-  squareList: []
+  squareFirstList: []
+  squareSecondList: []
   topGear: 0
 --- !u!114 &2121018343
 MonoBehaviour:
