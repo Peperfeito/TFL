@@ -159,6 +159,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   movePoint: {fileID: 4113428599345367987}
+  _animator: {fileID: 8101710064777739425}
 --- !u!1 &6678426389221188995
 GameObject:
   m_ObjectHideFlags: 0

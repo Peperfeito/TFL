@@ -15,6 +15,8 @@ public class PlayerGrid : Player
     
     private BoxCollider2D _boxCollider;
 
+    [SerializeField] private Animator _animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,13 +39,27 @@ public class PlayerGrid : Player
 
         UpdateWaypointPosition();
         MoveTowardsWaypoint();
+
+        this._animator.Play($"{animationState}{animationDirection}");
     }
+
+    private float animationChangeThreshold = .1f;
+    private string animationState = "Idle";
+    private string animationDirection = "Down";
 
     private void MoveTowardsWaypoint()
     {
-        if ((transform.position - movePoint.position).magnitude <= 0f) return;
+        animationState = "Idle";
+        animationDirection = (horizontal >= animationChangeThreshold ? "Right" : (horizontal <= -animationChangeThreshold ? "Left" : (vertical >= animationChangeThreshold ? "Up" : (vertical <= -animationChangeThreshold ? "Down" : animationDirection))));
         
+        if ((transform.position - movePoint.position).magnitude <= 0f) return;
+
+        animationState = "Walk";
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+
+        Vector3 direction = movePoint.position - transform.position;
+
+        animationDirection = (direction.x >= animationChangeThreshold ? "Right" : (direction.x <= -animationChangeThreshold ? "Left" : (direction.y >= animationChangeThreshold ? "Up" : (direction.y <= -animationChangeThreshold ? "Down" : animationDirection))));
     }
 
     private void UpdateWaypointPosition()
