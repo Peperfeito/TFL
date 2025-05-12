@@ -152,6 +152,7 @@ public class CorridaTeste : MonoBehaviour
                 float nSquareThirteen = (nLeftClip + (13 * (nLeftClip - nRightClip) / 16)) * screenWidth;
                 float nSquareFourteen = (nLeftClip + (14 * (nLeftClip - nRightClip) / 16)) * screenWidth;
                 float nSquareFifteen = (nLeftClip + (15 * (nLeftClip - nRightClip) / 16)) * screenWidth;
+                float nSquareSixteen = (nLeftClip + (nLeftClip - nRightClip)) * screenWidth;
      
 
 
@@ -208,7 +209,7 @@ public class CorridaTeste : MonoBehaviour
                         defaultSquareFirstPoses.Add(squareFirstPixTemp.transform.position);
                     }
 
-                    if((x >= nSquareOne && x < nSquareTwo) || (x >= nSquareThree && x < nSquareFour) || (x >= nSquareFive && x < nSquareSix) || (x >= nSquareSeven && x < nSquareEight) || (x >= nSquareNine && x < nSquareTen) || (x >= nSquareEleven && x < nSquareTwelve) || (x >= nSquareThirteen && x < nSquareFourteen) || (x >= nSquareFifteen && x < nRightClip))
+                    if((x >= nSquareOne && x < nSquareTwo) || (x >= nSquareThree && x < nSquareFour) || (x >= nSquareFive && x < nSquareSix) || (x >= nSquareSeven && x < nSquareEight) || (x >= nSquareNine && x < nSquareTen) || (x >= nSquareEleven && x < nSquareTwelve) || (x >= nSquareThirteen && x < nSquareFourteen) || (x >= nSquareFifteen && x < nSquareSixteen))
                     {
                         SpriteRenderer squareSecondPixTemp = (SpriteRenderer)Instantiate(pixelPref, new Vector3(x, nRow), Quaternion.identity); squareSecondPixTemp.color = squareLowColor;
                         squareSecondPixTemp.transform.parent = squareHolderSecond.transform;
@@ -378,14 +379,14 @@ public class CorridaTeste : MonoBehaviour
                 shoulderList[i].transform.position = new Vector2(defaultShoulderPoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, shoulderList[i].transform.position.y);
             }
 
-            
+            /*
             for (int i = 0; i < roadList.Count; i++)
             {
                 float fPerspective = (float)(roadList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
                 roadList[i].transform.position = new Vector2(defaultRoadPoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, roadList[i].transform.position.y);
             }
+            */
             
-            /*
             for (int i = 0; i <squareFirstList.Count; i++)
             {
                 float fPerspective = (float)(squareFirstList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
@@ -399,7 +400,7 @@ public class CorridaTeste : MonoBehaviour
                 squareSecondList[i].color = Mathf.Sin(Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? squareLowColor : squareColor;
                 squareSecondList[i].transform.position = new Vector2(defaultSquareSecondPoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, squareSecondList[i].transform.position.y);
             }
-            */
+            
 
             for (int i = 0; i < treeList.Count; i++)
             {
@@ -407,14 +408,14 @@ public class CorridaTeste : MonoBehaviour
                 treeList[i].sprite = SpriteChooser(Mathf.Sin(10.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f));
                 treeList[i].transform.position = new Vector2(defaultTreePoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, treeList[i].transform.position.y);
             }
-            
+            /*
             for (int i = 0; i < lineList.Count; i++)
             {
                 float fPerspective = (float)(lineList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
                 lineList[i].color = Mathf.Sin(15.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? lineColor : lineLowColor;
                 lineList[i].transform.position = new Vector2(defaultLinePoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, lineList[i].transform.position.y);
             }
-            
+            */
         }
 
 
