@@ -179,45 +179,52 @@ public class CorridaTeste : MonoBehaviour
                     defaultShoulderPoses.Add(shoulderPixTemp.transform.position);
                 }
                 
-                if (sumDistance - fDistance >= 100f)
+                
+                if ((x >= nLeftClip && x < nLeftLinePlace) || (x >= nLeftLineGirth && x < nRightLineGirth) || (x >= nRightLinePlace && x < nRightClip))
                 {
-                    if ((x >= nLeftClip && x < nLeftLinePlace) || (x >= nLeftLineGirth && x < nRightLineGirth) || (x >= nRightLinePlace && x < nRightClip))
-                    {
-                        SpriteRenderer roadPixTemp = (SpriteRenderer)Instantiate(pixelPref, new Vector3(x, nRow), Quaternion.identity); roadPixTemp.color = roadColor;
-                        roadPixTemp.transform.parent = roadHolder.transform;
-                        roadList.Add(roadPixTemp);
-                        defaultRoadPoses.Add(roadPixTemp.transform.position);
-                    }
+                    SpriteRenderer roadPixTemp = (SpriteRenderer)Instantiate(pixelPref, new Vector3(x, nRow), Quaternion.identity); roadPixTemp.color = roadColor;
+                    roadPixTemp.transform.parent = roadHolder.transform;
+                    roadList.Add(roadPixTemp);
+                    defaultRoadPoses.Add(roadPixTemp.transform.position);
 
-
-                    if ((x >= nLeftLinePlace && x < nLeftLineGirth) || (x >= nRightLineGirth && x < nRightLinePlace))
-                    {
-                        SpriteRenderer linePixTemp = (SpriteRenderer)Instantiate(pixelPref, new Vector3(x, nRow), Quaternion.identity); linePixTemp.color = lineColor;
-                        linePixTemp.transform.parent = lineHolder.transform;
-                        lineList.Add(linePixTemp);
-                        defaultLinePoses.Add(linePixTemp.transform.position);
-                    }
-                }
-
-                else
-                {
                     if ((x >= nLeftClip && x < nSquareOne) || (x >= nSquareTwo && x < nSquareThree) || (x >= nSquareFour && x < nSquareFive) || (x >= nSquareSix && x < nSquareSeven) || (x >= nSquareEight && x < nSquareNine) || (x >= nSquareTen && x < nSquareEleven) || (x >= nSquareTwelve && x < nSquareThirteen) || (x >= nSquareFourteen && x < nSquareFifteen))
                     {
-                        SpriteRenderer squareFirstPixTemp = (SpriteRenderer)Instantiate(pixelPref, new Vector3(x, nRow), Quaternion.identity); squareFirstPixTemp.color = squareColor;
-                        squareFirstPixTemp.transform.parent = squareHolderFirst.transform;
-                        squareFirstList.Add(squareFirstPixTemp);
-                        defaultSquareFirstPoses.Add(squareFirstPixTemp.transform.position);
+                        roadPixTemp.transform.parent = squareHolderFirst.transform;
+                        squareFirstList.Add(roadPixTemp);
+                        defaultSquareFirstPoses.Add(roadPixTemp.transform.position);
                     }
 
-                    if((x >= nSquareOne && x < nSquareTwo) || (x >= nSquareThree && x < nSquareFour) || (x >= nSquareFive && x < nSquareSix) || (x >= nSquareSeven && x < nSquareEight) || (x >= nSquareNine && x < nSquareTen) || (x >= nSquareEleven && x < nSquareTwelve) || (x >= nSquareThirteen && x < nSquareFourteen) || (x >= nSquareFifteen && x < nSquareSixteen))
+                    if ((x >= nSquareOne && x < nSquareTwo) || (x >= nSquareThree && x < nSquareFour) || (x >= nSquareFive && x < nSquareSix) || (x >= nSquareSeven && x < nSquareEight) || (x >= nSquareNine && x < nSquareTen) || (x >= nSquareEleven && x < nSquareTwelve) || (x >= nSquareThirteen && x < nSquareFourteen) || (x >= nSquareFifteen && x < nRightClip))
                     {
-                        SpriteRenderer squareSecondPixTemp = (SpriteRenderer)Instantiate(pixelPref, new Vector3(x, nRow), Quaternion.identity); squareSecondPixTemp.color = squareLowColor;
-                        squareSecondPixTemp.transform.parent = squareHolderSecond.transform;
-                        squareSecondList.Add(squareSecondPixTemp);
-                        defaultSquareSecondPoses.Add(squareSecondPixTemp.transform.position);
+                        roadPixTemp.transform.parent = squareHolderSecond.transform;
+                        squareSecondList.Add(roadPixTemp);
+                        defaultSquareSecondPoses.Add(roadPixTemp.transform.position);
                     }
                 }
-           
+
+
+                if ((x >= nLeftLinePlace && x < nLeftLineGirth) || (x >= nRightLineGirth && x < nRightLinePlace))
+                {
+                    SpriteRenderer linePixTemp = (SpriteRenderer)Instantiate(pixelPref, new Vector3(x, nRow), Quaternion.identity); linePixTemp.color = lineColor;
+                    linePixTemp.transform.parent = lineHolder.transform;
+                    lineList.Add(linePixTemp);
+                    defaultLinePoses.Add(linePixTemp.transform.position);
+
+                    if ((x >= nLeftClip && x < nSquareOne) || (x >= nSquareTwo && x < nSquareThree) || (x >= nSquareFour && x < nSquareFive) || (x >= nSquareSix && x < nSquareSeven) || (x >= nSquareEight && x < nSquareNine) || (x >= nSquareTen && x < nSquareEleven) || (x >= nSquareTwelve && x < nSquareThirteen) || (x >= nSquareFourteen && x < nSquareFifteen))
+                    {
+                        linePixTemp.transform.parent = squareHolderFirst.transform;
+                        squareFirstList.Add(linePixTemp);
+                        defaultSquareFirstPoses.Add(linePixTemp.transform.position);
+                    }
+
+                    if ((x >= nSquareOne && x < nSquareTwo) || (x >= nSquareThree && x < nSquareFour) || (x >= nSquareFive && x < nSquareSix) || (x >= nSquareSeven && x < nSquareEight) || (x >= nSquareNine && x < nSquareTen) || (x >= nSquareEleven && x < nSquareTwelve) || (x >= nSquareThirteen && x < nSquareFourteen) || (x >= nSquareFifteen && x < nRightClip))
+                    {
+                        linePixTemp.transform.parent = squareHolderSecond.transform;
+                        squareSecondList.Add(linePixTemp);
+                        defaultSquareSecondPoses.Add(linePixTemp.transform.position);
+                    }
+                }
+
                 if (x >= nRightClip && x < nRightGrass)
                 {
                     SpriteRenderer shoulderPixTemp = (SpriteRenderer)Instantiate(pixelPref, new Vector3(x, nRow), Quaternion.identity); shoulderPixTemp.color = shoulderColor;
@@ -385,22 +392,6 @@ public class CorridaTeste : MonoBehaviour
                 float fPerspective = (float)(roadList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
                 roadList[i].transform.position = new Vector2(defaultRoadPoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, roadList[i].transform.position.y);
             }
-            */
-            
-            for (int i = 0; i <squareFirstList.Count; i++)
-            {
-                float fPerspective = (float)(squareFirstList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
-                squareFirstList[i].color = Mathf.Sin(Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? squareColor : squareLowColor;
-                squareFirstList[i].transform.position = new Vector2(defaultSquareFirstPoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, squareFirstList[i].transform.position.y);
-            }
-
-            for (int i = 0; i < squareSecondList.Count; i++)
-            {
-                float fPerspective = (float)(squareSecondList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
-                squareSecondList[i].color = Mathf.Sin(Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? squareLowColor : squareColor;
-                squareSecondList[i].transform.position = new Vector2(defaultSquareSecondPoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, squareSecondList[i].transform.position.y);
-            }
-            
 
             for (int i = 0; i < treeList.Count; i++)
             {
@@ -415,7 +406,21 @@ public class CorridaTeste : MonoBehaviour
                 lineList[i].color = Mathf.Sin(15.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? lineColor : lineLowColor;
                 lineList[i].transform.position = new Vector2(defaultLinePoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, lineList[i].transform.position.y);
             }
-            */
+
+            for (int i = 0; i < squareFirstList.Count; i++)
+            {
+                float fPerspective = (float)(squareFirstList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
+                squareFirstList[i].color = Mathf.Sin(Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? squareColor : squareLowColor;
+                squareFirstList[i].transform.position = new Vector2(defaultSquareFirstPoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, squareFirstList[i].transform.position.y);
+            }
+
+            for (int i = 0; i < squareSecondList.Count; i++)
+            {
+                float fPerspective = (float)(squareSecondList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
+                squareSecondList[i].color = Mathf.Sin(Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f) < 0.0f ? squareLowColor : squareColor;
+                squareSecondList[i].transform.position = new Vector2(defaultSquareSecondPoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, squareSecondList[i].transform.position.y);
+            }
+
         }
 
 
