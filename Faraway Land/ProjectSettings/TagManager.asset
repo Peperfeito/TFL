@@ -16,6 +16,7 @@ TagManager:
   - Objetivo
   - Fora
   - Vazio
+  - Empurravel
   layers:
   - Default
   - TransparentFX

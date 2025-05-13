@@ -18,7 +18,7 @@ public class PlayerGrid : Player
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 positionBuffer = transform.position;
+        Vector3 positionBuffer = transform.position; //Camilla eh um buffer
         positionBuffer.x = Mathf.Round(positionBuffer.x) + .5f;
         positionBuffer.y = Mathf.Round(positionBuffer.y) + .3f;
         transform.position = positionBuffer;
@@ -52,8 +52,13 @@ public class PlayerGrid : Player
 
         RaycastHit2D hitInfo = Physics2D.BoxCast((Vector2)(this.transform.position) + this._boxCollider.offset, this._boxCollider.size, 0f, new Vector2(horizontal, vertical), 1, colisores);
 
+        if (hitInfo.collider != null && hitInfo.collider.CompareTag("Empurravel"))
+        {
+            hitInfo.collider.transform.GetComponent<Stool>().Pusher(transform.position);
+        }
+        
         if (!playerPodeSeMover || hitInfo.collider != null) return;
-
+                
         if ((transform.position - movePoint.position).magnitude <= 0f)
         {
             movePoint.position += new Vector3(horizontal, vertical, 0f);
