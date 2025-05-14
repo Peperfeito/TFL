@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7118570386338425493}
   - component: {fileID: 34029277071381897}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Intensity: 1.5
   m_LightVolumeIntensity: 0.13
   m_LightVolumeIntensityEnabled: 1
-  m_ApplyToSortingLayers: 000000008b51e12e
+  m_ApplyToSortingLayers: 8b51e12e00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8691357818024274160}
   - component: {fileID: 1393585047723955184}
   - component: {fileID: 6245071113972307218}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: torchao_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,9 +156,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: 786518411
+  m_SortingLayer: 1
+  m_SortingOrder: 6
   m_Sprite: {fileID: -749386631, guid: 5691b2d9d86702448aca2cee331c7b49, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
   m_SelfShadows: 0
-  m_ApplyToSortingLayers: 000000008b51e12e
+  m_ApplyToSortingLayers: 00000000
   m_ShapePath:
   - {x: -0.078899205, y: -0.49533367, z: 0}
   - {x: -0.038457274, y: -0.4518075, z: 0}
@@ -262,7 +262,7 @@ MonoBehaviour:
   - {x: 0.08823204, y: -0.49844456, z: 0}
   m_ShapePathHash: -1455416675
   m_Mesh: {fileID: 0}
-  m_InstanceId: -7926
+  m_InstanceId: -173554
   m_LocalBounds:
     m_Center: {x: 0.004666418, y: -0.47512603, z: 0}
     m_Extent: {x: 0.08356562, y: 0.02331853, z: 0}
