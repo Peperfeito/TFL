@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1664964428842313650}
   - component: {fileID: 5416960871669018866}
   - component: {fileID: 2950484329342756934}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: machiners_dark_ourple_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingOrder: 4
   m_Sprite: {fileID: 1480137051, guid: 113360f2635cf124fafcaaa421c6dda4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.546875, y: 2.078125}

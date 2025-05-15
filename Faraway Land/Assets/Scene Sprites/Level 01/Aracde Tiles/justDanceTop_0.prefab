@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8751184625790603373}
   - component: {fileID: 5556275036206576581}
   - component: {fileID: 1535272528038084678}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: justDanceTop_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

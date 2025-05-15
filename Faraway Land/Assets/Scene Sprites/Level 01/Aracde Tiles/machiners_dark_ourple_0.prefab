@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3720566432454765432}
   - component: {fileID: 2864095290599587799}
   - component: {fileID: 6653060129869018281}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: machiners_dark_ourple_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

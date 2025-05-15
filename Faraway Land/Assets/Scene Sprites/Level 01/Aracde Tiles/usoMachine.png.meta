@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2f91a774c4d24ed4b9fc5d0f49ee63b0
+guid: 3819fdb4a26228042a9db61a2c226163
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -108,7 +108,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: usoMachine_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 12
+        width: 64
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dda6d08909ae024c9981dc44dd5e604
+      internalID: 361800102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: usoMachine_1
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 12
+        width: 66
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 486ac3ff6550dd648b9c16f55ada6ebd
+      internalID: -1805022849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +161,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      usoMachine_0: 361800102
+      usoMachine_1: -1805022849
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

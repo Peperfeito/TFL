@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8798115396457783967}
   - component: {fileID: 2597507303820638404}
   - component: {fileID: 4784734010609049330}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: machiners_magenta_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

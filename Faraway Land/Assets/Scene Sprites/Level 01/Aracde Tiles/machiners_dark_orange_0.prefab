@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1144684860982060759}
   - component: {fileID: 4506343199643006082}
   - component: {fileID: 2930112969001975076}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: machiners_dark_orange_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

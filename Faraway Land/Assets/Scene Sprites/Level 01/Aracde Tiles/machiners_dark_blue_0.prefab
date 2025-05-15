@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 690521182131794891}
   - component: {fileID: 5044615078391953786}
   - component: {fileID: 1215428485415845759}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: machiners_dark_blue_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

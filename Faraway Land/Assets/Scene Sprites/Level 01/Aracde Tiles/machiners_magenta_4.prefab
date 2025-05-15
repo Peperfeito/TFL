@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5108148727048433278}
   - component: {fileID: 5801327385780816514}
   - component: {fileID: 6233014017681341460}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: machiners_magenta_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingOrder: 4
   m_Sprite: {fileID: 840133752, guid: 492bc8d5c29950b42a1f757a79b3ece1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.546875, y: 2.078125}
@@ -117,7 +117,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5371208}
+  m_Offset: {x: -0.33976555, y: -0.5371208}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -128,5 +128,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.546875, y: 1.0038834}
+  m_Size: {x: 0.8673439, y: 1.0038834}
   m_EdgeRadius: 0
