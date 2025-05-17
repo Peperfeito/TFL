@@ -671,11 +671,11 @@ MonoBehaviour:
   emptySprite: {fileID: 0}
   vecTrack:
   - curva: -0.42
-    distance: 100
+    distance: 500
   - curva: 0
-    distance: 100
+    distance: 500
   - curva: 0.5
-    distance: 100
+    distance: 500
   - curva: 0.3
     distance: 100
   - curva: 0

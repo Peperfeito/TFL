@@ -386,7 +386,7 @@ public class CorridaTeste : MonoBehaviour
                 shoulderList[i].transform.position = new Vector2(defaultShoulderPoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, shoulderList[i].transform.position.y);
             }
 
-            /*
+            
             for (int i = 0; i < roadList.Count; i++)
             {
                 float fPerspective = (float)(roadList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
@@ -399,7 +399,7 @@ public class CorridaTeste : MonoBehaviour
                 treeList[i].sprite = SpriteChooser(Mathf.Sin(10.0f * Mathf.Pow(1.0f - fPerspective, 3) + fDistance * 0.1f));
                 treeList[i].transform.position = new Vector2(defaultTreePoses[i].x + (fCurvature * Mathf.Pow(1.0f - fPerspective, 3)) * screenWidth, treeList[i].transform.position.y);
             }
-            /*
+            
             for (int i = 0; i < lineList.Count; i++)
             {
                 float fPerspective = (float)(lineList[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
