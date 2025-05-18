@@ -12,10 +12,13 @@ public class PlayerGrid : Player
     public Transform movePoint;
     private float horizontal;
     private float vertical;
+    private bool melado = false;
     
     private BoxCollider2D _boxCollider;
 
     [SerializeField] private Animator _animator;
+    [SerializeField] private AudioSource passosAudio;
+    [SerializeField] private AudioSource passosAudioMelado;
 
     // Start is called before the first frame update
     void Start()
@@ -24,10 +27,11 @@ public class PlayerGrid : Player
         positionBuffer.x = Mathf.Round(positionBuffer.x) + .5f;
         positionBuffer.y = Mathf.Round(positionBuffer.y) + .3f;
         transform.position = positionBuffer;
-
+        
         movePoint.parent = null;
         
         this._boxCollider = this.GetComponent<BoxCollider2D>();
+        passosAudio.Play();
     }
 
     // Update is called once per frame
@@ -39,6 +43,17 @@ public class PlayerGrid : Player
 
         UpdateWaypointPosition();
         MoveTowardsWaypoint();
+        if (melado == false)
+        {
+            if (horizontal < 0 || horizontal > 0 || vertical < 0 || vertical > 0)
+            {
+                passosAudio.UnPause();
+            }
+            else
+            {
+                passosAudio.Pause();
+            }
+        }
 
         this._animator.Play($"{animationState}{animationDirection}");
     }
@@ -55,6 +70,8 @@ public class PlayerGrid : Player
         if ((transform.position - movePoint.position).magnitude <= 0f) return;
 
         animationState = "Walk";
+        
+
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
         Vector3 direction = movePoint.position - transform.position;
@@ -87,6 +104,20 @@ public class PlayerGrid : Player
             return;
         }
 
+        if(collision.CompareTag("Amoeba"))
+        {
+            melado = true;
+
+            if (horizontal < 0 || horizontal > 0 || vertical < 0 || vertical > 0)
+            {
+                passosAudioMelado.UnPause();
+            }
+            else
+            {
+                passosAudioMelado.Pause();
+            }
+        }
+
         base.OnTriggerEnter2DReaction(collision);
     }
 
@@ -103,6 +134,15 @@ public class PlayerGrid : Player
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        OnTriggerExit2DReaction(collision);
+        if (collision.CompareTag("Amoeba"))
+        {
+            melado = false;
+        }
+
+
+
+            OnTriggerExit2DReaction(collision);
     }
+
+    
 }
