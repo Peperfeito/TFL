@@ -32,6 +32,8 @@ public class PlayerGrid : Player
         
         this._boxCollider = this.GetComponent<BoxCollider2D>();
         passosAudio.Play();
+        //passosAudio.Pause();
+        //passosAudioMelado.Play();
     }
 
     // Update is called once per frame
@@ -110,7 +112,9 @@ public class PlayerGrid : Player
 
             if (horizontal < 0 || horizontal > 0 || vertical < 0 || vertical > 0)
             {
+                passosAudioMelado.Play();
                 passosAudioMelado.UnPause();
+                
             }
             else
             {
