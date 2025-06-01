@@ -17,8 +17,9 @@ public class PlayerGrid : Player
     private BoxCollider2D _boxCollider;
 
     [SerializeField] private Animator _animator;
-    [SerializeField] private AudioSource passosAudio;
-    [SerializeField] private AudioSource passosAudioMelado;
+   
+    [SerializeField] private AudioClip[] passos;
+    [SerializeField] private AudioSource audios;
 
     // Start is called before the first frame update
     void Start()
@@ -31,9 +32,7 @@ public class PlayerGrid : Player
         movePoint.parent = null;
         
         this._boxCollider = this.GetComponent<BoxCollider2D>();
-        passosAudio.Play();
-        //passosAudio.Pause();
-        //passosAudioMelado.Play();
+        
     }
 
     // Update is called once per frame
@@ -45,17 +44,10 @@ public class PlayerGrid : Player
 
         UpdateWaypointPosition();
         MoveTowardsWaypoint();
-        if (melado == false)
-        {
-            if (horizontal < 0 || horizontal > 0 || vertical < 0 || vertical > 0)
-            {
-                passosAudio.UnPause();
-            }
-            else
-            {
-                passosAudio.Pause();
-            }
-        }
+        
+        
+            
+        
 
         this._animator.Play($"{animationState}{animationDirection}");
     }
@@ -66,6 +58,8 @@ public class PlayerGrid : Player
 
     private void MoveTowardsWaypoint()
     {
+        
+
         animationState = "Idle";
         animationDirection = (horizontal >= animationChangeThreshold ? "Right" : (horizontal <= -animationChangeThreshold ? "Left" : (vertical >= animationChangeThreshold ? "Up" : (vertical <= -animationChangeThreshold ? "Down" : animationDirection))));
         
@@ -110,16 +104,7 @@ public class PlayerGrid : Player
         {
             melado = true;
 
-            if (horizontal < 0 || horizontal > 0 || vertical < 0 || vertical > 0)
-            {
-                passosAudioMelado.Play();
-                passosAudioMelado.UnPause();
-                
-            }
-            else
-            {
-                passosAudioMelado.Pause();
-            }
+            
         }
 
         base.OnTriggerEnter2DReaction(collision);
