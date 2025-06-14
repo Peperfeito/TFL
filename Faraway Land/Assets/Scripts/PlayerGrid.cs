@@ -61,11 +61,13 @@ public class PlayerGrid : Player
         
 
         animationState = "Idle";
+        audios.Pause();
         animationDirection = (horizontal >= animationChangeThreshold ? "Right" : (horizontal <= -animationChangeThreshold ? "Left" : (vertical >= animationChangeThreshold ? "Up" : (vertical <= -animationChangeThreshold ? "Down" : animationDirection))));
         
         if ((transform.position - movePoint.position).magnitude <= 0f) return;
 
         animationState = "Walk";
+        audios.Play();
         
 
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
@@ -102,7 +104,7 @@ public class PlayerGrid : Player
 
         if(collision.CompareTag("Amoeba"))
         {
-            melado = true;
+            audios.clip = passos[1];
 
             
         }
@@ -125,7 +127,7 @@ public class PlayerGrid : Player
     {
         if (collision.CompareTag("Amoeba"))
         {
-            melado = false;
+            audios.clip = passos[0];
         }
 
 
