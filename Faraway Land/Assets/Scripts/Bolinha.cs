@@ -29,7 +29,7 @@ public class Bolinha : MonoBehaviour
     [SerializeField] private GameObject portaKano;
     public Transform alvo; 
     public float distanciaMaxima = 20f; 
-    public float escalaMinima = 0.02f;
+    public float escalaMinima = 0.001f;
     private float multi = 100f;
     Animator clownPuzzleAnimator;
 

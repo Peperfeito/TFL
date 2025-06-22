@@ -12,10 +12,14 @@ public class PlayerGrid : Player
     public Transform movePoint;
     private float horizontal;
     private float vertical;
+    private bool melado = false;
     
     private BoxCollider2D _boxCollider;
 
     [SerializeField] private Animator _animator;
+   
+    [SerializeField] private AudioClip[] passos;
+    [SerializeField] private AudioSource audios;
 
     // Start is called before the first frame update
     void Start()
@@ -24,10 +28,11 @@ public class PlayerGrid : Player
         positionBuffer.x = Mathf.Round(positionBuffer.x) + .5f;
         positionBuffer.y = Mathf.Round(positionBuffer.y) + .3f;
         transform.position = positionBuffer;
-
+        
         movePoint.parent = null;
         
         this._boxCollider = this.GetComponent<BoxCollider2D>();
+        
     }
 
     // Update is called once per frame
@@ -39,6 +44,10 @@ public class PlayerGrid : Player
 
         UpdateWaypointPosition();
         MoveTowardsWaypoint();
+        
+        
+            
+        
 
         this._animator.Play($"{animationState}{animationDirection}");
     }
@@ -49,12 +58,18 @@ public class PlayerGrid : Player
 
     private void MoveTowardsWaypoint()
     {
+        
+
         animationState = "Idle";
+        audios.Pause();
         animationDirection = (horizontal >= animationChangeThreshold ? "Right" : (horizontal <= -animationChangeThreshold ? "Left" : (vertical >= animationChangeThreshold ? "Up" : (vertical <= -animationChangeThreshold ? "Down" : animationDirection))));
         
         if ((transform.position - movePoint.position).magnitude <= 0f) return;
 
         animationState = "Walk";
+        audios.Play();
+        
+
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
         Vector3 direction = movePoint.position - transform.position;
@@ -92,6 +107,13 @@ public class PlayerGrid : Player
             return;
         }
 
+        if(collision.CompareTag("Amoeba"))
+        {
+            audios.clip = passos[1];
+
+            
+        }
+
         base.OnTriggerEnter2DReaction(collision);
     }
 
@@ -108,6 +130,15 @@ public class PlayerGrid : Player
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        OnTriggerExit2DReaction(collision);
+        if (collision.CompareTag("Amoeba"))
+        {
+            audios.clip = passos[0];
+        }
+
+
+
+            OnTriggerExit2DReaction(collision);
     }
+
+    
 }
