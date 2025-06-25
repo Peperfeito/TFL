@@ -12,7 +12,7 @@ public class MenuUIController : MonoBehaviour
 
     public void OnPlayButtonPress()
     {
-        GameManager.Instance.LoadLevel("Level 01");
+        GameManager.Instance.LoadLevel(Levels.Level_01);
     }
 
     public void OnLoadButtonPress()
