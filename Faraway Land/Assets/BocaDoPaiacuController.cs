@@ -48,7 +48,7 @@ public class BocaDoPaiacuController : MinigameController
         Vector3 distancia = this._bolinha.transform.position - this._ancorasDeMovimento[0].position;
         float t = Mathf.Clamp01(distancia.y / distanciaMaxima);
 
-        this._bolinha.transform.localScale = Vector3.one * Mathf.Lerp(20f, 1f, t);
+        this._bolinha.transform.localScale = Vector3.one * Mathf.Lerp(10f, 1f, t);
 
         if (Input.GetKeyDown(KeyCode.Escape)) { this.DisableMinigame(); }
 
