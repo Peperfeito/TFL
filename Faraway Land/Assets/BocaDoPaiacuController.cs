@@ -38,6 +38,8 @@ public class BocaDoPaiacuController : MinigameController
         this._clownPuzzleLightAnimator = GameObject.Find("Geovanna").GetComponent<Animator>();
         this._ancorasDeMovimento = this._ancora.GetComponentsInChildren<Transform>();
 
+        this._bolinha.Minigame = this; // gostaria mt de remover essa gambiarra
+
         base.Start();
     }
 
@@ -52,48 +54,37 @@ public class BocaDoPaiacuController : MinigameController
 
         if (Input.GetKeyDown(KeyCode.Escape)) { this.DisableMinigame(); }
 
-        Vector3 posAtual = this._bolinha.transform.position;
+        if (this._ballThrown) return;
 
-        bool xParado = Mathf.Approximately(posAtual.x, lastPosition.x);
-        bool yParado = Mathf.Approximately(posAtual.y, lastPosition.y);
-
-        if (xParado && yParado)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            ResetBall();
+            this._trackingForce = true;
         }
 
-        if (!this._ballThrown)
+        this._medidorDeForca.fillAmount += this._trackingForce ? Time.deltaTime * this._forceBarDirection : 0f;
+
+        if (this._trackingForce && (this._medidorDeForca.fillAmount >= 1f || this._medidorDeForca.fillAmount <= 0f))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                this._trackingForce = true;
-            }
+            this._forceBarDirection *= -1;
+        }
 
-            this._medidorDeForca.fillAmount += this._trackingForce ? Time.deltaTime * this._forceBarDirection : 0f;
+        if (!this._trackingForce)
+        {
+            lastPosition = this._bolinha.transform.position;
+
+            if (Vector2.Distance(this._bolinha.transform.position, this._ancorasDeMovimento[this._ancoraIndex].position) < 0.05f)
+            {
+                this._ancoraIndex = (++this._ancoraIndex % this._ancorasDeMovimento.Length);
+            }
             
-            if (this._medidorDeForca.fillAmount >= 1f || this._medidorDeForca.fillAmount <= 0f)
-            {
-                this._forceBarDirection *= -1;
-            }
+            this._bolinha.transform.position = Vector2.MoveTowards(this._bolinha.transform.position, this._ancorasDeMovimento[this._ancoraIndex].position, this._horizontalSpeed * Time.deltaTime);
+        }
 
-            if (!this._trackingForce)
-            {
-                lastPosition = this._bolinha.transform.position;
-
-                if (Vector2.Distance(this._bolinha.transform.position, this._ancorasDeMovimento[this._ancoraIndex].position) < 0.05f)
-                {
-                    this._ancoraIndex = (++this._ancoraIndex % this._ancorasDeMovimento.Length);
-                }
-
-                this._bolinha.transform.position = Vector2.MoveTowards(this._bolinha.transform.position, this._ancorasDeMovimento[this._ancoraIndex].position, this._horizontalSpeed * Time.deltaTime);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                this._trackingForce = false;
-                this._ballThrown = true;
-                StartCoroutine(ThrowBall());
-            }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            this._trackingForce = false;
+            this._ballThrown = true;
+            StartCoroutine(ThrowBall());
         }
     }
 
@@ -141,25 +132,19 @@ public class BocaDoPaiacuController : MinigameController
     {
         Vector3 targetPosition = this._bolinha.transform.position + (Vector3.up * (this._medidorDeForca.fillAmount * this._forceMultiplier));
 
-        while (Vector3.Distance(this._bolinha.transform.position, targetPosition) > 0.1f)
+        while (this._ballThrown && Vector3.Distance(this._bolinha.transform.position, targetPosition) > 0.1f)
         {
             this._bolinha.transform.position = Vector3.MoveTowards(this._bolinha.transform.position, targetPosition, this._verticalSpeed * Time.deltaTime);
             yield return null;
         }
-        
-        this._bolinha.transform.position = targetPosition;
 
         yield return new WaitForSeconds(1f);
 
-        if (this._bolinha.transform.position == targetPosition)
-        {
-            ResetBall();
-        }
+        if (this._ballThrown) { ResetBall(); }
     }
 
     public void ResetBall()
     {
-        StopCoroutine(nameof(ThrowBall));
         this._bolinha.transform.position = this._ancora.position;
         this._ballThrown = false;
     }

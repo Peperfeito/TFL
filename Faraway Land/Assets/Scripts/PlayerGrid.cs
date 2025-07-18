@@ -25,7 +25,7 @@ public class PlayerGrid : Player
     void Start()
     {
         Vector3 positionBuffer = transform.position; //Camilla eh um buffer
-        positionBuffer.x = Mathf.Round(positionBuffer.x) + .5f;
+        positionBuffer.x = (Mathf.Floor(Mathf.Abs(positionBuffer.x)) + .5f) * (positionBuffer.x / Mathf.Abs(positionBuffer.x));
         positionBuffer.y = Mathf.Round(positionBuffer.y) + .3f;
         transform.position = positionBuffer;
         
