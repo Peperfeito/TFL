@@ -526,7 +526,7 @@ MonoBehaviour:
   - {x: 0.3808452, y: -0.18757355, z: 0}
   m_ShapePathHash: 1843672647
   m_Mesh: {fileID: 0}
-  m_InstanceId: -319496
+  m_InstanceId: -11812
   m_LocalBounds:
     m_Center: {x: -0.008167833, y: -0.13209693, z: 0}
     m_Extent: {x: 0.38901305, y: 0.055476617, z: 0}
@@ -545,7 +545,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8757151818028214994
 Transform:
   m_ObjectHideFlags: 0
@@ -695,7 +695,7 @@ GameObject:
   - component: {fileID: 4158350539431298281}
   - component: {fileID: 5548462736406765619}
   m_Layer: 0
-  m_Name: Main CameraPaiacu
+  m_Name: MainCamera BocaDoPaiacu
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

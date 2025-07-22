@@ -6,29 +6,23 @@ using static LetraNova;
 
 public class LetraNova : MonoBehaviour
 {
-    
     public bool stopDrag = false;
     public Color objectColor;
-    Vector3 mousePositionOffset;
-    
-    public enum Letra {M, E, I , Errada }
+    private Vector3 _mousePositionOffset;
+
+    public enum Letra { M, E, I, Errada }
     public Letra minhaLetra;
     public GameObject objetoCerto;
-    SpriteRenderer lateral;
-    Rigidbody2D rigidbody2D;
-    // Start is called before the first frame update
-    void Start()
-    {
-        rigidbody2D = GetComponent<Rigidbody2D>();
-        lateral = GetComponent<SpriteRenderer>();
-        ResetP();
-        
-    }
+    private SpriteRenderer _lateral;
+    private Rigidbody2D _rigidbody2D;
+    private BlocoDiLetraController _telemacuuuuuuuuu;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-
+        this._rigidbody2D = GetComponent<Rigidbody2D>();
+        this._lateral = GetComponent<SpriteRenderer>();
+        this.ResetPosition();
+        this._telemacuuuuuuuuu = GameObject.FindAnyObjectByType<BlocoDiLetraController>();
     }
 
     private Vector3 GetMouseWordPosition()
@@ -39,39 +33,39 @@ public class LetraNova : MonoBehaviour
     private void OnMouseEnter()
     {
         stopDrag = false;
-
     }
 
     private void OnMouseUp()
     {
-        lateral.color = Color.white;
-        rigidbody2D.gravityScale = 1;
-
-
+        _lateral.color = Color.white;
+        _rigidbody2D.gravityScale = 1;
     }
 
     private void OnMouseDrag()
     {
         if (!stopDrag)
         {
-            transform.position = GetMouseWordPosition() + mousePositionOffset;
-            rigidbody2D.gravityScale = 0;
-            
+            transform.position = GetMouseWordPosition() + _mousePositionOffset;
+            _rigidbody2D.gravityScale = 0;
         }
     }
 
     private void OnMouseDown()
     {
-        lateral.color = objectColor;
-        mousePositionOffset = gameObject.transform.position - GetMouseWordPosition();
-        
+        _lateral.color = objectColor;
+        _mousePositionOffset = gameObject.transform.position - GetMouseWordPosition();
     }
 
-
-    public void ResetP()
+    public void ResetPosition()
     {
         transform.position = transform.parent.position;
-        lateral.color = Color.white;
+        _lateral.color = Color.white;
+    }
+
+    private void StopDrag()
+    {
+        stopDrag = true;
+        ResetPosition();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -81,129 +75,42 @@ public class LetraNova : MonoBehaviour
             case Letra.M:
                 if (collision.gameObject.CompareTag("espaco"))
                 {
-
                     collision.gameObject.SetActive(false);
-                    
                     objetoCerto.SetActive(true);
                     VerificarLetra();
-                    
                 }
-                if (collision.gameObject.CompareTag("Vazio"))
-                {
-
-                    stopDrag = true;
-                    ResetP();
-
-
-
-                }
-                stopDrag = true;
-                ResetP();
+                StopDrag();
                 break;
 
             case Letra.E:
                 if (collision.gameObject.CompareTag("espaco1"))
                 {
-
                     collision.gameObject.SetActive(false);
-                    
                     objetoCerto.SetActive(true);
                     VerificarLetra();
-
-
                 }
-                if (collision.gameObject.CompareTag("Vazio"))
-                {
-
-                    stopDrag = true;
-                    ResetP();
-
-
-
-                }
-                stopDrag = true;
-                    ResetP();
-       
+                StopDrag();
                 break;
-            
+
             case Letra.I:
                 if (collision.gameObject.CompareTag("espaco2"))
                 {
-
                     collision.gameObject.SetActive(false);
-                    
                     objetoCerto.SetActive(true);
                     VerificarLetra();
-
-
                 }
-                if (collision.gameObject.CompareTag("Vazio"))
-                {
-
-                    stopDrag = true;
-                    ResetP();
-
-
-
-                }
-                stopDrag = true;
-                    ResetP();
+                StopDrag();
                 break;
 
             case Letra.Errada:
-                if (collision.gameObject.CompareTag("espaco"))
-                {
-
-                    stopDrag = true;
-                    ResetP();
-                }
-                if (collision.gameObject.CompareTag("espaco1"))
-                {
-
-                    stopDrag = true;
-                    ResetP();
-
-
-
-                }
-                if (collision.gameObject.CompareTag("espaco2"))
-                {
-
-                    stopDrag = true;
-                    ResetP();
-
-
-
-                }
-                if (collision.gameObject.CompareTag("Vazio"))
-                {
-
-                    stopDrag = true;
-                    ResetP();
-
-
-
-                }
-
+                StopDrag();
                 break;
-
         }
-
-        
-
-        
-
-        
-
     }
 
     public void VerificarLetra()
     {
-        Afk afkalsons = GameObject.FindAnyObjectByType<Afk>();
-        afkalsons.Verificar();
-    }
-    private void OnTriggerExit2D(Collider2D other)
-    {
-
+        if (this._telemacuuuuuuuuu == null) this._telemacuuuuuuuuu = GameObject.FindAnyObjectByType<BlocoDiLetraController>();
+        this._telemacuuuuuuuuu.Verificar();
     }
 }
