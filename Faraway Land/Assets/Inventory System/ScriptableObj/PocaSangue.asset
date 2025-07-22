@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c68ced4de72cb4d4ab7a8a2cddcec1f8, type: 3}
-  m_Name: Cogumelo
+  m_Name: PocaSangue
   m_EditorClassIdentifier: 
-  neutra: objeto falico indefinido
+  neutra: 
   negativa: 
   positiva: 
