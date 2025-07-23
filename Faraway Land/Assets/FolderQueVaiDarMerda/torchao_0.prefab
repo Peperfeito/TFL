@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 2565345946030257134}
   - component: {fileID: 8691357818024274160}
   - component: {fileID: 1393585047723955184}
-  - component: {fileID: 6245071113972307218}
   m_Layer: 7
   m_Name: torchao_0
   m_TagString: Untagged
@@ -180,7 +179,7 @@ Animator:
   m_GameObject: {fileID: 7553122616807220523}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7934a20e023af2c49821c64b94f95666, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5eba2eb39a1be404a97923d81521a4bf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -236,33 +235,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.18710017, y: 0.17158484}
   m_EdgeRadius: 0
---- !u!114 &6245071113972307218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7553122616807220523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_ComponentVersion: 1
-  m_HasRenderer: 1
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: 00000000
-  m_ShapePath:
-  - {x: -0.078899205, y: -0.49533367, z: 0}
-  - {x: -0.038457274, y: -0.4518075, z: 0}
-  - {x: 0.03690183, y: -0.45336294, z: 0}
-  - {x: 0.08823204, y: -0.49844456, z: 0}
-  m_ShapePathHash: -1455416675
-  m_Mesh: {fileID: 0}
-  m_InstanceId: -173554
-  m_LocalBounds:
-    m_Center: {x: 0.004666418, y: -0.47512603, z: 0}
-    m_Extent: {x: 0.08356562, y: 0.02331853, z: 0}
