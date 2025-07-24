@@ -8,19 +8,10 @@ public class GameManager : IPersistentSingleton<GameManager>
 {
     private MinigameController[] _minigames;
 
-    private Inventario _inventory;
-    public Inventario Inventory
-    {
-        get
-        {
-            if (this._inventory == null) { this._inventory = GameObject.Find("Inventory").GetComponent<Inventario>(); }
-            return this._inventory;
-        }
-    }
-
     protected override void Awake()
     {
         this._minigames = new MinigameController[(int)Minigames._COUNT];
+        this._inventory = new Inventory();
 
         base.Awake();
     }
@@ -28,11 +19,6 @@ public class GameManager : IPersistentSingleton<GameManager>
     private void Start()
     {
         string levelName = SceneManager.GetActiveScene().name.Replace(' ', '_');
-
-        //for (int i = 0; i < _minigames.Length; i++)
-        //{
-        //    this._minigames[i] = null;
-        //}
 
         switch (Enum.Parse(typeof(Levels), levelName))
         {
@@ -93,5 +79,42 @@ public class GameManager : IPersistentSingleton<GameManager>
     public void ChamaMinigame(Minigames minigame)
     {
         this._minigames[(int)minigame].EnableMinigame();
+    }
+
+    /* New Inventory */
+
+    private Inventory _inventory;
+    private FuckingItemPropBaby _itemInRange;
+
+    public void RegisterItemInRange(FuckingItemPropBaby itemProp)
+    {
+        this._itemInRange = itemProp; // spawnar botao de interacao ou algo assim em cima do item pa nois sabe qual que eh que ta no alcance de interacao
+    }
+
+    public void UnregisterItemInRange(FuckingItemPropBaby itemProp)
+    {
+        if (itemProp != this._itemInRange) return;
+        this._itemInRange = null;
+    }
+
+    public void TryItemInteraction()
+    {
+        if (this._itemInRange == null) return;
+        this.AddToInventory(this._itemInRange.ItemData);
+    }
+
+    public void AddToInventory(FuckingItemDataBaby itemData)
+    {
+        this._inventory.AddItem(itemData);
+    }
+
+    public void RemoveFromInventory(FuckingItemDataBaby itemData)
+    {
+        this._inventory.RemoveItem(itemData);
+    }
+
+    public bool HasItemInInventory(FuckingItemDataBaby itemData)
+    {
+        return this._inventory.HasItem(itemData);
     }
 }

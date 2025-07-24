@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerSideScroll : Player
 {
-
     private Rigidbody2D rb;
     private bool facingDireita = true;
     private float movedirection;
@@ -18,7 +17,6 @@ public class PlayerSideScroll : Player
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
 
     // Update is called once per frame
     void Update()
@@ -48,12 +46,9 @@ public class PlayerSideScroll : Player
         movedirection = Input.GetAxis("Horizontal");
 
         rb.velocity = new Vector2(movedirection * moveSpeed, rb.velocity.y);
-
-
-
     }
 
-    protected override void OnTriggerEnter2DReaction(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Porta"))
         {
@@ -65,21 +60,10 @@ public class PlayerSideScroll : Player
             return;
 
         }
-
-        base.OnTriggerEnter2DReaction(collision);
-
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Jump()
     {
-        OnTriggerEnter2DReaction(collision);
-    }
-
-
-
-    void Jump()
-    {
-
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
@@ -97,15 +81,5 @@ public class PlayerSideScroll : Player
     {
         facingDireita = !facingDireita;
         transform.Rotate(0f, 180f, 0f);
-    }
-
-    protected override void OnTriggerExit2DReaction(Collider2D collision)
-    {
-        base.OnTriggerExit2DReaction(collision);
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        OnTriggerExit2DReaction(collision);
     }
 }

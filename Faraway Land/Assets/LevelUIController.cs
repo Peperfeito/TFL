@@ -69,17 +69,17 @@ public class LevelUIController : MonoBehaviour
 
     public void OnDialogPositiveButtonPress()
     {
-        Debug.Log("POSITIVO");
-        switch (this._modeBuffer)
-        {
-            case DialogBoxMode.Default: break;
-            case DialogBoxMode.ItemInteraction:
-                GameManager.Instance.Inventory.PegarMarcelo();
-                this.UpdateDialogBox(DialogBoxMode.Default, this._lastDialogSprite, "Pegou o item");
-                return;
-            case DialogBoxMode.ObjectInteraction: break;
-        }
-        this.UpdateDialogBox(DialogBoxMode.Default, this._lastDialogSprite, "");
+        //Debug.Log("POSITIVO");
+        //switch (this._modeBuffer)
+        //{
+        //    case DialogBoxMode.Default: break;
+        //    case DialogBoxMode.ItemInteraction:
+        //        GameManager.Instance.Inventory.PegarMarcelo();
+        //        this.UpdateDialogBox(DialogBoxMode.Default, this._lastDialogSprite, "Pegou o item");
+        //        return;
+        //    case DialogBoxMode.ObjectInteraction: break;
+        //}
+        //this.UpdateDialogBox(DialogBoxMode.Default, this._lastDialogSprite, "");
     }
 
     public void OnDialogNegativeButtonPress()

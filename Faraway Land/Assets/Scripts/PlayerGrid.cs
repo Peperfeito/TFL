@@ -160,9 +160,7 @@ public class PlayerGrid : Player
         }
     }
 
-
-
-    protected override void OnTriggerEnter2DReaction(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Porta"))
         {
@@ -177,19 +175,6 @@ public class PlayerGrid : Player
 
 
         }
-
-        base.OnTriggerEnter2DReaction(collision);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        OnTriggerEnter2DReaction(collision);
-    }
-
-    protected override void OnTriggerExit2DReaction(Collider2D collision)
-    {
-        base.OnTriggerExit2DReaction(collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -198,10 +183,6 @@ public class PlayerGrid : Player
         {
             //audios.clip = passos[0];
         }
-
-
-
-        OnTriggerExit2DReaction(collision);
     }
 
 

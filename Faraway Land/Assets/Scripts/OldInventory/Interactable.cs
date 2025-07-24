@@ -7,10 +7,10 @@ using UnityEngine.EventSystems;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] Dialogos dialogo;
+    //[SerializeField] Dialogos dialogo;
 
-    public void AtivarInteracao()
-    {
-        GameManager.Instance.Inventory.UpdateDescriUI(true, dialogo.neutra);
-    }
+    //public void AtivarInteracao()
+    //{
+    //    GameManager.Instance.Inventory.UpdateDescriUI(true, dialogo.neutra);
+    //}
 }

@@ -10,8 +10,6 @@ public class BlocoDiLetraController : MinigameController
 
     protected override void Start()
     {
-
-
         base.Start();
     }
 
