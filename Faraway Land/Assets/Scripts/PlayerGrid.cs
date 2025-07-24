@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerGrid : Player
 {
@@ -19,7 +16,12 @@ public class PlayerGrid : Player
     [SerializeField] private Animator _animator;
 
     [SerializeField] private GameObject _staminaIndicator;
-    [SerializeField] private Transform _staminaBar;
+    [SerializeField] private SpriteRenderer _staminaBar;
+    [SerializeField] private Color _fullStamina;
+    [SerializeField] private Color _halfStamina;
+    [SerializeField] private Color _lowStamina;
+    [SerializeField] private SpriteRenderer _staminaFrame;
+    [SerializeField] private Color _rechargeColor;
     private float _stamina = 1f;
     private bool _isSprinting = false;
     private float _sprintMult = 1.7f;
@@ -42,77 +44,93 @@ public class PlayerGrid : Player
 
     }
 
-    private void StartSprint()
-    {
-        this._isSprinting = true; this._staminaRechargeDelay = 0f; this._indicatorFadeDelay = 2f;
-    }
-
-    private void StopSprint()
-    {
-        this._isSprinting = false; this._staminaRechargeDelay = 2f;
-    }
-
     private void Update()
     {
         InputHandler();
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        /* Sprint e Stamina */
-        if (Input.GetKeyDown(KeyCode.LeftShift)) this.StartSprint();
-        if (Input.GetKeyUp(KeyCode.LeftShift)) this.StopSprint();
-
-        // TODO: resetar o rechard quando this._isSprinting mas soltar o movimento
-        this._staminaRechargeDelay -= Time.deltaTime;
-        if (this._staminaRechargeDelay <= 0f)
-        {
-            this._staminaRechargeDelay = 0f;
-            if (this._isSprinting && animationState == "Walk")
-            {
-                this._stamina -= Time.deltaTime / 5f;
-                if (this._stamina <= 0f) this._stamina = 0f;
-            }
-            else
-            {
-                this._stamina += Time.deltaTime / 10f;
-                if (this._stamina >= 1f) this._stamina = 1f;
-            }
-        }
-
-        if (this._stamina >= 1f)
-        {
-            this._indicatorFadeDelay -= Time.deltaTime;
-            if (this._indicatorFadeDelay <= 0f) this._indicatorFadeDelay = 0f;
-        }
-
-        if (this._isSprinting && this._stamina <= 0f) { this.StopSprint(); } // acabou enquanto corria
-
-        this._staminaIndicator.SetActive(this._stamina < 1f || this._indicatorFadeDelay > 0f);
-
-        this._staminaBar.localScale = new Vector3(1f, this._stamina, 1f);
-        /* -- */
+        if (Input.GetKeyDown(KeyCode.LeftShift)) this._isSprinting = true;
+        if (Input.GetKeyUp(KeyCode.LeftShift)) this._isSprinting = false;
+        this.UpdateStamina();
 
         UpdateWaypointPosition();
         MoveTowardsWaypoint();
 
-        this._animator.Play($"{animationState}{animationDirection}");
+        this._animator.Play($"{this._currentAnimState}{this._animationDirection}");
     }
 
-    private float animationChangeThreshold = .1f;
-    private string animationState = "Idle";
-    private string animationDirection = "Down";
+    private float _animationChangeThreshold = .1f;
+    private string _currentAnimState = "Idle";
+    private string _animationDirection = "Down";
+
+    private void UpdateStamina()
+    {
+        // Delay before stamina starts recharging right after sprint has ended (either by stop srpinting or depleting all stamina)
+        this._staminaRechargeDelay -= Time.deltaTime;
+        if (this._staminaRechargeDelay <= 0f) { this._staminaRechargeDelay = 0f; } // clamp
+
+        // Use stamina to sprint
+        if (this._currentAnimState == "Walk" && this._isSprinting)
+        {
+            this._stamina -= Time.deltaTime / 7f; // Takes 7 seconds to fully depleat
+            if (this._stamina <= 0f) this._stamina = 0f; // clamp
+            
+            this._indicatorFadeDelay = 2f;
+            this._staminaRechargeDelay = 2f;
+
+            this._staminaFrame.color = Color.white; // visual
+        }
+        
+        // Rechard stamina
+        if (this._staminaRechargeDelay <= 0f && (!this._isSprinting || this._currentAnimState == "Idle"))
+        {
+            this._stamina += Time.deltaTime / 10f; // Takes 10 seconds to fully recharge
+            if (this._stamina >= 1f) this._stamina = 1f; // clamp
+
+            this._staminaFrame.color = this._rechargeColor; // visual
+        }
+
+        // Holds stamina bar in sight while full for a while before disapearing
+        if (this._stamina >= 1f)
+        {
+            this._indicatorFadeDelay -= Time.deltaTime;
+            if (this._indicatorFadeDelay <= 0f) this._indicatorFadeDelay = 0f;
+
+            this._staminaFrame.color = Color.white; // visual
+        }
+
+        // Ends sprint by stamina depletion
+        if (this._isSprinting && this._stamina <= 0f) { this._isSprinting = false; }
+
+        // Stamina bar visual updates
+        this._staminaIndicator.SetActive(this._stamina < 1f || this._indicatorFadeDelay > 0f);
+        this._staminaBar.transform.localScale = new Vector3(1f, this._stamina, 1f);
+        this._staminaBar.color =
+            this._stamina > .5f ?
+            this.ColorLerp(this._fullStamina, this._halfStamina, (1 - this._stamina) * 2) :
+            this.ColorLerp(this._lowStamina, this._halfStamina, this._stamina * 2) ;
+    }
+
+    private Color ColorLerp(Color a, Color b, float t) // move to Util later, cuz I lazy
+    {
+        float newR = Mathf.Lerp(a.r, b.r, t);
+        float newG = Mathf.Lerp(a.g, b.g, t);
+        float newB = Mathf.Lerp(a.b, b.b, t);
+        float newA = Mathf.Lerp(a.a, b.a, t);
+
+        return new Color(newR, newG, newB, newA);
+    }
 
     private void MoveTowardsWaypoint()
     {
-
-
-        animationState = "Idle";
+        this._currentAnimState = "Idle";
         //audios.Pause();
-        animationDirection = (horizontal >= animationChangeThreshold ? "Right" : (horizontal <= -animationChangeThreshold ? "Left" : (vertical >= animationChangeThreshold ? "Up" : (vertical <= -animationChangeThreshold ? "Down" : animationDirection))));
+        this._animationDirection = (horizontal >= this._animationChangeThreshold ? "Right" : (horizontal <= -this._animationChangeThreshold ? "Left" : (vertical >= this._animationChangeThreshold ? "Up" : (vertical <= -this._animationChangeThreshold ? "Down" : this._animationDirection))));
+        
+        if ((transform.position - movePoint.position).magnitude <= 0f) { return; }
 
-        if ((transform.position - movePoint.position).magnitude <= 0f) return;
-
-        animationState = "Walk";
+        this._currentAnimState = "Walk";
         //audios.Play();
 
 
@@ -120,7 +138,7 @@ public class PlayerGrid : Player
 
         Vector3 direction = movePoint.position - transform.position;
 
-        animationDirection = (direction.x >= animationChangeThreshold ? "Right" : (direction.x <= -animationChangeThreshold ? "Left" : (direction.y >= animationChangeThreshold ? "Up" : (direction.y <= -animationChangeThreshold ? "Down" : animationDirection))));
+        this._animationDirection = (direction.x >= this._animationChangeThreshold ? "Right" : (direction.x <= -this._animationChangeThreshold ? "Left" : (direction.y >= this._animationChangeThreshold ? "Up" : (direction.y <= -this._animationChangeThreshold ? "Down" : this._animationDirection))));
     }
 
     private void UpdateWaypointPosition()

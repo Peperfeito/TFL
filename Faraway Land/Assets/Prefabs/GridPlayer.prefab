@@ -158,7 +158,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 100
   m_Sprite: {fileID: -1463630033, guid: 3ceea9f2364bbfa46b955779d9c4ed73, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.7529412, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -330,7 +330,12 @@ MonoBehaviour:
   movePoint: {fileID: 4113428599345367987}
   _animator: {fileID: 8101710064777739425}
   _staminaIndicator: {fileID: 7464230937462545656}
-  _staminaBar: {fileID: 7758812695471507830}
+  _staminaBar: {fileID: 8673993516601197827}
+  _fullStamina: {r: 0, g: 0.7529412, b: 0, a: 1}
+  _halfStamina: {r: 1, g: 0.7529412, b: 0, a: 1}
+  _lowStamina: {r: 0.7529412, g: 0, b: 0, a: 1}
+  _staminaFrame: {fileID: 8114770460819439412}
+  _rechargeColor: {r: 0.5019608, g: 1, b: 1, a: 1}
 --- !u!1 &6678426389221188995
 GameObject:
   m_ObjectHideFlags: 0
