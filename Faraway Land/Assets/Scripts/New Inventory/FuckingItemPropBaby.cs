@@ -7,11 +7,11 @@ public class FuckingItemPropBaby : MonoBehaviour
     [SerializeField] private FuckingItemDataBaby _itemData;
     public FuckingItemDataBaby ItemData { get { return this._itemData; } }
 
-    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Animator _animator;
 
     private void Start()
     {
-        this._spriteRenderer.sprite = this._itemData.itemSprite;
+        this._animator.runtimeAnimatorController = this._animator.runtimeAnimatorController;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

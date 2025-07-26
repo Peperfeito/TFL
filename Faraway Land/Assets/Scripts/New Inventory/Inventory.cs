@@ -2,30 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct InventoryContent
+{
+    public int amount;
+    public FuckingItemDataBaby data;
+
+    public InventoryContent(FuckingItemDataBaby itemData, int currentAmount)
+    {
+        this.amount = currentAmount;
+        this.data = itemData;
+    }
+}
+
 public class Inventory
 {
-    private struct ItemContent
+    private class InventorySlot
     {
         public int amount;
         public FuckingItemDataBaby data;
 
-        public ItemContent(FuckingItemDataBaby itemData)
+        public InventorySlot(FuckingItemDataBaby itemData)
         {
             this.amount = 1;
             this.data = itemData;
         }
 
-        public void IncrementAmount(int increment = 1)
+        public void IncrementAmount(int increment)
         {
             this.amount += increment;
         }
     }
 
-    private List<ItemContent> _content;
+    private List<InventorySlot> _content;
 
     public Inventory()
     {
-        this._content = new List<ItemContent>();
+        this._content = new List<InventorySlot>();
     }
 
     public void AddItem(FuckingItemDataBaby itemData)
@@ -34,11 +46,11 @@ public class Inventory
         {
             if (this._content[i].data == itemData)
             {
-                this._content[i].IncrementAmount();
+                this._content[i].IncrementAmount(1);
                 return;
             }
         }
-        ItemContent newItemContent = new ItemContent(itemData);
+        InventorySlot newItemContent = new InventorySlot(itemData);
         this._content.Add(newItemContent);
     }
 
@@ -66,5 +78,17 @@ public class Inventory
             if (this._content[i].data == itemData) { return true; }
         }
         return false;
+    }
+
+    public InventoryContent[] GetContents()
+    {
+        InventoryContent[] result = new InventoryContent[this._content.Count];
+
+        for (int i = 0; i < this._content.Count; i++)
+        {
+            result[i] = new InventoryContent(this._content[i].data, this._content[i].amount);
+        }
+
+        return result;
     }
 }

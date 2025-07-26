@@ -9,5 +9,5 @@ public class FuckingItemDataBaby : ScriptableObject
     public string itemDescription;
 
     public Sprite itemIcon;
-    public Sprite itemSprite;
+    public RuntimeAnimatorController itemAnimatorController;
 }

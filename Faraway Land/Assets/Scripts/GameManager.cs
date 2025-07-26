@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,6 +31,39 @@ public class GameManager : IPersistentSingleton<GameManager>
                 break;
             default: break;
         }
+
+        /* test */
+
+        this.testArray = Resources.LoadAll<FuckingItemDataBaby>("Items");
+        for (int i = 0; i < 5; i++)
+        {
+            this._inventory.AddItem(this.testArray[UnityEngine.Random.Range(0, this.testArray.Length)]);
+        }
+    }
+
+    private FuckingItemDataBaby[] testArray;
+    [SerializeField] private GameObject testPanel;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            testPanel.SetActive(!testPanel.activeSelf);
+            
+            string result = "";
+
+            InventoryContent[] buffer = this._inventory.GetContents();
+            for (int i = 0; i < buffer.Length; i++)
+            {
+                result += $"{buffer[i].data.itemName} {buffer[i].amount} \n";
+            }
+            testPanel.GetComponentInChildren<TextMeshProUGUI>().text = result;
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            this._inventory.AddItem(this.testArray[UnityEngine.Random.Range(0, this.testArray.Length)]);
+        }
     }
 
     public void LoadLevel(Levels level)
@@ -46,12 +80,12 @@ public class GameManager : IPersistentSingleton<GameManager>
 
         if (!loadedScene.isDone) { yield return null; }
 
-        for (int i = 0;  i < _minigames.Length; i++)
+        for (int i = 0; i < _minigames.Length; i++)
         {
             this._minigames[i] = null;
         }
 
-        switch(level)
+        switch (level)
         {
             case Levels.Level_01:
                 this.InitMinigameArray((int)Minigames._LV1_START_, (int)Minigames._LV1_END_);
