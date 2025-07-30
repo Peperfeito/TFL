@@ -41,11 +41,12 @@ public class PlayerGrid : Player
         movePoint.parent = null;
 
         this._boxCollider = this.GetComponent<BoxCollider2D>();
-
     }
 
     private void Update()
     {
+        if (GameManager.Instance.blockPlayerMovement) { return; }
+
         InputHandler();
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4c8b90a8c93e44dadb26a3e6f3c3b4, type: 3}
   m_Name: NewItemData 2
   m_EditorClassIdentifier: 
-  itemName: C
-  itemDescription: C
-  itemIcon: {fileID: 0}
+  itemName: re
+  itemDescription: re kaka
+  itemIcon: {fileID: 1004510764, guid: d8bba09253ce15f40ad0dc6fe59320b5, type: 3}
   itemAnimatorController: {fileID: 0}

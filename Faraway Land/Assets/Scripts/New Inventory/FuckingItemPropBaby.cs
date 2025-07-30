@@ -7,14 +7,15 @@ public class FuckingItemPropBaby : MonoBehaviour
     [SerializeField] private FuckingItemDataBaby _itemData;
     public FuckingItemDataBaby ItemData { get { return this._itemData; } }
 
-    [SerializeField] private Animator _animator;
+    private Animator _animator;
 
     private void Start()
     {
+        this._animator = this.GetComponentInChildren<Animator>();
         this._animator.runtimeAnimatorController = this._animator.runtimeAnimatorController;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -22,7 +23,7 @@ public class FuckingItemPropBaby : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

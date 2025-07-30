@@ -46,19 +46,19 @@ public class GameManager : IPersistentSingleton<GameManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            testPanel.SetActive(!testPanel.activeSelf);
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    testPanel.SetActive(!testPanel.activeSelf);
             
-            string result = "";
+        //    string result = "";
 
-            InventoryContent[] buffer = this._inventory.GetContents();
-            for (int i = 0; i < buffer.Length; i++)
-            {
-                result += $"{buffer[i].data.itemName} {buffer[i].amount} \n";
-            }
-            testPanel.GetComponentInChildren<TextMeshProUGUI>().text = result;
-        }
+        //    InventoryContent[] buffer = this._inventory.GetContents();
+        //    for (int i = 0; i < buffer.Length; i++)
+        //    {
+        //        result += $"{buffer[i].data.itemName} {buffer[i].amount} \n";
+        //    }
+        //    testPanel.GetComponentInChildren<TextMeshProUGUI>().text = result;
+        //}
 
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -135,6 +135,7 @@ public class GameManager : IPersistentSingleton<GameManager>
     {
         if (this._itemInRange == null) return;
         this.AddToInventory(this._itemInRange.ItemData);
+        Destroy(this._itemInRange.gameObject);
     }
 
     public void AddToInventory(FuckingItemDataBaby itemData)
@@ -151,4 +152,13 @@ public class GameManager : IPersistentSingleton<GameManager>
     {
         return this._inventory.HasItem(itemData);
     }
+
+    public InventoryContent[] GetInvenotryContents()
+    {
+        return this._inventory.GetContents();
+    }
+
+    // Bagulho
+
+    public bool blockPlayerMovement = false;
 }

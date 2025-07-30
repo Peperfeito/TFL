@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4c8b90a8c93e44dadb26a3e6f3c3b4, type: 3}
   m_Name: NewItemData 3
   m_EditorClassIdentifier: 
-  itemName: D
-  itemDescription: D
-  itemIcon: {fileID: 0}
+  itemName: msea de hokye
+  itemDescription: eh uma mesa de hjotiekjh tgeuyikjf g
+  itemIcon: {fileID: 377081108, guid: 6cd03a84d19b11f4d8a8a23463531de4, type: 3}
   itemAnimatorController: {fileID: 0}

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb4c8b90a8c93e44dadb26a3e6f3c3b4, type: 3}
-  m_Name: XotaData
+  m_Name: NewItemData 23
   m_EditorClassIdentifier: 
-  itemName: Tocha
-  itemDescription: Tocha
-  itemIcon: {fileID: -749386631, guid: 5691b2d9d86702448aca2cee331c7b49, type: 3}
+  itemName: msea de hokye2iyh ge
+  itemDescription: eh uma mesa de hjotiekjh tgeuyikjf g 2eoiuhio
+  itemIcon: {fileID: 377081108, guid: 6cd03a84d19b11f4d8a8a23463531de4, type: 3}
   itemAnimatorController: {fileID: 0}
