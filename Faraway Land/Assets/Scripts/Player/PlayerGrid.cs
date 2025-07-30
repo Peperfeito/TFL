@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerLookDirection
+{
+    Up,
+    Down,
+    Left,
+    Right,
+}
+
 public class PlayerGrid : Player
 {
     public LayerMask colisores;
@@ -33,10 +41,7 @@ public class PlayerGrid : Player
 
     private void Start()
     {
-        Vector3 positionBuffer = transform.position; //Camilla eh um buffer
-        positionBuffer.x = (Mathf.Floor(Mathf.Abs(positionBuffer.x)) + .5f) * (positionBuffer.x / Mathf.Abs(positionBuffer.x));
-        positionBuffer.y = Mathf.Round(positionBuffer.y) + .3f;
-        transform.position = positionBuffer;
+        FarueiUtils.AlignWithGrid(this.transform);
 
         movePoint.parent = null;
 
@@ -58,12 +63,12 @@ public class PlayerGrid : Player
         UpdateWaypointPosition();
         MoveTowardsWaypoint();
 
-        this._animator.Play($"{this._currentAnimState}{this._animationDirection}");
+        this._animator.Play($"{this._currentAnimState}{this._currentLookDirection}");
     }
 
     private float _animationChangeThreshold = .1f;
     private string _currentAnimState = "Idle";
-    private string _animationDirection = "Down";
+    private PlayerLookDirection _currentLookDirection = PlayerLookDirection.Down;
 
     private void UpdateStamina()
     {
@@ -123,11 +128,16 @@ public class PlayerGrid : Player
         return new Color(newR, newG, newB, newA);
     }
 
+    public void LookTowards(PlayerLookDirection lookDirection)
+    {
+        this._currentLookDirection = lookDirection;
+    }
+
     private void MoveTowardsWaypoint()
     {
         this._currentAnimState = "Idle";
         //audios.Pause();
-        this._animationDirection = (horizontal >= this._animationChangeThreshold ? "Right" : (horizontal <= -this._animationChangeThreshold ? "Left" : (vertical >= this._animationChangeThreshold ? "Up" : (vertical <= -this._animationChangeThreshold ? "Down" : this._animationDirection))));
+        this._currentLookDirection = (horizontal >= this._animationChangeThreshold ? PlayerLookDirection.Right : (horizontal <= -this._animationChangeThreshold ? PlayerLookDirection.Left : (vertical >= this._animationChangeThreshold ? PlayerLookDirection.Up : (vertical <= -this._animationChangeThreshold ? PlayerLookDirection.Down : this._currentLookDirection))));
         
         if ((transform.position - movePoint.position).magnitude <= 0f) { return; }
 
@@ -139,7 +149,7 @@ public class PlayerGrid : Player
 
         Vector3 direction = movePoint.position - transform.position;
 
-        this._animationDirection = (direction.x >= this._animationChangeThreshold ? "Right" : (direction.x <= -this._animationChangeThreshold ? "Left" : (direction.y >= this._animationChangeThreshold ? "Up" : (direction.y <= -this._animationChangeThreshold ? "Down" : this._animationDirection))));
+        this._currentLookDirection = (direction.x >= this._animationChangeThreshold ? PlayerLookDirection.Right : (direction.x <= -this._animationChangeThreshold ? PlayerLookDirection.Left : (direction.y >= this._animationChangeThreshold ? PlayerLookDirection.Up : (direction.y <= -this._animationChangeThreshold ? PlayerLookDirection.Down : this._currentLookDirection))));
     }
 
     private void UpdateWaypointPosition()

@@ -33,6 +33,8 @@ public class GameManager : IPersistentSingleton<GameManager>
         }
     }
 
+    // Levels
+
     public void LoadLevel(Levels level)
     {
         StartCoroutine(LoadLevelAsync(level));
@@ -63,6 +65,8 @@ public class GameManager : IPersistentSingleton<GameManager>
             default: break;
         }
     }
+
+    // Minigames
 
     private void InitMinigameArray(int lowerBound, int upperBound)
     {
@@ -125,7 +129,26 @@ public class GameManager : IPersistentSingleton<GameManager>
         return this._inventory.GetContents();
     }
 
-    // Bagulho
+    // Player
 
     public bool blockPlayerMovement = false;
+
+    private GameObject _movePoint;
+    private GameObject _player;
+    private GameObject _playerCamera;
+
+    public void TeleportPlayer(Vector3 destination, PlayerLookDirection lookDirection = PlayerLookDirection.Down) // saber qual player ta ativado pra teleportar, caso necessario
+    {
+        if (this._movePoint == null) this._movePoint = GameObject.Find("MovePoint");
+        this._movePoint.transform.position = destination;
+
+        if (this._player == null) this._player = GameObject.Find("GridPlayer");
+        this._player.transform.position = destination;
+        this._player.GetComponent<PlayerGrid>().LookTowards(lookDirection);
+
+        if (this._playerCamera == null) this._playerCamera = Camera.main.gameObject;
+        this._playerCamera.transform.position = destination;
+
+        FindObjectOfType<FadeEffect>().FadeOut();
+    }
 }

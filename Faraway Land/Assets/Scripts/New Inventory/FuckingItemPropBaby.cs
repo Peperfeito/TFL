@@ -13,6 +13,8 @@ public class FuckingItemPropBaby : MonoBehaviour
     {
         this._animator = this.GetComponentInChildren<Animator>();
         this._animator.runtimeAnimatorController = this._animator.runtimeAnimatorController;
+
+        FarueiUtils.AlignWithGrid(this.transform);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
