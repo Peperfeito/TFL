@@ -8,17 +8,22 @@ public class Xota : MonoBehaviour
     [SerializeField] float litTorchTime = 20f;
     bool canLightTorch = false;
     bool canDarkTorch = false;
-    
+
+    [SerializeField] private FuckingItemDataBaby _xotaNoventario;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         canLightTorch = true;
     }
-    
-    
-    
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        canLightTorch = false;
+    }
+
     private void LightTorch()
     {
-        if (canLightTorch && Input.GetKeyDown(KeyCode.E))
+        if (canLightTorch && Input.GetKeyDown(KeyCode.E) && GameManager.Instance.HasItemInInventory(this._xotaNoventario)) // mudar pra ver se ta equipado
         {
             this.GetComponent<Animator>().Play("tochaoanimao");
             canDarkTorch = true;

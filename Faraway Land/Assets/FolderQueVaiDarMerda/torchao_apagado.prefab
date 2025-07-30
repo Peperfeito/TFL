@@ -192,7 +192,7 @@ MonoBehaviour:
   - {x: 0.25, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 135902
+  m_InstanceId: 55384
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.25, y: 0.5, z: 0}
@@ -208,6 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263d78344798855448576fb5ece452ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  litTorchTime: 20
+  _xotaNoventario: {fileID: 11400000, guid: 6ececdb72cdf9c44eb1c7a5533ba5e20, type: 2}
 --- !u!61 &6619947797183095537
 BoxCollider2D:
   m_ObjectHideFlags: 0
