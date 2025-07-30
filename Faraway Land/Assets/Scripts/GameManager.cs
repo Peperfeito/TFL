@@ -31,39 +31,6 @@ public class GameManager : IPersistentSingleton<GameManager>
                 break;
             default: break;
         }
-
-        /* test */
-
-        this.testArray = Resources.LoadAll<FuckingItemDataBaby>("Items");
-        for (int i = 0; i < 5; i++)
-        {
-            this._inventory.AddItem(this.testArray[UnityEngine.Random.Range(0, this.testArray.Length)]);
-        }
-    }
-
-    private FuckingItemDataBaby[] testArray;
-    [SerializeField] private GameObject testPanel;
-
-    private void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    testPanel.SetActive(!testPanel.activeSelf);
-            
-        //    string result = "";
-
-        //    InventoryContent[] buffer = this._inventory.GetContents();
-        //    for (int i = 0; i < buffer.Length; i++)
-        //    {
-        //        result += $"{buffer[i].data.itemName} {buffer[i].amount} \n";
-        //    }
-        //    testPanel.GetComponentInChildren<TextMeshProUGUI>().text = result;
-        //}
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            this._inventory.AddItem(this.testArray[UnityEngine.Random.Range(0, this.testArray.Length)]);
-        }
     }
 
     public void LoadLevel(Levels level)

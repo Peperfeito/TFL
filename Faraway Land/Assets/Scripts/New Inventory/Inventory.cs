@@ -2,18 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct InventoryContent
-{
-    public int amount;
-    public FuckingItemDataBaby data;
-
-    public InventoryContent(FuckingItemDataBaby itemData, int currentAmount)
-    {
-        this.amount = currentAmount;
-        this.data = itemData;
-    }
-}
-
 public class Inventory
 {
     private class InventorySlot

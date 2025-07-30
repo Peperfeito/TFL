@@ -6,8 +6,11 @@ using UnityEngine;
 public class FuckingItemDataBaby : ScriptableObject
 {
     public string itemName;
-    public string itemDescription;
+    [TextArea] public string itemDescription;
 
+    [Tooltip("Visual para o item NO INVENTARIO")]
     public Sprite itemIcon;
+
+    [Tooltip("Visual para o item NO MUNDO")]
     public RuntimeAnimatorController itemAnimatorController;
 }
