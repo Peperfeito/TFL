@@ -15,6 +15,8 @@ public class BlocoDiLetraController : MinigameController
 
     private void Update()
     {
+        if (!this._isRunning) { return; }
+
         if (Input.GetKeyDown(KeyCode.Escape)) { this.DisableMinigame(); }
     }
 

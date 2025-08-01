@@ -40,7 +40,7 @@ public class LevelUIController : MonoBehaviour
         {
             this._inventoryUIController.gameObject.SetActive(!this._inventoryUIController.gameObject.activeSelf);
             GameManager.Instance.blockPlayerMovement = this._inventoryUIController.gameObject.activeSelf;
-            if (this._inventoryUIController.gameObject.activeSelf) { this._inventoryUIController.LoadItems(); }
+            if (this._inventoryUIController.gameObject.activeSelf) { this._inventoryUIController.LoadStuff(); }
         }
     }
 

@@ -1,0 +1,321 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
+
+public enum InventoryUIMode
+{
+    BoxesMode,
+    EquipBoxMode,
+    ItemBoxMode,
+    DialogBoxMode,
+}
+
+public class InventoryUIController : MonoBehaviour
+{
+    private InventoryContent[] _currentInventoryContents; // copia dos VALORES do inventario (modificar nao afeta diretamente o inventario)
+    private InventoryUIMode _currentInventoryMode;
+
+    /* Selector */
+    private readonly Vector2 EQUIPBOX_SELECTOR_SIZE = new Vector2(54f, 74f);
+    private readonly Vector2 ITEMBOX_SELECTOR_SIZE = new Vector2(98f, 74f);
+    private readonly Vector2 ITEM_SELECTOR_SIZE = new Vector2(15f, 15f);
+    private readonly Vector2 BUTTON_SELECTOR_SIZE = new Vector2(29f, 8f);
+    private const float SELECTOR_SPEED = 2f;
+    [SerializeField] private RectTransform _selector;
+    private Vector3 _selectorTargetPosition;
+    private Vector2 _selectorTargetSize;
+    private float _selectorTimer;
+
+    /* Box */
+    [Header("Boxes")]
+    [SerializeField] private Transform[] _boxes;
+    private int _selectedBox;
+
+    /* Item Box */
+    [Header("Item Box")]
+    // Pages
+    [SerializeField] private Transform _pageIndicator;
+    private List<Image> _pageDots = new List<Image>();
+    private bool _forcePageChange = false;
+    private int _selectedPage;
+    // Item Slots
+    [SerializeField] private Transform _itemSlotContainer;
+    private Transform[] _itemSlots;
+    private int _selectedItemSlot;
+
+    /* Dialog Box */
+    [Header("Dialog Box")]
+
+    [SerializeField] private Image _itemImage;
+    [SerializeField] private TextMeshProUGUI _itemText;
+    // Buttons
+    [SerializeField] private Transform _buttonContainer;
+    private Transform[] _buttons;
+    private int _selectedButton;
+
+    /* Equip Slots */
+    [Header("Equipment Slots")]
+
+    [SerializeField] private Image _sla;
+
+    private void Start()
+    {
+        // Init page indicator
+        for (int i = 0; i < this._pageIndicator.childCount; i++)
+        {
+            this._pageDots.Add(this._pageIndicator.GetChild(i).GetComponent<Image>());
+        }
+
+        // Init item slots
+        this._itemSlots = new Transform[this._itemSlotContainer.childCount];
+        for (int i = 0; i < this._itemSlotContainer.childCount; i++)
+        {
+            this._itemSlots[i] = this._itemSlotContainer.GetChild(i);
+        }
+
+        // Init buttons
+        this._buttons = new Transform[this._buttonContainer.childCount];
+        for (int i = 0; i < this._buttonContainer.childCount; i++)
+        {
+            this._buttons[i] = this._buttonContainer.GetChild(i);
+        }
+
+        this.LoadStuff();
+    }
+
+    private void Update()
+    {
+        this._selectorTimer += Time.deltaTime * SELECTOR_SPEED;
+        if (this._selectorTimer > 1f) { this._selectorTimer = 1f; }
+
+        switch (this._currentInventoryMode)
+        {
+            case InventoryUIMode.BoxesMode:
+
+                if (Input.GetKeyDown(KeyCode.LeftArrow)) { this.ChangeBox(-1); }
+                if (Input.GetKeyDown(KeyCode.RightArrow)) { this.ChangeBox(+1); }
+
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    this._currentInventoryMode = this._selectedBox == 0 ? InventoryUIMode.EquipBoxMode : InventoryUIMode.ItemBoxMode;
+                    this.UpdateSelector();
+                }
+                break;
+
+            case InventoryUIMode.EquipBoxMode:
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    this._currentInventoryMode = InventoryUIMode.BoxesMode;
+                    this.UpdateSelector();
+                }
+                break;
+
+            case InventoryUIMode.ItemBoxMode:
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    this._currentInventoryMode = InventoryUIMode.BoxesMode;
+                    this.UpdateSelector();
+                }
+
+                if (Input.GetKeyDown(KeyCode.LeftShift)) { this._forcePageChange = true; }
+                if (Input.GetKeyUp(KeyCode.LeftShift)) { this._forcePageChange = false; }
+
+                if (Input.GetKeyDown(KeyCode.UpArrow)) { this.ChangeSelection(-5); }
+                if (Input.GetKeyDown(KeyCode.DownArrow)) { this.ChangeSelection(+5); }
+                if (Input.GetKeyDown(KeyCode.LeftArrow)) { this.ChangeSelection(-1); }
+                if (Input.GetKeyDown(KeyCode.RightArrow)) { this.ChangeSelection(+1); }
+
+                if (Input.GetKeyDown(KeyCode.Return)) { this.SelectItem(); }
+
+                break;
+
+            case InventoryUIMode.DialogBoxMode:
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    this._currentInventoryMode = InventoryUIMode.ItemBoxMode;
+                    this.UpdateSelector();
+                }
+
+                if (Input.GetKeyDown(KeyCode.UpArrow)) { this.ChangeSelectedButton(-1); }
+                if (Input.GetKeyDown(KeyCode.DownArrow)) { this.ChangeSelectedButton(+1); }
+
+                if (Input.GetKeyDown(KeyCode.Return)) { this.SelectButton(); }
+
+                break;
+        }
+
+        this._selector.position = Vector3.Lerp(this._selector.position, this._selectorTargetPosition, this._selectorTimer);
+        this._selector.sizeDelta = Vector2.Lerp(this._selector.sizeDelta, this._selectorTargetSize, this._selectorTimer);
+    }
+
+    // Chamado toda vez que o inventario abre
+    public void LoadStuff()
+    {
+        this._currentInventoryMode = InventoryUIMode.BoxesMode;
+        this._currentInventoryContents = GameManager.Instance.GetInvenotryContents();
+        
+        this._selectedBox = 0;
+        this._selectedPage = 0;
+        this._selectedButton = 0;
+        this._selectedItemSlot = 0;
+
+        for (int i = 0; i < this._pageDots.Count; i++)
+        {
+            this._pageDots[i].color = new Color(1f, 1f, 1f, i == 0 ? 1f : .125f);
+        }
+
+        this.UpdateSelector();
+        this.UpdateSlots();
+    }
+
+    private void ChangeSelection(int increment)
+    {
+        if (this._forcePageChange && Mathf.Abs(increment) == 1)
+        {
+            this.ChangePage(increment);
+            return;
+        }
+
+        this._selectedItemSlot += increment;
+
+        // vertical wrap around
+        if (increment == 1 && this._selectedItemSlot % 5 == 0) { this._selectedItemSlot -= 5; this.ChangePage(+1); }
+        if (increment == -1 && (this._selectedItemSlot + 1) % 5 == 0) { this._selectedItemSlot += 5; this.ChangePage(-1); }
+
+        // horizontal wrap around
+        if (this._selectedItemSlot < 0) { this._selectedItemSlot += this._itemSlots.Length; }
+        if (this._selectedItemSlot >= this._itemSlots.Length) { this._selectedItemSlot -= this._itemSlots.Length; }
+
+        this._selectorTargetPosition = this._itemSlots[this._selectedItemSlot].position;
+        this._selectorTimer = 0f;
+
+        this.UpdateDialogBox();
+    }
+
+    private void ChangePage(int increment)
+    {
+        this._pageDots[this._selectedPage].color = new Color(1f, 1f, 1f, .125f);
+
+        this._selectedPage += increment;
+
+        if (this._selectedPage < 0f) { this._selectedPage = this._pageDots.Count - 1; }
+        if (this._selectedPage >= this._pageDots.Count) { this._selectedPage = 0; }
+
+        this._pageDots[this._selectedPage].color = new Color(1f, 1f, 1f, 1f);
+
+        this.UpdateSlots();
+    }
+
+    private void UpdateSlots()
+    {
+        int slotIndex = 0;
+        int itemIndex = 0 + (20 * this._selectedPage);
+
+        while (slotIndex < this._itemSlots.Length)
+        {
+            Image itemImage = this._itemSlots[slotIndex].GetChild(0).GetComponent<Image>();
+
+            Debug.Log(this._currentInventoryContents.Length);
+            bool isIndexInRange = itemIndex < this._currentInventoryContents.Length;
+            if (isIndexInRange) { itemImage.sprite = this._currentInventoryContents[itemIndex].data.itemIcon; }
+            itemImage.gameObject.SetActive(isIndexInRange);
+
+            itemIndex += 1;
+            slotIndex += 1;
+        }
+
+        this.UpdateDialogBox();
+    }
+
+    private void UpdateDialogBox()
+    {
+        int index = this._selectedItemSlot + (20 * this._selectedPage);
+        if (index >= this._currentInventoryContents.Length)
+        {
+            this._itemImage.sprite = this._selector.GetComponent<Image>().sprite; // TODO: se livrar da gambeta
+            this._itemText.text = $"-- no item selected --";
+            return;
+        }
+
+        InventoryContent stuff = this._currentInventoryContents[index];
+        this._itemImage.sprite = stuff.data.itemIcon;
+        this._itemText.text = $"{stuff.data.itemName}\n{stuff.data.itemDescription}";
+    }
+
+    private void SelectItem()
+    {
+        int itemIndex = this._selectedItemSlot + (20 * this._selectedPage);
+
+        if (itemIndex >= this._itemSlots.Length) return;
+
+        this._currentInventoryMode = InventoryUIMode.DialogBoxMode;
+
+        this.UpdateSelector();
+    }
+
+    private void ChangeSelectedButton(int increment)
+    {
+        this._selectedButton += increment;
+
+        // wrap
+        if (this._selectedButton < 0) { this._selectedButton = this._buttons.Length - 1; }
+        if (this._selectedButton >= this._buttons.Length) { this._selectedButton = 0; }
+
+        this.UpdateSelector();
+    }
+
+    private void SelectButton()
+    {
+
+    }
+
+    private void UpdateSelector()
+    {
+        Vector3 targetPos = this._selectorTargetPosition;
+        Vector2 targetSize = this._selectorTargetSize;
+
+        switch (this._currentInventoryMode)
+        {
+            case InventoryUIMode.BoxesMode:
+                targetPos = this._boxes[this._selectedBox].position;
+                targetSize = this._selectedBox == 0 ? EQUIPBOX_SELECTOR_SIZE : ITEMBOX_SELECTOR_SIZE;
+                break;
+
+            case InventoryUIMode.EquipBoxMode: // TODO: fazer
+                targetPos = this._selectorTargetPosition;
+                targetSize = this._selectorTargetSize;
+                break;
+
+            case InventoryUIMode.ItemBoxMode:
+                targetPos = this._itemSlots[this._selectedItemSlot].position;
+                targetSize = ITEM_SELECTOR_SIZE;
+                break;
+
+            case InventoryUIMode.DialogBoxMode:
+                targetPos = this._buttons[this._selectedButton].position;
+                targetSize = BUTTON_SELECTOR_SIZE;
+                break;
+        }
+
+        this._selectorTargetPosition = targetPos;
+        this._selectorTargetSize = targetSize * 9;
+        this._selectorTimer = 0f;
+    }
+
+    private void ChangeBox(int increment)
+    {
+        this._selectedBox += increment;
+
+        // wrap
+        if (this._selectedBox < 0) { this._selectedBox = this._boxes.Length - 1; }
+        if (this._selectedBox >= this._boxes.Length) { this._selectedBox = 0; }
+
+        this.UpdateSelector();
+    }
+}
