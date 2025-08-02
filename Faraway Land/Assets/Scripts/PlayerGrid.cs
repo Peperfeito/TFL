@@ -18,8 +18,8 @@ public class PlayerGrid : Player
 
     [SerializeField] private Animator _animator;
    
-    //[SerializeField] private AudioClip[] passos;
-    //[SerializeField] private AudioSource audios;
+    [SerializeField] private AudioClip[] passos;
+    [SerializeField] private AudioSource audios;
 
     // Start is called before the first frame update
     void Start()
@@ -61,13 +61,13 @@ public class PlayerGrid : Player
         
 
         animationState = "Idle";
-        //audios.Pause();
+        audios.Pause();
         animationDirection = (horizontal >= animationChangeThreshold ? "Right" : (horizontal <= -animationChangeThreshold ? "Left" : (vertical >= animationChangeThreshold ? "Up" : (vertical <= -animationChangeThreshold ? "Down" : animationDirection))));
         
         if ((transform.position - movePoint.position).magnitude <= 0f) return;
 
         animationState = "Walk";
-        //audios.Play();
+        audios.Play();
         
 
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
@@ -109,7 +109,7 @@ public class PlayerGrid : Player
 
         if(collision.CompareTag("Amoeba"))
         {
-            //audios.clip = passos[1];
+            audios.clip = passos[1];
 
             
         }
@@ -132,7 +132,7 @@ public class PlayerGrid : Player
     {
         if (collision.CompareTag("Amoeba"))
         {
-            //audios.clip = passos[0];
+            audios.clip = passos[0];
         }
 
 
