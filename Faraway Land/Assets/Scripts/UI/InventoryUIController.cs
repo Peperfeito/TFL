@@ -29,6 +29,9 @@ public class InventoryUIController : MonoBehaviour
     private Vector2 _selectorTargetSize;
     private float _selectorTimer;
 
+    private float _bobbingTimer = 0f;
+    private float _bobbingSpeed = 2f;
+
     /* Box */
     [Header("Boxes")]
     [SerializeField] private Transform[] _boxes;
@@ -152,6 +155,10 @@ public class InventoryUIController : MonoBehaviour
 
         this._selector.position = Vector3.Lerp(this._selector.position, this._selectorTargetPosition, this._selectorTimer);
         this._selector.sizeDelta = Vector2.Lerp(this._selector.sizeDelta, this._selectorTargetSize, this._selectorTimer);
+
+        this._bobbingTimer += Time.deltaTime * this._bobbingSpeed;
+        if (this._bobbingTimer >= 1f || this._bobbingTimer <= 0f) this._bobbingSpeed *= -1;
+        this._selector.sizeDelta += Vector2.one * Mathf.Lerp(-4.5f, +4.5f, this._bobbingTimer) * this._selectorTimer;
     }
 
     // Chamado toda vez que o inventario abre
