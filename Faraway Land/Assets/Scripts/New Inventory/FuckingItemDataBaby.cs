@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,4 +14,6 @@ public class FuckingItemDataBaby : ScriptableObject
 
     [Tooltip("Visual para o item NO MUNDO")]
     public RuntimeAnimatorController itemAnimatorController;
+
+    public ItemType itemType;
 }

@@ -124,6 +124,16 @@ public class GameManager : IPersistentSingleton<GameManager>
         return this._inventory.HasItem(itemData);
     }
 
+    public bool UseItem(FuckingItemDataBaby itemData)
+    {
+        return this._inventory.UseItem(itemData);
+    }
+
+    public bool DropItem(FuckingItemDataBaby itemData)
+    {
+        return this._inventory.DropItem(itemData);
+    }
+
     public InventoryContent[] GetInvenotryContents()
     {
         return this._inventory.GetContents();

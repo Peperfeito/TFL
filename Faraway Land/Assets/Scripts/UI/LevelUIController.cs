@@ -40,7 +40,7 @@ public class LevelUIController : MonoBehaviour
         {
             this._inventoryUIController.gameObject.SetActive(true);
             GameManager.Instance.blockPlayerMovement = true;
-            this._inventoryUIController.LoadStuff();
+            this._inventoryUIController.InitInventoryScreen();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && this._inventoryUIController.gameObject.activeSelf)

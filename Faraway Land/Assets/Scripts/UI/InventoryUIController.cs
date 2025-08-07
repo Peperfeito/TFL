@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -59,6 +60,7 @@ public class InventoryUIController : MonoBehaviour
     // Buttons
     [SerializeField] private Transform _buttonContainer;
     private Transform[] _buttons;
+    private TextMeshProUGUI[] _buttonsText;
     private int _selectedButton;
 
     /* Equip Slots */
@@ -83,12 +85,14 @@ public class InventoryUIController : MonoBehaviour
 
         // Init buttons
         this._buttons = new Transform[this._buttonContainer.childCount];
+        this._buttonsText = new TextMeshProUGUI[this._buttonContainer.childCount];
         for (int i = 0; i < this._buttonContainer.childCount; i++)
         {
             this._buttons[i] = this._buttonContainer.GetChild(i);
+            this._buttonsText[i] = this._buttons[i].GetChild(0).GetComponent<TextMeshProUGUI>();
         }
 
-        this.LoadStuff();
+        this.InitInventoryScreen();
     }
 
     private void Update()
@@ -170,13 +174,12 @@ public class InventoryUIController : MonoBehaviour
     }
 
     // Chamado toda vez que o inventario abre
-    public void LoadStuff()
+    public void InitInventoryScreen()
     {
         this._selector.position = this._selector.parent.position;
         this._selector.sizeDelta = this.REST_SELECTOR_SIZE * 9;
 
         this._currentInventoryMode = InventoryUIMode.BoxesMode;
-        this._currentInventoryContents = GameManager.Instance.GetInvenotryContents();
         
         this._selectedBox = 0;
         this._selectedPage = 0;
@@ -188,6 +191,13 @@ public class InventoryUIController : MonoBehaviour
             this._pageDots[i].color = new Color(1f, 1f, 1f, i == 0 ? 1f : .125f);
         }
 
+        this.LoadInventory();
+    }
+
+    private void LoadInventory() // TODO: fazer mais
+    {
+        this._currentInventoryContents = GameManager.Instance.GetInvenotryContents();
+        
         this.UpdateSelector();
         this.UpdateSlots();
     }
@@ -235,23 +245,22 @@ public class InventoryUIController : MonoBehaviour
         int slotIndex = 0;
         int itemIndex = 0 + (20 * this._selectedPage);
 
+        if (this._itemSlots == null) return;
+
         while (slotIndex < this._itemSlots.Length)
         {
             Image itemImage = this._itemSlots[slotIndex].GetChild(0).GetComponent<Image>();
             TextMeshProUGUI itemAmount = this._itemSlots[slotIndex].GetChild(1).GetComponent<TextMeshProUGUI>();
 
-            Debug.Log(this._currentInventoryContents.Length);
             bool isIndexInRange = itemIndex < this._currentInventoryContents.Length;
             
             if (isIndexInRange)
             {
                 itemImage.sprite = this._currentInventoryContents[itemIndex].data.itemIcon;
-                itemAmount.text = this._currentInventoryContents[itemIndex].amount.ToString();
+                itemAmount.text = this._currentInventoryContents[itemIndex].amount > 1 ? this._currentInventoryContents[itemIndex].amount.ToString() : string.Empty;
             }
             
             itemImage.gameObject.SetActive(isIndexInRange);
-
-            
 
             itemIndex += 1;
             slotIndex += 1;
@@ -260,26 +269,63 @@ public class InventoryUIController : MonoBehaviour
         this.UpdateDialogBox();
     }
 
+    private ItemType _selectedItemType = ItemType.None; // buffer
+
     private void UpdateDialogBox()
     {
-        int index = this._selectedItemSlot + (20 * this._selectedPage);
-        if (index >= this._currentInventoryContents.Length)
+        int itemIndex = this.GetItemIndex();
+        if (itemIndex >= this._currentInventoryContents.Length)
         {
             this._itemImage.sprite = this._noItemSprite;
-            this._itemText.text = $"-- no item selected --";
+            this._itemText.text = "-- no item selected --";
+            
+            for (int i = 0; i < this._buttonsText.Length; i++)
+            {
+                this._buttonsText[i].text = " --- ";
+                this._buttonsText[i].color = Color.white * .5f;
+            }
+
             return;
         }
 
-        InventoryContent stuff = this._currentInventoryContents[index];
-        this._itemImage.sprite = stuff.data.itemIcon;
-        this._itemText.text = $"{stuff.data.itemName}\n{stuff.data.itemDescription}";
+        InventoryContent highlightedItem = this._currentInventoryContents[itemIndex];
+        this._itemImage.sprite = highlightedItem.data.itemIcon;
+        this._itemText.text = $"{highlightedItem.data.itemName}\n{highlightedItem.data.itemDescription}";
+
+        switch (highlightedItem.data.itemType)
+        {
+            case ItemType.None:
+                this._buttonsText[0].text = " --- ";
+                this._buttonsText[0].color = Color.white * .5f;
+                break;
+
+            case ItemType.Activatable: case ItemType.Consumable:
+                this._buttonsText[0].text = "USE";
+                this._buttonsText[0].color = Color.white;
+                break;
+
+            case ItemType.Headwear: case ItemType.Holdable: case ItemType.Footwear:
+                this._buttonsText[0].text = "EQUIP";
+                this._buttonsText[0].color = Color.white;
+                break;
+        }
+
+        this._buttonsText[1].text = " OPINGON ";
+        this._buttonsText[1].color = Color.white;
+
+        this._buttonsText[2].text = " DROP ";
+        this._buttonsText[2].color = Color.white;
+
+        this._selectedItemType = highlightedItem.data.itemType;
     }
 
     private void SelectItem()
     {
-        int itemIndex = this._selectedItemSlot + (20 * this._selectedPage);
+        int itemIndex = this.GetItemIndex();
 
-        if (this._selectedItemSlot >= this._itemSlots.Length) return;
+        if (this._selectedItemSlot >= this._itemSlots.Length || itemIndex >= this._currentInventoryContents.Length) return;
+
+        this._selectedButton = this._selectedItemType == ItemType.None ? 1 : 0;
 
         this._currentInventoryMode = InventoryUIMode.DialogBoxMode;
 
@@ -294,12 +340,38 @@ public class InventoryUIController : MonoBehaviour
         if (this._selectedButton < 0) { this._selectedButton = this._buttons.Length - 1; }
         if (this._selectedButton >= this._buttons.Length) { this._selectedButton = 0; }
 
+        if (this._selectedItemType == ItemType.None && this._selectedButton == 0) { this.ChangeSelectedButton(increment); }
+
         this.UpdateSelector();
     }
 
     private void SelectButton()
     {
+        switch (this._selectedButton)
+        {
+            case 0: // USE/EQUIP
+                if (GameManager.Instance.UseItem(this._currentInventoryContents[this.GetItemIndex()].data))
+                {
+                    // update screen
+                    this._currentInventoryMode = InventoryUIMode.ItemBoxMode;
+                    this.LoadInventory();
+                }
+                break;
 
+            case 1: // OPINION
+                break;
+
+            case 2: // DROP
+                if (GameManager.Instance.DropItem(this._currentInventoryContents[this.GetItemIndex()].data))
+                {
+                    if (this._currentInventoryContents[this.GetItemIndex()].amount <= 0) { this._currentInventoryMode = InventoryUIMode.ItemBoxMode; }
+                    this.LoadInventory();
+                }
+                break;
+
+            default:
+                break;
+        }
     }
 
     private void UpdateSelector()
@@ -344,5 +416,10 @@ public class InventoryUIController : MonoBehaviour
         if (this._selectedBox >= this._boxes.Length) { this._selectedBox = 0; }
 
         this.UpdateSelector();
+    }
+
+    private int GetItemIndex()
+    {
+        return this._selectedItemSlot + (20 * this._selectedPage);
     }
 }

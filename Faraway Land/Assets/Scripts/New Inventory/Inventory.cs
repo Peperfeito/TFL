@@ -6,13 +6,13 @@ public class Inventory
 {
     private class InventorySlot
     {
-        public int amount;
         public FuckingItemDataBaby data;
+        public int amount;
 
         public InventorySlot(FuckingItemDataBaby itemData)
         {
-            this.amount = 1;
             this.data = itemData;
+            this.amount = 1;
         }
 
         public void IncrementAmount(int increment)
@@ -65,6 +65,36 @@ public class Inventory
         {
             if (this._content[i].data == itemData) { return true; }
         }
+        return false;
+    }
+
+    public bool UseItem(FuckingItemDataBaby itemData)
+    {
+        for (int i = 0; i < this._content.Count; i++)
+        {
+            if (this._content[i].data == itemData)
+            {
+                // USAR O ITEM
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool DropItem(FuckingItemDataBaby itemData)
+    {
+        for (int i = 0; i < this._content.Count; i++)
+        {
+            if (this._content[i].data == itemData)
+            {
+                // DROPTA O ITEM
+
+                return true;
+            }
+        }
+
         return false;
     }
 
