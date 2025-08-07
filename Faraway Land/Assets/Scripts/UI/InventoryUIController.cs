@@ -238,11 +238,20 @@ public class InventoryUIController : MonoBehaviour
         while (slotIndex < this._itemSlots.Length)
         {
             Image itemImage = this._itemSlots[slotIndex].GetChild(0).GetComponent<Image>();
+            TextMeshProUGUI itemAmount = this._itemSlots[slotIndex].GetChild(1).GetComponent<TextMeshProUGUI>();
 
             Debug.Log(this._currentInventoryContents.Length);
             bool isIndexInRange = itemIndex < this._currentInventoryContents.Length;
-            if (isIndexInRange) { itemImage.sprite = this._currentInventoryContents[itemIndex].data.itemIcon; }
+            
+            if (isIndexInRange)
+            {
+                itemImage.sprite = this._currentInventoryContents[itemIndex].data.itemIcon;
+                itemAmount.text = this._currentInventoryContents[itemIndex].amount.ToString();
+            }
+            
             itemImage.gameObject.SetActive(isIndexInRange);
+
+            
 
             itemIndex += 1;
             slotIndex += 1;
