@@ -36,11 +36,17 @@ public class LevelUIController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !this._inventoryUIController.gameObject.activeSelf)
         {
-            this._inventoryUIController.gameObject.SetActive(!this._inventoryUIController.gameObject.activeSelf);
-            GameManager.Instance.blockPlayerMovement = this._inventoryUIController.gameObject.activeSelf;
-            if (this._inventoryUIController.gameObject.activeSelf) { this._inventoryUIController.LoadStuff(); }
+            this._inventoryUIController.gameObject.SetActive(true);
+            GameManager.Instance.blockPlayerMovement = true;
+            this._inventoryUIController.LoadStuff();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && this._inventoryUIController.gameObject.activeSelf)
+        {
+            this._inventoryUIController.gameObject.SetActive(false);
+            GameManager.Instance.blockPlayerMovement = false;
         }
     }
 

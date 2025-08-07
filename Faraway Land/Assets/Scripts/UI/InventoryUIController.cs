@@ -19,6 +19,7 @@ public class InventoryUIController : MonoBehaviour
     private InventoryUIMode _currentInventoryMode;
 
     /* Selector */
+    private readonly Vector2 REST_SELECTOR_SIZE = new Vector2(300f, 300f);
     private readonly Vector2 EQUIPBOX_SELECTOR_SIZE = new Vector2(54f, 74f);
     private readonly Vector2 ITEMBOX_SELECTOR_SIZE = new Vector2(98f, 74f);
     private readonly Vector2 ITEM_SELECTOR_SIZE = new Vector2(15f, 15f);
@@ -52,6 +53,7 @@ public class InventoryUIController : MonoBehaviour
     /* Dialog Box */
     [Header("Dialog Box")]
 
+    [SerializeField] private Sprite _noItemSprite;
     [SerializeField] private Image _itemImage;
     [SerializeField] private TextMeshProUGUI _itemText;
     // Buttons
@@ -98,6 +100,12 @@ public class InventoryUIController : MonoBehaviour
         {
             case InventoryUIMode.BoxesMode:
 
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    GameManager.Instance.blockPlayerMovement = false;
+                    this.gameObject.SetActive(false);
+                }
+
                 if (Input.GetKeyDown(KeyCode.LeftArrow)) { this.ChangeBox(-1); }
                 if (Input.GetKeyDown(KeyCode.RightArrow)) { this.ChangeBox(+1); }
 
@@ -110,7 +118,7 @@ public class InventoryUIController : MonoBehaviour
 
             case InventoryUIMode.EquipBoxMode:
 
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
                     this._currentInventoryMode = InventoryUIMode.BoxesMode;
                     this.UpdateSelector();
@@ -119,7 +127,7 @@ public class InventoryUIController : MonoBehaviour
 
             case InventoryUIMode.ItemBoxMode:
 
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
                     this._currentInventoryMode = InventoryUIMode.BoxesMode;
                     this.UpdateSelector();
@@ -139,7 +147,7 @@ public class InventoryUIController : MonoBehaviour
 
             case InventoryUIMode.DialogBoxMode:
 
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
                     this._currentInventoryMode = InventoryUIMode.ItemBoxMode;
                     this.UpdateSelector();
@@ -164,6 +172,9 @@ public class InventoryUIController : MonoBehaviour
     // Chamado toda vez que o inventario abre
     public void LoadStuff()
     {
+        this._selector.position = this._selector.parent.position;
+        this._selector.sizeDelta = this.REST_SELECTOR_SIZE * 9;
+
         this._currentInventoryMode = InventoryUIMode.BoxesMode;
         this._currentInventoryContents = GameManager.Instance.GetInvenotryContents();
         
@@ -245,7 +256,7 @@ public class InventoryUIController : MonoBehaviour
         int index = this._selectedItemSlot + (20 * this._selectedPage);
         if (index >= this._currentInventoryContents.Length)
         {
-            this._itemImage.sprite = this._selector.GetComponent<Image>().sprite; // TODO: se livrar da gambeta
+            this._itemImage.sprite = this._noItemSprite;
             this._itemText.text = $"-- no item selected --";
             return;
         }
@@ -259,7 +270,7 @@ public class InventoryUIController : MonoBehaviour
     {
         int itemIndex = this._selectedItemSlot + (20 * this._selectedPage);
 
-        if (itemIndex >= this._itemSlots.Length) return;
+        if (this._selectedItemSlot >= this._itemSlots.Length) return;
 
         this._currentInventoryMode = InventoryUIMode.DialogBoxMode;
 
