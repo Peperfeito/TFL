@@ -169,7 +169,9 @@ public class InventoryUIController : MonoBehaviour
         this._selector.sizeDelta = Vector2.Lerp(this._selector.sizeDelta, this._selectorTargetSize, this._selectorTimer);
 
         this._bobbingTimer += Time.deltaTime * this._bobbingSpeed;
-        if (this._bobbingTimer >= 1f || this._bobbingTimer <= 0f) this._bobbingSpeed *= -1;
+        if (this._bobbingTimer >= 1f) { this._bobbingTimer = 1f;}
+        if (this._bobbingTimer <= 0f) { this._bobbingTimer = 0f;}
+        if (this._bobbingTimer >= 1f || this._bobbingTimer <= 0f) { this._bobbingSpeed *= -1; }
         this._selector.sizeDelta += Vector2.one * Mathf.Lerp(-4.5f, +4.5f, this._bobbingTimer) * this._selectorTimer;
     }
 
