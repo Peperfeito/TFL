@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class DialogController : MonoBehaviour, Interactable
 {
+    [Tooltip("ESSE TOCA A PRIMEIRA VEZ QUE O ASH INTERAJJIIIJJJ")]
     [SerializeField] private Dialog _uniqueDialog;
-    [SerializeField] private Dialog _repeatDialog;
+    [Tooltip("ESSE TOCA TODAS AS OUTRAS VEIZ; SE isRepeatable TIVER LIGADO")]
+    [SerializeField] private Dialog _repeatDialog; // TODO: transformar num arrai pra poder fazer variacoes
 
+    [Tooltip("Se verdadeiro, precisa apertar E pra iniciar o dialool")]
     [SerializeField] private bool _interactionRequired;
+    [Tooltip("Se verdadeiro, repete, faz dnv, :3")]
     [SerializeField] private bool _isRepeatable;
 
     private bool _consumedFlag = false;

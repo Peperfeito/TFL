@@ -32,7 +32,6 @@ public class DialogSystem : MonoBehaviour
     private float _inactiveColorAlpha = .6f;
 
     private Dialog _currentDialog = null;
-    private DialogInfo[] _currentChain;
     private int _dialogChainIndex = 0;
 
     private void InitDialogSystem()
@@ -84,15 +83,13 @@ public class DialogSystem : MonoBehaviour
 
         this._nextArrow.anchoredPosition = bufferPos;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            this._selectedOption = 0;
-        }
+        if (Input.GetKeyDown(KeyCode.UpArrow)) { this._selectedOption -= 1; }
+        if (Input.GetKeyDown(KeyCode.DownArrow)) { this._selectedOption += 1; }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            this._selectedOption = 1;
-        }
+        AnswerOptions[] marcelo = this._currentDialog.dialogChain[this._dialogChainIndex].answerOptions; // marcelo eh um buffer
+
+        if (this._selectedOption >= marcelo.Length) this._selectedOption = 0;
+        if (this._selectedOption < 0) this._selectedOption = marcelo.Length - 1;
 
         this._seletorzinhoBemPorco.gameObject.SetActive(this._optionBox.gameObject.activeSelf);
         this._seletorzinhoBemPorco.position = this._optionButtons[this._selectedOption].transform.position;
@@ -102,15 +99,15 @@ public class DialogSystem : MonoBehaviour
             if (this._optionBox.gameObject.activeSelf)
             {
                 // salvar o indice da opcao escolhida pra mudar this._currentChain = dialogInfo.answerOptions[0].dialogChain
-                DialogInfo dialogInfo = this._currentChain[this._dialogChainIndex];
-                this._currentChain = dialogInfo.answerOptions[this._selectedOption].dialogChain;
+                Dialog nextDialog = this._currentDialog.dialogChain[this._dialogChainIndex].answerOptions[this._selectedOption].nextDialog;
+                this._currentDialog = nextDialog;
                 this._dialogChainIndex = -1;
                 this._optionBox.gameObject.SetActive(false);
             }
 
             this._dialogChainIndex++;
 
-            if (this._dialogChainIndex >= this._currentChain.Length)
+            if (this._dialogChainIndex >= this._currentDialog.dialogChain.Length)
             {
                 // desliga a caixa de dialog
                 GameManager.Instance.currentUserInterface = UserInterfaces.None;
@@ -125,7 +122,6 @@ public class DialogSystem : MonoBehaviour
     public void DisplayDialog(Dialog dialog)
     {
         this._currentDialog = dialog;
-        this._currentChain = this._currentDialog.dialogChain;
         GameManager.Instance.currentUserInterface = UserInterfaces.Dialog;
 
         this._charLeft.gameObject.SetActive(false);
@@ -138,7 +134,7 @@ public class DialogSystem : MonoBehaviour
 
     private void UpdateDialogBox() // TODO: os personagem consegue falar com si mesmo (eu sei o que isso significa, e eu sei como eu tenho que consertar dps, kaka)
     {
-        DialogInfo dialogInfo = this._currentChain[this._dialogChainIndex];
+        DialogInfo dialogInfo = this._currentDialog.dialogChain[this._dialogChainIndex];
         DialogCharacter speakingCharacter = this._currentDialog.characters[dialogInfo.characterIndex];
 
         this._boxImage.color = speakingCharacter.frameColor;
@@ -199,5 +195,6 @@ public class DialogSystem : MonoBehaviour
         }
         // habilitar a caixa de opcoes
         this._optionBox.gameObject.SetActive(true);
+        this._selectedOption = 0;
     }
 }

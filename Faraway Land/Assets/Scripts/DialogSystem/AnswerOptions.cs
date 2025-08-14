@@ -2,5 +2,5 @@
 public struct AnswerOptions
 {
     public string option;
-    public DialogInfo[] dialogChain;
+    public Dialog nextDialog;
 }
