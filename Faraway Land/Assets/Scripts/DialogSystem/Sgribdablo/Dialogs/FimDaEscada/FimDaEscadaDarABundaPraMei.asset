@@ -38,12 +38,12 @@ MonoBehaviour:
     answerOptions: []
   - characterIndex: 0
     dialogSide: 0
-    text: aff, ela foi embora... agr preciso procurar o minigame dela pra passar
-      de fase
+    text: NAO; ESPERA...
     promptOptions: 0
     answerOptions: []
   - characterIndex: 0
     dialogSide: 0
-    text: NAO; ESPERA...
+    text: aff, ela foi embora... agr preciso procurar o minigame dela pra passar
+      de fase
     promptOptions: 0
     answerOptions: []

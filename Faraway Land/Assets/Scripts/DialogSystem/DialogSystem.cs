@@ -70,8 +70,14 @@ public class DialogSystem : MonoBehaviour
 
     [SerializeField] private RectTransform _seletorzinhoBemPorco;
 
+    private const float SELECTOR_SPEED = 2f;
+    private float _selectorTimer;
+
     private void Update()
     {
+        this._selectorTimer += Time.deltaTime * SELECTOR_SPEED;
+        if (this._selectorTimer > 1f) { this._selectorTimer = 1f; }
+
         if (GameManager.Instance.currentUserInterface != UserInterfaces.Dialog) return;
 
         Vector2 bufferPos = this._nextArrow.anchoredPosition;
@@ -83,8 +89,8 @@ public class DialogSystem : MonoBehaviour
 
         this._nextArrow.anchoredPosition = bufferPos;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow)) { this._selectedOption -= 1; }
-        if (Input.GetKeyDown(KeyCode.DownArrow)) { this._selectedOption += 1; }
+        if (Input.GetKeyDown(KeyCode.UpArrow)) { this._selectedOption -= 1; this._selectorTimer = 0; }
+        if (Input.GetKeyDown(KeyCode.DownArrow)) { this._selectedOption += 1; this._selectorTimer = 0; }
 
         AnswerOptions[] marcelo = this._currentDialog.dialogChain[this._dialogChainIndex].answerOptions; // marcelo eh um buffer
 
@@ -92,7 +98,7 @@ public class DialogSystem : MonoBehaviour
         if (this._selectedOption < 0) this._selectedOption = marcelo.Length - 1;
 
         this._seletorzinhoBemPorco.gameObject.SetActive(this._optionBox.gameObject.activeSelf);
-        this._seletorzinhoBemPorco.position = this._optionButtons[this._selectedOption].transform.position;
+        this._seletorzinhoBemPorco.position = Vector3.Lerp(this._seletorzinhoBemPorco.position, this._optionButtons[this._selectedOption].transform.position, this._selectorTimer);
 
         if (Input.GetKeyDown(KeyCode.E))
         {
