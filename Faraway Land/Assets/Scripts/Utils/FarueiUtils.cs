@@ -14,7 +14,14 @@ public static class FarueiUtils
     {
         Vector3 positionBuffer = target.position;
         positionBuffer.x = (Mathf.Floor(Mathf.Abs(positionBuffer.x)) + .5f) * (positionBuffer.x / Mathf.Abs(positionBuffer.x));
-        positionBuffer.y = Mathf.Round(positionBuffer.y) + (alignMode == AlignMode.Center ? .5f : .3f);
+        if (alignMode == AlignMode.Center)
+        {
+            positionBuffer.y = (Mathf.Floor(Mathf.Abs(positionBuffer.y)) + .5f) * (positionBuffer.y / Mathf.Abs(positionBuffer.y));
+        }
+        else
+        {
+            positionBuffer.y = Mathf.Round(positionBuffer.y) + .3f;
+        }
         target.position = positionBuffer;
     }
 }
