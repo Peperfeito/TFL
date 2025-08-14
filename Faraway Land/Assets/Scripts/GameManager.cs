@@ -86,28 +86,30 @@ public class GameManager : IPersistentSingleton<GameManager>
         this._minigames[(int)minigame].EnableMinigame();
     }
 
+    /* Interactable */
+
+    private Interactable _interactableInRange;
+
+    public void RegisterInteractable(Interactable interactable)
+    {
+        this._interactableInRange = interactable; // pop up do botao kaka, ou nao, sla, o moon decide dps, akakaka jiftsakujhf gdskajyhgf dsauhkj fdsj
+    }
+
+    public void UnregisterInteractable(Interactable interactable)
+    {
+        if (interactable != this._interactableInRange) return;
+        this._interactableInRange = null;
+    }
+
+    public void TryInteractableInteraction()
+    {
+        if (this._interactableInRange == null) return;
+        this._interactableInRange.ActivateInteraction();
+    }
+
     /* New Inventory */
 
     private Inventory _inventory;
-    private FuckingItemPropBaby _itemInRange;
-
-    public void RegisterItemInRange(FuckingItemPropBaby itemProp)
-    {
-        this._itemInRange = itemProp; // spawnar botao de interacao ou algo assim em cima do item pa nois sabe qual que eh que ta no alcance de interacao
-    }
-
-    public void UnregisterItemInRange(FuckingItemPropBaby itemProp)
-    {
-        if (itemProp != this._itemInRange) return;
-        this._itemInRange = null;
-    }
-
-    public void TryItemInteraction()
-    {
-        if (this._itemInRange == null) return;
-        this.AddToInventory(this._itemInRange.ItemData);
-        Destroy(this._itemInRange.gameObject);
-    }
 
     public void AddToInventory(FuckingItemDataBaby itemData)
     {
@@ -141,7 +143,6 @@ public class GameManager : IPersistentSingleton<GameManager>
 
     // Player
 
-    public bool blockPlayerMovement = false;
 
     private GameObject _movePoint;
     private GameObject _player;
@@ -161,4 +162,8 @@ public class GameManager : IPersistentSingleton<GameManager>
 
         FindObjectOfType<FadeEffect>().FadeOut();
     }
+
+    /* Interafaces */
+
+    public UserInterfaces currentUserInterface = UserInterfaces.None;
 }

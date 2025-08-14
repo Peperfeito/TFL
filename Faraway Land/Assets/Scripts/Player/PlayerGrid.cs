@@ -41,7 +41,7 @@ public class PlayerGrid : Player
 
     private void Start()
     {
-        FarueiUtils.AlignWithGrid(this.transform);
+        FarueiUtils.AlignWithGrid(this.transform, AlignMode.Bottom);
 
         movePoint.parent = null;
 
@@ -50,14 +50,23 @@ public class PlayerGrid : Player
 
     private void Update()
     {
-        if (GameManager.Instance.blockPlayerMovement) { return; }
+        if (GameManager.Instance.currentUserInterface == UserInterfaces.None)
+        {
+            InputHandler();
+            horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
 
-        InputHandler();
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+            if (Input.GetKeyDown(KeyCode.LeftShift)) this._isSprinting = true;
+            if (Input.GetKeyUp(KeyCode.LeftShift)) this._isSprinting = false;
+        }
+        else
+        {
 
-        if (Input.GetKeyDown(KeyCode.LeftShift)) this._isSprinting = true;
-        if (Input.GetKeyUp(KeyCode.LeftShift)) this._isSprinting = false;
+            horizontal = 0;
+            vertical = 0;
+        }
+
+        
         this.UpdateStamina();
 
         UpdateWaypointPosition();

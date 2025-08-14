@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3ffb91e82e52f419206699ccec8da2, type: 3}
+  m_Name: DIalogMei
+  m_EditorClassIdentifier: 
+  characterName: MEI
+  frameColor: {r: 0.8113208, g: 0.7158713, b: 0, a: 1}
+  textColor: {r: 1, g: 0.9211027, b: 0.4764151, a: 1}
+  characterPic: {fileID: 1960816246, guid: b74545f1f7ae9664299519e90d4a2a5b, type: 3}

@@ -106,7 +106,7 @@ public class InventoryUIController : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    GameManager.Instance.blockPlayerMovement = false;
+                    GameManager.Instance.currentUserInterface = UserInterfaces.None;
                     this.gameObject.SetActive(false);
                 }
 

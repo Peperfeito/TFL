@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            GameManager.Instance.TryItemInteraction();
+            GameManager.Instance.TryInteractableInteraction();
         }
     }
 }

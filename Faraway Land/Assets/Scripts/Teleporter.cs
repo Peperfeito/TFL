@@ -12,7 +12,7 @@ public class Teleporter : MonoBehaviour
     private void Start()
     {
         // Garantir que o teleporter ta alinhado na grid pq eu nao confio nos devs desse jogo kaka
-        FarueiUtils.AlignWithGrid(this.transform);
+        FarueiUtils.AlignWithGrid(this.transform, AlignMode.Center);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

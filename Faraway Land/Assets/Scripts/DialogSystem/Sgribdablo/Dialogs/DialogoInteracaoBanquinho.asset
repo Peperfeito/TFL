@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12dcd22f52ac1db45be3a6d10070400f, type: 3}
+  m_Name: DialogoInteracaoBanquinho
+  m_EditorClassIdentifier: 
+  characters:
+  - {fileID: 11400000, guid: ef665cb78fab96e43bf54b3d37f75c01, type: 2}
+  - {fileID: 11400000, guid: 9c918318cd0ebda4394054f80f12e3c7, type: 2}
+  dialogChain:
+  - characterIndex: 0
+    dialogSide: 0
+    text: Oi, eu sou viadinho
+    promptOptions: 0
+    answerOptions: []
+  - characterIndex: 1
+    dialogSide: 1
+    text: MDS, UM VIADINHO!!!
+    promptOptions: 0
+    answerOptions: []
+  - characterIndex: 0
+    dialogSide: 0
+    text: Quer comer meu bumbum?
+    promptOptions: 1
+    answerOptions:
+    - option: Sim, papai
+      dialogChain:
+      - characterIndex: 0
+        dialogSide: 1
+        text: QUERO COMER MEU PROPRIO DE MIM MESMO BUMBUM; AAIIINNNNN
+        promptOptions: 0
+        answerOptions: []
+      - characterIndex: 0
+        dialogSide: 0
+        text: cruz credo, esquizofreners
+        promptOptions: 0
+        answerOptions: []
+      - characterIndex: 1
+        dialogSide: 0
+        text: ele (voce) eh mesmo
+        promptOptions: 0
+        answerOptions: []
+    - option: Nao, que nojo
+      dialogChain:
+      - characterIndex: 0
+        dialogSide: 0
+        text: EI, o que tem de errado com meu bumbum vagabundo, vagabundo?
+        promptOptions: 0
+        answerOptions: []
+      - characterIndex: 1
+        dialogSide: 1
+        text: Serio? Vc fez uma piada de portugues pra esse bando de burro?
+        promptOptions: 0
+        answerOptions: []
+      - characterIndex: 1
+        dialogSide: 1
+        text: Ninguem vai entender
+        promptOptions: 0
+        answerOptions: []
+      - characterIndex: 0
+        dialogSide: 0
+        text: Nem eu entendi, sou mt buuuurrrooo KKKKKKKKKKKKKKKKKKKK!!!!!!!
+        promptOptions: 0
+        answerOptions: []

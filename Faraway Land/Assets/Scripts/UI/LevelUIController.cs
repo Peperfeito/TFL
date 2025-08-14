@@ -36,18 +36,27 @@ public class LevelUIController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !this._inventoryUIController.gameObject.activeSelf)
+        switch (GameManager.Instance.currentUserInterface)
         {
-            this._inventoryUIController.gameObject.SetActive(true);
-            GameManager.Instance.blockPlayerMovement = true;
-            this._inventoryUIController.InitInventoryScreen();
+            case UserInterfaces.None:
+                if (Input.GetKeyDown(KeyCode.Q) && !this._inventoryUIController.gameObject.activeSelf)
+                {
+                    this._inventoryUIController.gameObject.SetActive(true);
+                    GameManager.Instance.currentUserInterface = UserInterfaces.Inventory;
+                    this._inventoryUIController.InitInventoryScreen();
+                }
+                break;
+
+            case UserInterfaces.Inventory:
+                if (Input.GetKeyDown(KeyCode.Escape) && this._inventoryUIController.gameObject.activeSelf)
+                {
+                    this._inventoryUIController.gameObject.SetActive(false);
+                    GameManager.Instance.currentUserInterface = UserInterfaces.None;
+                }
+                break;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && this._inventoryUIController.gameObject.activeSelf)
-        {
-            this._inventoryUIController.gameObject.SetActive(false);
-            GameManager.Instance.blockPlayerMovement = false;
-        }
+
     }
 
     //private void SetButtonState(bool bothActive, string positiveText = "SIM", string negativeText = "NAO")

@@ -16,4 +16,4 @@ MonoBehaviour:
   itemDescription: da pa bebe
   itemIcon: {fileID: 21300000, guid: a58ba1e58a56df743a5edace5b244475, type: 3}
   itemAnimatorController: {fileID: -8763598047650750448, guid: 4302ea008fef2494cba487eb6d524bdc, type: 3}
-  itemType: 2
+  itemType: 0

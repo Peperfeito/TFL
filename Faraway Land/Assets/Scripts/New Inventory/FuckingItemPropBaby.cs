@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FuckingItemPropBaby : MonoBehaviour
+public class FuckingItemPropBaby : MonoBehaviour, Interactable
 {
     [SerializeField] private FuckingItemDataBaby _itemData;
     public FuckingItemDataBaby ItemData { get { return this._itemData; } }
@@ -14,14 +14,14 @@ public class FuckingItemPropBaby : MonoBehaviour
         this._animator = this.GetComponentInChildren<Animator>();
         this._animator.runtimeAnimatorController = this._animator.runtimeAnimatorController;
 
-        FarueiUtils.AlignWithGrid(this.transform);
+        FarueiUtils.AlignWithGrid(this.transform, AlignMode.Center);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.Instance.RegisterItemInRange(this);
+            GameManager.Instance.RegisterInteractable(this);
         }
     }
 
@@ -29,7 +29,13 @@ public class FuckingItemPropBaby : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.Instance.UnregisterItemInRange(this);
+            GameManager.Instance.UnregisterInteractable(this);
         }
+    }
+
+    public void ActivateInteraction()
+    {
+        GameManager.Instance.AddToInventory(this.ItemData);
+        Destroy(this.gameObject);
     }
 }
