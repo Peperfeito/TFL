@@ -15,9 +15,9 @@ public class Stool : MonoBehaviour
 
     public void Restarter()
     {
-        if ((this.transform.position.x < xMin) || (this.transform.position.x >= xMax) || (this.transform.position.y < yMin) || (this.transform.position.y >= yMax))
+        if ((this.transform.parent.position.x < xMin) || (this.transform.parent.position.x >= xMax) || (this.transform.parent.position.y < yMin) || (this.transform.parent.position.y >= yMax))
         {
-            this.transform.position = initialPos;
+            this.transform.parent.position = initialPos;
         }
         else
         {
@@ -26,9 +26,9 @@ public class Stool : MonoBehaviour
     }
     /*public void RestartPosition()
     {
-        if (this.transform.position == restartPos)
+        if (this.transform.parent.position == restartPos)
         {
-            this.transform.position = initialPos;
+            this.transform.parent.position = initialPos;
         }
 
         else
@@ -38,25 +38,29 @@ public class Stool : MonoBehaviour
     }*/
     public void Pusher(Vector3 pos)
     {
-        transform.position += (transform.position - pos).normalized;
-        Vector3 camilla = transform.position; //Camilla eh um buffer
+        transform.parent.position += (transform.parent.position - pos).normalized;
+        Vector3 camilla = transform.parent.position; //Camilla eh um buffer
         camilla.x = Mathf.Round(camilla.x) + .49f;
         camilla.y = Mathf.Round(camilla.y) + .3f;
-        transform.position = camilla;
+        transform.parent.position = camilla;
     }
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 camilla = transform.position; //Camilla eh um buffer
+        Vector3 camilla = transform.parent.position; //Camilla eh um buffer
         camilla.x = Mathf.Round(camilla.x) + .5f;
         camilla.y = Mathf.Round(camilla.y) + .3f;
-        transform.position = camilla;
+        transform.parent.position = camilla;
         initialPos = camilla;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            transform.parent.position = initialPos;
+        }
         Restarter();
     }
 }

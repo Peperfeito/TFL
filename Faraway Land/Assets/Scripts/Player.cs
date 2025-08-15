@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
                 Interacting();
             }
         }
-        playerPodeSeMover = !GameManager.Instance.Inventory.DialogoNaTela() && !GameManager.Instance.Inventory.inventario.activeSelf;
+        //playerPodeSeMover = !GameManager.Instance.Inventory.DialogoNaTela() && !GameManager.Instance.Inventory.inventario.activeSelf;
     }
 
     protected virtual void OnTriggerEnter2DReaction(Collider2D collision)

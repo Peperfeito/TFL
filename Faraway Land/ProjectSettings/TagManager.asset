@@ -18,6 +18,7 @@ TagManager:
   - Vazio
   - Empurravel
   - Amoeba
+  - PaiDoBanco
   layers:
   - Default
   - TransparentFX

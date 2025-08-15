@@ -12,14 +12,17 @@ public class PlayerGrid : Player
     public Transform movePoint;
     private float horizontal;
     private float vertical;
-    private bool melado = false;
-    
+    private bool tuDescendo = false;
+    private bool subir = false;
+    private bool subi = false;
+
     private BoxCollider2D _boxCollider;
 
     [SerializeField] private Animator _animator;
    
     [SerializeField] private AudioClip[] passos;
     [SerializeField] private AudioSource audios;
+    private Transform bancoPos;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +44,36 @@ public class PlayerGrid : Player
         InputHandler();
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetKeyDown(KeyCode.Space) && subir)
+        {
+            
+            if (subi)
+            {
+                movePoint.position = bancoPos.GetChild(1).position;
+                tuDescendo = true;
+
+                
+
+            }
+            else
+            {
+                playerPodeSeMover = false;
+                subi = true;
+                bancoPos.GetChild(1).position = movePoint.position;
+                movePoint.position = bancoPos.GetChild(0).position;
+                bancoPos.GetChild(2).GetComponent<BoxCollider2D>().enabled = false;
+            }
+        }
+
+        if (tuDescendo && (transform.position - movePoint.position).magnitude <= 0f)
+        {
+            subi = false;
+            playerPodeSeMover = true;
+            tuDescendo = false;
+
+            bancoPos.GetChild(2).GetComponent<BoxCollider2D>().enabled = true;
+        }
 
         UpdateWaypointPosition();
         MoveTowardsWaypoint();
@@ -82,7 +115,7 @@ public class PlayerGrid : Player
         if (Mathf.Abs(horizontal) >= 1f && Mathf.Abs(vertical) >= 1f) return;
 
         RaycastHit2D hitInfo = Physics2D.BoxCast((Vector2)(this.transform.position) + this._boxCollider.offset, this._boxCollider.size, 0f, new Vector2(horizontal, vertical), 1, colisores);
-        
+
         if (hitInfo.collider != null && hitInfo.collider.CompareTag("Empurravel"))
         {
             hitInfo.collider.transform.GetComponent<Stool>().Pusher(transform.position);
@@ -114,6 +147,14 @@ public class PlayerGrid : Player
             
         }
 
+        if (collision.CompareTag("PaiDoBanco"))
+        {
+            subir = true;
+            bancoPos = collision.transform;
+
+
+        }
+
         base.OnTriggerEnter2DReaction(collision);
     }
 
@@ -135,9 +176,17 @@ public class PlayerGrid : Player
             audios.clip = passos[0];
         }
 
+        if (collision.CompareTag("PaiDoBanco"))
+        {
+            subir = false;
+            
 
 
-            OnTriggerExit2DReaction(collision);
+        }
+
+
+
+        OnTriggerExit2DReaction(collision);
     }
 
     
