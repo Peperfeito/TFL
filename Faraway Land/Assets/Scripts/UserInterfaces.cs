@@ -3,5 +3,6 @@ public enum UserInterfaces
     None,
     Inventory,
     Dialog,
-    SkillTree,
+    Letter,
+    Diary,
 }

@@ -16,4 +16,6 @@ public class FuckingItemDataBaby : ScriptableObject
     public RuntimeAnimatorController itemAnimatorController;
 
     public ItemType itemType;
+
+    public CustomEvent itemEvent;
 }

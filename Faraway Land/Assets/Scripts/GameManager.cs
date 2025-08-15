@@ -7,14 +7,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : IPersistentSingleton<GameManager>
 {
+    [SerializeField] private FuckingItemDataBaby _diary;
+
     private MinigameController[] _minigames;
 
     protected override void Awake()
     {
+        base.Awake();
+
         this._minigames = new MinigameController[(int)Minigames._COUNT];
         this._inventory = new Inventory();
-
-        base.Awake();
+        this._inventory.AddItem(this._diary);
     }
 
     private void Start()
@@ -131,9 +134,9 @@ public class GameManager : IPersistentSingleton<GameManager>
         return this._inventory.UseItem(itemData);
     }
 
-    public bool DropItem(FuckingItemDataBaby itemData)
+    public bool LickItem(FuckingItemDataBaby itemData)
     {
-        return this._inventory.DropItem(itemData);
+        return this._inventory.LickItem(itemData);
     }
 
     public InventoryContent[] GetInvenotryContents()

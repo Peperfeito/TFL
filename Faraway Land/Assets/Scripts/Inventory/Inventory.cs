@@ -74,7 +74,17 @@ public class Inventory
         {
             if (this._content[i].data == itemData)
             {
-                // USAR O ITEM
+                switch (itemData.itemType)
+                {
+                    case ItemType.None: break;
+                    case ItemType.Activatable:
+                        itemData.itemEvent.Trigger();
+                        break;
+                    case ItemType.Consumable: break;
+                    case ItemType.Headwear: break;
+                    case ItemType.Holdable: break;
+                    case ItemType.Footwear: break;
+                }
 
                 return true;
             }
@@ -83,7 +93,7 @@ public class Inventory
         return false;
     }
 
-    public bool DropItem(FuckingItemDataBaby itemData)
+    public bool LickItem(FuckingItemDataBaby itemData)
     {
         for (int i = 0; i < this._content.Count; i++)
         {

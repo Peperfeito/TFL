@@ -34,6 +34,9 @@ public class InventoryUIController : MonoBehaviour
     private float _bobbingTimer = 0f;
     private float _bobbingSpeed = 2f;
 
+    [Header("Events")]
+    [SerializeField] private CustomEvent OnDiaryOpen;
+
     /* Box */
     [Header("Boxes")]
     [SerializeField] private Transform[] _boxes;
@@ -70,6 +73,8 @@ public class InventoryUIController : MonoBehaviour
 
     private void Start()
     {
+        new CustomEventListener(OnDiaryOpen, OnDiaryOpenCallback);
+
         // Init page indicator
         for (int i = 0; i < this._pageIndicator.childCount; i++)
         {
@@ -315,7 +320,7 @@ public class InventoryUIController : MonoBehaviour
         this._buttonsText[1].text = " OPINGON ";
         this._buttonsText[1].color = Color.white;
 
-        this._buttonsText[2].text = " DROP ";
+        this._buttonsText[2].text = " LICK ";
         this._buttonsText[2].color = Color.white;
 
         this._selectedItemType = highlightedItem.data.itemType;
@@ -363,8 +368,8 @@ public class InventoryUIController : MonoBehaviour
             case 1: // OPINION
                 break;
 
-            case 2: // DROP
-                if (GameManager.Instance.DropItem(this._currentInventoryContents[this.GetItemIndex()].data))
+            case 2: // LICK
+                if (GameManager.Instance.LickItem(this._currentInventoryContents[this.GetItemIndex()].data))
                 {
                     if (this._currentInventoryContents[this.GetItemIndex()].amount <= 0) { this._currentInventoryMode = InventoryUIMode.ItemBoxMode; }
                     this.LoadInventory();
@@ -423,5 +428,10 @@ public class InventoryUIController : MonoBehaviour
     private int GetItemIndex()
     {
         return this._selectedItemSlot + (20 * this._selectedPage);
+    }
+
+    private void OnDiaryOpenCallback(object[] args)
+    {
+        this.gameObject.SetActive(false);
     }
 }

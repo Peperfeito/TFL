@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e13007adc7e34a041801b6d61c5637f0, type: 3}
+  m_Name: NewLetterData
+  m_EditorClassIdentifier: 
+  letterSprite: {fileID: 2039104423, guid: d8bba09253ce15f40ad0dc6fe59320b5, type: 3}

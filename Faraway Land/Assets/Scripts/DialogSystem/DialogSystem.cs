@@ -45,6 +45,11 @@ public class DialogSystem : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    private void OnDestroy()
+    {
+        Instance = null;
+    }
+
     private void Start()
     {
         this.InitDialogSystem();
