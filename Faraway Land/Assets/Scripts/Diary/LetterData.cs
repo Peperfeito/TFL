@@ -6,4 +6,5 @@ using UnityEngine;
 public class LetterData : ScriptableObject
 {
     public Sprite letterSprite;
+    public Sprite tapeSprite;
 }

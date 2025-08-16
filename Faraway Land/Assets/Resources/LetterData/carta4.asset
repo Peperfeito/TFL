@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e13007adc7e34a041801b6d61c5637f0, type: 3}
-  m_Name: NewLetterData
+  m_Name: carta4
   m_EditorClassIdentifier: 
-  letterSprite: {fileID: 2039104423, guid: d8bba09253ce15f40ad0dc6fe59320b5, type: 3}
+  letterSprite: {fileID: 45904964, guid: c1bf6c2cd9f0d384384b2f6cfc494f6b, type: 3}
+  tapeSprite: {fileID: 1108721218, guid: c1bf6c2cd9f0d384384b2f6cfc494f6b, type: 3}
