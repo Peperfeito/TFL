@@ -8,6 +8,8 @@ public class BlocoDiLetraController : MinigameController
     [SerializeField] private GameObject meiBlocos;
     [SerializeField] private GameObject[] bagulhoQTemQSumir;
 
+    [SerializeField] private FuckingItemDataBaby _premiu;
+
     protected override void Start()
     {
         base.Start();
@@ -44,6 +46,8 @@ public class BlocoDiLetraController : MinigameController
 
     public override void CompleteMinigame()
     {
+        GameManager.Instance.AddToInventory(this._premiu);
+
         meiBlocos.SetActive(true);
         fakBlocos.SetActive(false);
 

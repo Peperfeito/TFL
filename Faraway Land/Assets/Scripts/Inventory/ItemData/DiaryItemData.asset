@@ -17,6 +17,7 @@ MonoBehaviour:
     dps os lorenzo resovle o que escrever aki, akakakakakkaka opssdgjvkhfl sdflgkjhy
     vbglfyukgjdsxh yg H;IU
   itemIcon: {fileID: 21300000, guid: b8a0afda9cf8350488724d793afb7feb, type: 3}
+  itemWorldSprite: {fileID: 21300000, guid: b8a0afda9cf8350488724d793afb7feb, type: 3}
   itemAnimatorController: {fileID: 0}
   itemType: 1
   itemEvent: {fileID: 11400000, guid: 4a17e1b2e8a8c9741944605b922b8aa0, type: 2}

@@ -1396,6 +1396,7 @@ MonoBehaviour:
   _barraDeForca: {fileID: 7636656987953874164, guid: 4816cab8e4daa664fb343b8c761c01db, type: 3}
   _grade: {fileID: 0}
   _porta: {fileID: 0}
+  _chave: {fileID: 11400000, guid: d42a18b7894b059428b735d382dbee12, type: 2}
 --- !u!1 &8152466333114107289
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,5 +15,7 @@ MonoBehaviour:
   itemName: Tocha
   itemDescription: tocha usada pra acender outras tochas
   itemIcon: {fileID: -1694458742, guid: babb1a3581c889545a73d960a383f303, type: 3}
+  itemWorldSprite: {fileID: -1694458742, guid: babb1a3581c889545a73d960a383f303, type: 3}
   itemAnimatorController: {fileID: 9100000, guid: 5f0a5e9015493ae498a5ae15f1a24faa, type: 2}
-  itemType: 0
+  itemType: 4
+  itemEvent: {fileID: 0}

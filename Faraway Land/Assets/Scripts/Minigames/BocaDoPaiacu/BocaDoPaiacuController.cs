@@ -18,6 +18,8 @@ public class BocaDoPaiacuController : MinigameController
     [SerializeField] private GameObject _grade;
     [SerializeField] private GameObject _porta;
 
+    [SerializeField] private FuckingItemDataBaby _chave;
+
     private Animator _clownPuzzleLightAnimator;
 
     private Vector3 lastPosition;
@@ -90,7 +92,7 @@ public class BocaDoPaiacuController : MinigameController
 
     public override void EnableMinigame()
     {
-        if (this._isComplete) { return; }
+        if (this._isComplete || !GameManager.Instance.HasItemInInventory(this._chave)) { return; }
 
         this._minigameObject.SetActive(true);
 
