@@ -26,6 +26,12 @@ public class DiaryController : MonoBehaviour
     {
         public string entry;
         public Sprite drawing;
+
+        public DiaryEntry(string entry, Sprite drawing)
+        {
+            this.entry = entry;
+            this.drawing = drawing;
+        }
     }
 
     [SerializeField] private List<DiaryEntry> _diaryEntries;
@@ -33,6 +39,7 @@ public class DiaryController : MonoBehaviour
     [Header("Events")]
     [SerializeField] private CustomEvent OnDiaryOpen;
     [SerializeField] private CustomEvent OnReadLetter;
+    [SerializeField] private CustomEvent OnDialogLog;
 
     [Header("Objeej")]
     [SerializeField] private Transform _diaryBackground;
@@ -71,6 +78,7 @@ public class DiaryController : MonoBehaviour
     {
         new CustomEventListener(OnDiaryOpen, OnDiaryOpenCallback);
         new CustomEventListener(OnReadLetter, OnReadLetterCallbackB);
+        new CustomEventListener(OnDialogLog, OnDialogLogCallback);
 
         LetterData[] letters = Resources.LoadAll<LetterData>("LetterData");
         this._diaryLetters = new DiaryLetter[letters.Length];
@@ -247,6 +255,19 @@ public class DiaryController : MonoBehaviour
         }
     }
 
+    private void OnDialogLogCallback(object[] args)
+    {
+        if (args.Length <= 0) return;
+
+        for (int i = 0; i < args.Length; i++)
+        {
+            Dialog dialogData = (Dialog)args[i];
+            if (dialogData == null) continue;
+            this.LogDialog(dialogData);
+            break;
+        }
+    }
+
     private void AddLetter(LetterData letterData)
     {
         for (int i = 0; i < this._diaryLetters.Length; i++)
@@ -255,6 +276,12 @@ public class DiaryController : MonoBehaviour
 
             this._diaryLetters[i].obtained = true;
         }
+    }
+
+    private void LogDialog(Dialog dialogData)
+    {
+        DiaryEntry newEntry = new DiaryEntry(dialogData.logEntry, dialogData.logDrawing);
+        this._diaryEntries.Add(newEntry);
     }
 
     private void FlipPage(int clonedPage) // 0 - left; 1 - right

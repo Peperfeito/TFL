@@ -35,5 +35,6 @@ MonoBehaviour:
       nextDialog: {fileID: 11400000, guid: b77653d9699b1f049a1cd8942998ca58, type: 2}
     - option: Nao, que nojo
       nextDialog: {fileID: 11400000, guid: 0172de7469d52054a9ed717faf3c71b5, type: 2}
-  logEntry: termino de fala uns bang ai
-  logDrawing: {fileID: 1114016558, guid: d8bba09253ce15f40ad0dc6fe59320b5, type: 3}
+  isLoggable: 1
+  logEntry: KRL EH UM VIADINHO
+  logDrawing: {fileID: 155214544, guid: 25bfceb50c0e10048b2c795b13e15f9c, type: 3}

@@ -20,3 +20,6 @@ MonoBehaviour:
     text: Affes, ta me dando enjoo isso aki... preciso sair o mais rapido possivel...
     promptOptions: 0
     answerOptions: []
+  isLoggable: 1
+  logEntry: Fiquei com fome, mas to sem tempo pra procurar
+  logDrawing: {fileID: 2039104423, guid: d8bba09253ce15f40ad0dc6fe59320b5, type: 3}

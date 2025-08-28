@@ -32,3 +32,6 @@ MonoBehaviour:
     text: Tambem quero, hehe
     promptOptions: 0
     answerOptions: []
+  isLoggable: 1
+  logEntry: Fiquei com fome e decidi procurar comida
+  logDrawing: {fileID: 1114016558, guid: d8bba09253ce15f40ad0dc6fe59320b5, type: 3}

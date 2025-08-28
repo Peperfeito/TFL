@@ -33,5 +33,6 @@ MonoBehaviour:
     answerOptions:
     - option: 
       nextDialog: {fileID: 0}
-  logEntry: falo mais uns bang ai
-  logDrawing: {fileID: 2039104423, guid: d8bba09253ce15f40ad0dc6fe59320b5, type: 3}
+  isLoggable: 1
+  logEntry: EU TBM SOU UM VIADINHO
+  logDrawing: {fileID: -627856855, guid: 25bfceb50c0e10048b2c795b13e15f9c, type: 3}

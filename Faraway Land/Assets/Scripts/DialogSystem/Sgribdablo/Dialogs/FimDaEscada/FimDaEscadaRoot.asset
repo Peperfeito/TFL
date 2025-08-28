@@ -31,3 +31,6 @@ MonoBehaviour:
       nextDialog: {fileID: 11400000, guid: 325f7cf3252ad144788550c489efe114, type: 2}
     - option: E se eu der a bunda pra mei?
       nextDialog: {fileID: 11400000, guid: b930544cf316db848807286b9b8e19f2, type: 2}
+  isLoggable: 1
+  logEntry: Achei um lugar com cheiro ruim de pizza...
+  logDrawing: {fileID: 1004510764, guid: d8bba09253ce15f40ad0dc6fe59320b5, type: 3}

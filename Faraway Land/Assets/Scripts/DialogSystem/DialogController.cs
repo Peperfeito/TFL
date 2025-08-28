@@ -51,7 +51,7 @@ public class DialogController : MonoBehaviour, Interactable
             return;
         }
 
-        DialogSystem.Instance.DisplayDialog(this._uniqueDialog);
+        DialogSystem.Instance.DisplayDialog(this._uniqueDialog, this._uniqueDialog.isLoggable);
         this._consumedFlag = true;
     }
 

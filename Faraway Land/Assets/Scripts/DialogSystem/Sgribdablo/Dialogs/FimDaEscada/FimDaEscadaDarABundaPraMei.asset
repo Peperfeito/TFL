@@ -47,3 +47,6 @@ MonoBehaviour:
       de fase
     promptOptions: 0
     answerOptions: []
+  isLoggable: 1
+  logEntry: Fiquei com fome, entao pedi pra mei me dar uma comidinha!!! UwU kaka
+  logDrawing: {fileID: 591907251, guid: d8bba09253ce15f40ad0dc6fe59320b5, type: 3}

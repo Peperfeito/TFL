@@ -8,6 +8,8 @@ public class DialogSystem : MonoBehaviour
 {
     public static DialogSystem Instance;
 
+    [SerializeField] private CustomEvent OnDialogLog;
+
     [SerializeField] private GameObject _box;
     private Image _boxImage;
     [SerializeField] private Transform _charLeft;
@@ -33,6 +35,8 @@ public class DialogSystem : MonoBehaviour
 
     private Dialog _currentDialog = null;
     private int _dialogChainIndex = 0;
+
+    private bool _logDialog = false;
 
     private void InitDialogSystem()
     {
@@ -111,7 +115,7 @@ public class DialogSystem : MonoBehaviour
             {
                 // salvar o indice da opcao escolhida pra mudar this._currentChain = dialogInfo.answerOptions[0].dialogChain
                 Dialog nextDialog = this._currentDialog.dialogChain[this._dialogChainIndex].answerOptions[this._selectedOption].nextDialog;
-                this._currentDialog = nextDialog;
+                this.SetCurrentDialog(nextDialog);
                 this._dialogChainIndex = -1;
                 this._optionBox.gameObject.SetActive(false);
             }
@@ -130,9 +134,11 @@ public class DialogSystem : MonoBehaviour
         }
     }
 
-    public void DisplayDialog(Dialog dialog)
+    public void DisplayDialog(Dialog dialog, bool logDialog = false)
     {
-        this._currentDialog = dialog;
+        this._logDialog = logDialog;
+
+        this.SetCurrentDialog(dialog);
         GameManager.Instance.currentUserInterface = UserInterfaces.Dialog;
 
         this._charLeft.gameObject.SetActive(false);
@@ -207,5 +213,12 @@ public class DialogSystem : MonoBehaviour
         // habilitar a caixa de opcoes
         this._optionBox.gameObject.SetActive(true);
         this._selectedOption = 0;
+    }
+
+    private void SetCurrentDialog(Dialog dialog)
+    {
+        this._currentDialog = dialog;
+        if (!this._logDialog) return;
+        this.OnDialogLog.Trigger(dialog);
     }
 }

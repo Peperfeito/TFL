@@ -7849,6 +7849,7 @@ MonoBehaviour:
     drawing: {fileID: 151405819, guid: 3df9146dbd1ec034794090ba2eb22812, type: 3}
   OnDiaryOpen: {fileID: 11400000, guid: 4a17e1b2e8a8c9741944605b922b8aa0, type: 2}
   OnReadLetter: {fileID: 11400000, guid: 877a84046b3b41545b6bcadffb5d80cd, type: 2}
+  OnDialogLog: {fileID: 11400000, guid: a591f6e6fa1cd8040b03a9e93535bb18, type: 2}
   _diaryBackground: {fileID: 8281894265742289099}
   _diary: {fileID: 236857436915786299}
   _leftPage: {fileID: 7786731323335512326}
@@ -10791,6 +10792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 133c4cccf4cf4e84895cc0e6c633d240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDialogLog: {fileID: 11400000, guid: a591f6e6fa1cd8040b03a9e93535bb18, type: 2}
   _box: {fileID: 4899903874273964025}
   _charLeft: {fileID: 6654443899289099425}
   _charRight: {fileID: 2836681157730199834}
