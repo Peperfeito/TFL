@@ -9,7 +9,20 @@ public enum MazeStructure
     Wall, // BLACK;
     Path, // WHITE;
     Stairs, // RED;
-    Tube,
+
+    Origin, // GREEN;
+}
+
+public struct MazeData
+{
+    public MazeStructure mazeStructure;
+    public Vector2 offset;
+
+    public MazeData(MazeStructure mazeStructure, Vector2 offset)
+    {
+        this.mazeStructure = mazeStructure;
+        this.offset = offset;
+    }
 }
 
 public class Maze : MonoBehaviour
@@ -21,7 +34,7 @@ public class Maze : MonoBehaviour
     private int floors;
     private int height;
     private int width;
-    private MazeStructure[,,] _mazeData;
+    private MazeData[,,] _mazeData;
 
     private void Start()
     {
@@ -35,24 +48,55 @@ public class Maze : MonoBehaviour
             this.width = Mathf.Max(this.width, this._mazeImages[floorIndex].width);
         }
 
-        this._mazeData = new MazeStructure[this.floors, this.height, this.width];
+        this._mazeData = new MazeData[this.floors, this.height, this.width];
 
+        // Init Maze Data
         for (int z = 0; z < this.floors; z++)
         {
+            Color[] floorPixels = this._mazeImages[z].GetPixels();
+            
+            // Find offset
             int pixelIndex = 0;
-            Color[] pixels = this._mazeImages[z].GetPixels();
+            Vector2 floorOffset = Vector2.zero;
+            for (int y = 0; y < this._mazeImages[z].height; y++)
+            {
+                bool found = false;
+                for (int x = 0; x < this._mazeImages[z].width; x++)
+                {
+                    if (floorPixels[pixelIndex] == Color.green)
+                    {
+                        floorOffset = new Vector2(x, y);
+                        found = true;
+                        break;
+                    }
+                    pixelIndex++;
+                }
+                if (found) break;
+            }
+
+            // Populate others
+            pixelIndex = 0;
             for (int y = 0; y < this.height; y++)
             {
                 for (int x = 0; x < this.width; x++)
                 {
-                    if (pixels[pixelIndex] == Color.white) { this._mazeData[z, y, x] = MazeStructure.Path; }
-                    if (pixels[pixelIndex] == Color.black) { this._mazeData[z, y, x] = MazeStructure.Wall; }
-                    if (pixels[pixelIndex] == Color.red) { this._mazeData[z, y, x] = MazeStructure.Stairs; }
+                    if (y >= this._mazeImages[z].height || x >= this._mazeImages[z].width)
+                    {
+                        this._mazeData[z, y, x] = new MazeData(MazeStructure.Wall, floorOffset);
+                        continue;
+                    }
+
+                    if (floorPixels[pixelIndex] == Color.white) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Path, floorOffset); }
+                    if (floorPixels[pixelIndex] == Color.black) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Wall, floorOffset); }
+                    if (floorPixels[pixelIndex] == Color.red) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Stairs, floorOffset); }
+                    if (floorPixels[pixelIndex] == Color.green) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Origin, floorOffset); }
 
                     pixelIndex++;
                 }
             }
         }
+
+        // Spawn Maze Blocks
         for (int z = 0; z < this.floors; z++)
         {
             GameObject floorParent = new GameObject($"Floor {this.floors - 1 - z}");
@@ -61,19 +105,23 @@ public class Maze : MonoBehaviour
             {
                 for (int x = 0; x < this.width; x++)
                 {
-                    if (this._mazeData[z, y, x] == MazeStructure.Wall) continue;
-                    
-                    float xPos = x * 2f;
-                    float yPos = y * 2f;
+                    if (this._mazeData[z, y, x].mazeStructure == MazeStructure.Wall) continue;
+
+                    Vector2 curOffset = this._mazeData[z, y, x].offset;
+
+                    float xPos = (x - curOffset.x) * 2f;
+                    //float xPos = x * 2f;
+                    float yPos = (y - curOffset.y) * 2f;
+                    //float yPos = y * 2f;
                     float zPos = (this.floors - 1 - z) * 2f;
                     
                     GameObject newBlock = GameObject.Instantiate(this._blockPrefab, new Vector3(xPos, zPos, yPos), Quaternion.identity);
                     newBlock.transform.parent = floorParent.transform;
                     
-                    bool nFlag = y >= this.height - 1 || (y < this.height - 1 && this._mazeData[z, y + 1, x] == MazeStructure.Wall);
-                    bool sFlag = y <= 0 || (y > 0 && this._mazeData[z, y - 1, x] == MazeStructure.Wall);
-                    bool eFlag = x >= this.width - 1 || (x < this.height - 1 && this._mazeData[z, y, x + 1] == MazeStructure.Wall);
-                    bool wFlag = x <= 0 || (x > 0 && this._mazeData[z, y, x - 1] == MazeStructure.Wall);
+                    bool nFlag = y >= this.height - 1 || (y < this.height - 1 && this._mazeData[z, y + 1, x].mazeStructure == MazeStructure.Wall);
+                    bool sFlag = y <= 0 || (y > 0 && this._mazeData[z, y - 1, x].mazeStructure == MazeStructure.Wall);
+                    bool eFlag = x >= this.width - 1 || (x < this.height - 1 && this._mazeData[z, y, x + 1].mazeStructure == MazeStructure.Wall);
+                    bool wFlag = x <= 0 || (x > 0 && this._mazeData[z, y, x - 1].mazeStructure == MazeStructure.Wall);
                     bool gFlag = true;
                     bool cFlag = true;
 
@@ -89,7 +137,7 @@ public class Maze : MonoBehaviour
                     eWall.gameObject.SetActive(eFlag);
                     wWall.gameObject.SetActive(wFlag);
 
-                    switch (this._mazeData[z, y, x])
+                    switch (this._mazeData[z, y, x].mazeStructure)
                     {
                         case MazeStructure.Stairs:
 
@@ -98,8 +146,25 @@ public class Maze : MonoBehaviour
                             eWall.GetChild(0).gameObject.SetActive(eFlag);
                             wWall.GetChild(0).gameObject.SetActive(wFlag);
 
-                            if (z > 0 && this._mazeData[z - 1, y, x] == MazeStructure.Stairs) cFlag = false;
-                            if (z < this.floors - 1 && this._mazeData[z + 1, y, x] == MazeStructure.Stairs) gFlag = false;
+                            if (z > 0)
+                            {
+                                Vector2 upperOffset = this._mazeData[z - 1, 0, 0].offset;
+                                int upperOffsetY = y - (int)curOffset.y + (int)upperOffset.y;
+                                int upperOffsetX = x - (int)curOffset.x + (int)upperOffset.x;
+
+                                bool inRange = upperOffsetY >= 0 && upperOffsetX >= 0 && upperOffsetY <= this.height && upperOffsetX <= this.width;
+                                if (inRange && this._mazeData[z - 1, upperOffsetY, upperOffsetX].mazeStructure == MazeStructure.Stairs) cFlag = false;
+                            }
+
+                            if (z < this.floors - 1)
+                            {
+                                Vector2 lowerOffset = this._mazeData[z + 1, 0, 0].offset;
+                                int lowerOffsetY = y - (int)curOffset.y + (int)lowerOffset.y;
+                                int lowerOffsetX = x - (int)curOffset.x + (int)lowerOffset.x;
+
+                                bool inRange = lowerOffsetY >= 0 && lowerOffsetX >= 0 && lowerOffsetY <= this.height && lowerOffsetX <= this.width;
+                                if (this._mazeData[z + 1, lowerOffsetY, lowerOffsetX].mazeStructure == MazeStructure.Stairs) gFlag = false;
+                            }
 
                             break;
                     }
@@ -133,15 +198,21 @@ public class Maze : MonoBehaviour
                 this._targetPosition += this._facingDirection;
                 this._positionTimer = 0f;
             }
-            else if
-                (
-                this._mazeData[this.floors - 1 - (int)this._targetPosition.y, (int)this._targetPosition.z, (int)this._targetPosition.x] == MazeStructure.Stairs &&
-                (this.floors - 1 - (int)this._targetPosition.y) > 0 &&
-                this._mazeData[this.floors - 1 - (int)this._targetPosition.y - 1, (int)this._targetPosition.z, (int)this._targetPosition.x] == MazeStructure.Stairs
-                )
+            else if (this._mazeData[this.floors - 1 - (int)this._targetPosition.y, (int)this._targetPosition.z, (int)this._targetPosition.x].mazeStructure == MazeStructure.Stairs && (this.floors - 1 - (int)this._targetPosition.y) > 0)
             {
-                this._targetPosition += Vector3.up;
-                this._positionTimer = 0f;
+                Vector2 curOffset = this._mazeData[this.floors - 1 - (int)this._targetPosition.y, 0, 0].offset;
+                Vector2 upperOffset = this._mazeData[(this.floors - 1 - (int)this._targetPosition.y) - 1, 0, 0].offset;
+                int upperOffsetY = (int)this._targetPosition.z - (int)curOffset.y + (int)upperOffset.y;
+                int upperOffsetX = (int)this._targetPosition.x - (int)curOffset.x + (int)upperOffset.x;
+
+                bool inRange = upperOffsetY >= 0 && upperOffsetX >= 0 && upperOffsetY <= this.height && upperOffsetX <= this.width;
+                if ( inRange && this._mazeData[this.floors - 1 - (int)this._targetPosition.y - 1, upperOffsetY, upperOffsetX].mazeStructure == MazeStructure.Stairs )
+                {
+                    this._targetPosition.x += -curOffset.x + upperOffset.x;
+                    this._targetPosition.y += 1;
+                    this._targetPosition.z += -curOffset.y + upperOffset.y;
+                    this._positionTimer = 0f;
+                }
             }
         }
 
@@ -158,14 +229,24 @@ public class Maze : MonoBehaviour
         {
             if
                 (
-                Physics.Raycast(this._player.transform.position, this._player.transform.forward, 2f) &&
-                this._mazeData[this.floors - 1 - (int)this._targetPosition.y, (int)this._targetPosition.z, (int)this._targetPosition.x] == MazeStructure.Stairs &&
-                (this.floors - 1 - (int)this._targetPosition.y) < this.floors - 1 &&
-                this._mazeData[this.floors - 1 - (int)this._targetPosition.y + 1, (int)this._targetPosition.z, (int)this._targetPosition.x] == MazeStructure.Stairs
+                Physics.Raycast(this._player.transform.position, this._player.transform.forward, 2f)
+                && this._mazeData[this.floors - 1 - (int)this._targetPosition.y, (int)this._targetPosition.z, (int)this._targetPosition.x].mazeStructure == MazeStructure.Stairs
+                && (this.floors - 1 - (int)this._targetPosition.y) < this.floors - 1
                 )
             {
-                this._targetPosition -= Vector3.up;
-                this._positionTimer = 0f;
+                Vector2 curOffset = this._mazeData[this.floors - 1 - (int)this._targetPosition.y, 0, 0].offset;
+                Vector2 lowerOffset = this._mazeData[(this.floors - 1 - (int)this._targetPosition.y) + 1, 0, 0].offset;
+                int lowerOffsetY = (int)this._targetPosition.z - (int)curOffset.y + (int)lowerOffset.y;
+                int lowerOffsetX = (int)this._targetPosition.x - (int)curOffset.x + (int)lowerOffset.x;
+
+                bool inRange = lowerOffsetY >= 0 && lowerOffsetX >= 0 && lowerOffsetY <= this.height && lowerOffsetX <= this.width;
+                if (inRange && this._mazeData[this.floors - 1 - (int)this._targetPosition.y + 1, lowerOffsetY, lowerOffsetX].mazeStructure == MazeStructure.Stairs)
+                {
+                    this._targetPosition.x += -curOffset.x + lowerOffset.x;
+                    this._targetPosition.y += -1;
+                    this._targetPosition.z += -curOffset.y + lowerOffset.y;
+                    this._positionTimer = 0f;
+                }
             }
             else
             {
@@ -174,7 +255,10 @@ public class Maze : MonoBehaviour
         }
 
         // Update
-        this._player.transform.position = Vector3.Lerp(this._player.transform.position, Vector3.up + (this._targetPosition * 2f), this._positionTimer);
+        Vector3 worldPosition = this._targetPosition;
+        worldPosition.x -= this._mazeData[this.floors - 1 - (int)this._targetPosition.y, 0, 0].offset.x;
+        worldPosition.z -= this._mazeData[this.floors - 1 - (int)this._targetPosition.y, 0, 0].offset.y;
+        this._player.transform.position = Vector3.Lerp(this._player.transform.position, Vector3.up + (worldPosition * 2f), this._positionTimer);
         this._player.transform.rotation = Quaternion.Lerp(this._player.transform.rotation, this._targetRotation, this._rotationTimer);
     }
 
