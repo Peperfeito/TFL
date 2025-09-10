@@ -1551,7 +1551,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &142736035
 Transform:
   m_ObjectHideFlags: 0
@@ -3608,7 +3608,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 1.8125
+  orthographic size: 1.125
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3851,6 +3851,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakMiniGame: {fileID: 0}
+  fakBlocos: {fileID: 0}
+  meiBlocos: {fileID: 0}
   bagulhoQTemQSumir: []
 --- !u!61 &600219589
 BoxCollider2D:
@@ -7416,9 +7418,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb3e403fc2562044ac968660a2bf0c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ForceBar: {fileID: 1084279258}
-  Force: 0
-  MaxForce: 100
+  forceBar: {fileID: 0}
+  force: 0
+  maxforce: 100
   startpoint: 0
   points:
   - {fileID: 1754959118}
@@ -7427,6 +7429,14 @@ MonoBehaviour:
   speed: 20
   direction: {x: 0, y: 0, z: 0}
   spawn: {fileID: 1754959117}
+  paiacuMinigame: {fileID: 0}
+  jail: {fileID: 0}
+  cam: {fileID: 0}
+  barrinha: {fileID: 0}
+  portaKano: {fileID: 0}
+  alvo: {fileID: 0}
+  distanciaMaxima: 20
+  escalaMinima: 0.02
 --- !u!212 &1311317096
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9129,7 +9139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1536069184
 Transform:
   m_ObjectHideFlags: 0
@@ -9223,8 +9233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a84e81378df372846a0c9ee7aef9d6cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Desativar: {fileID: 494277180}
-  Ativar: {fileID: 776165481}
+  destino: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!61 &1575333904
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,0 +1,853 @@
+fileFormatVersion: 2
+guid: 58070659534aa724dab4cf513a3ba53d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fb37cdfcfd0ec7469c3eb3d483a8de3
+      internalID: 2140400926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_1
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cda2afce534ece44183d570bc3581887
+      internalID: 1301633608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_2
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0752cf3a6ec0c14c94d4a5832f86574
+      internalID: -1871765092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_3
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4147aa8e868e0d546b1f9e85532470be
+      internalID: 1377187447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_4
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adfd6c1ebfecb5641a27ef3b8e49823c
+      internalID: 1138133132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_5
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb870cfc5ae111745a5f4df8e0b9e58c
+      internalID: 734411540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_6
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0893e3587fa65f4792b34940fadf5cd
+      internalID: 271778961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_7
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca4336018377fa5478b0a4da7f701b9f
+      internalID: -1734809888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_8
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c99c64ab4d50c047bd5c57981e38583
+      internalID: -989371800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_9
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ad7a3be9d8c99e4e844b92862e56316
+      internalID: 842403677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_10
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f67b48c7219972479d6d5f901779340
+      internalID: 1475959569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_11
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6d449ddf2d4c774392a7f84506a7d0a
+      internalID: 1727115959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_12
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23a9ec158e8f12141b7fddc5b65445c9
+      internalID: 289443876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_13
+      rect:
+        serializedVersion: 2
+        x: 1253
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25cc07a4e7bc4b14e951a98284bac8eb
+      internalID: -453851558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_14
+      rect:
+        serializedVersion: 2
+        x: 1349
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18c1294ccf6ebb047bc62f724f7dd035
+      internalID: 1780593014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_15
+      rect:
+        serializedVersion: 2
+        x: 1445
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03f2ebcb3fc55594fb884dc4aac79c8f
+      internalID: 1116477202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_16
+      rect:
+        serializedVersion: 2
+        x: 1541
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a8221aab21f58c419709e08214eb0f0
+      internalID: 1057869633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_17
+      rect:
+        serializedVersion: 2
+        x: 1637
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3ad81ba57943ba499a9eb07523f120b
+      internalID: 1867626372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_18
+      rect:
+        serializedVersion: 2
+        x: 1733
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c7e2eeade424394aa5ae6ae7929b57f
+      internalID: -1138228300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_19
+      rect:
+        serializedVersion: 2
+        x: 1829
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a4f7744b0b8e7746a0d0eab32ba6e0c
+      internalID: 93040632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_20
+      rect:
+        serializedVersion: 2
+        x: 1925
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3209cc53919dc86419d0e962687e2a32
+      internalID: 1720401005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_21
+      rect:
+        serializedVersion: 2
+        x: 2021
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb1acd022ea47104a9ce4f41d68b1b4d
+      internalID: -1340240406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_22
+      rect:
+        serializedVersion: 2
+        x: 2117
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 321e6214a335e9c488aba3bfd4b49db5
+      internalID: 2036664272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_23
+      rect:
+        serializedVersion: 2
+        x: 2213
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80b9bf89b3ee3a5469d824fc566f6767
+      internalID: -1719076536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_24
+      rect:
+        serializedVersion: 2
+        x: 2309
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ba86b88a533aec48914abe184cfcaeb
+      internalID: 1285759567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_25
+      rect:
+        serializedVersion: 2
+        x: 2405
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98f87f9e7da2f1f4b9c6a463ae45fd22
+      internalID: -1039252153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_26
+      rect:
+        serializedVersion: 2
+        x: 2501
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10379aab9da664647a8a972f9143fe8f
+      internalID: 1498841118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_27
+      rect:
+        serializedVersion: 2
+        x: 2597
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bf252b5fa4c0fd41b54740658835021
+      internalID: 2009825443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_28
+      rect:
+        serializedVersion: 2
+        x: 2693
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa7e54516f1025b429064de9f8e92a30
+      internalID: 1740617640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_29
+      rect:
+        serializedVersion: 2
+        x: 2789
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 271d47d3532396c4d86490536a4edacf
+      internalID: -763165376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_30
+      rect:
+        serializedVersion: 2
+        x: 2885
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17e8dae9b9323194988b0aded81b71a6
+      internalID: -447709002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_31
+      rect:
+        serializedVersion: 2
+        x: 2981
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 124a30b1c530dba4c960d9bcd66fab2d
+      internalID: -437293888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clawMachineAnimationsSparkle_32
+      rect:
+        serializedVersion: 2
+        x: 3077
+        y: 2
+        width: 72
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30836bc5ff4c91347861ca346fa55c84
+      internalID: 1501705093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      clawMachineAnimationsSparkle_0: 2140400926
+      clawMachineAnimationsSparkle_1: 1301633608
+      clawMachineAnimationsSparkle_10: 1475959569
+      clawMachineAnimationsSparkle_11: 1727115959
+      clawMachineAnimationsSparkle_12: 289443876
+      clawMachineAnimationsSparkle_13: -453851558
+      clawMachineAnimationsSparkle_14: 1780593014
+      clawMachineAnimationsSparkle_15: 1116477202
+      clawMachineAnimationsSparkle_16: 1057869633
+      clawMachineAnimationsSparkle_17: 1867626372
+      clawMachineAnimationsSparkle_18: -1138228300
+      clawMachineAnimationsSparkle_19: 93040632
+      clawMachineAnimationsSparkle_2: -1871765092
+      clawMachineAnimationsSparkle_20: 1720401005
+      clawMachineAnimationsSparkle_21: -1340240406
+      clawMachineAnimationsSparkle_22: 2036664272
+      clawMachineAnimationsSparkle_23: -1719076536
+      clawMachineAnimationsSparkle_24: 1285759567
+      clawMachineAnimationsSparkle_25: -1039252153
+      clawMachineAnimationsSparkle_26: 1498841118
+      clawMachineAnimationsSparkle_27: 2009825443
+      clawMachineAnimationsSparkle_28: 1740617640
+      clawMachineAnimationsSparkle_29: -763165376
+      clawMachineAnimationsSparkle_3: 1377187447
+      clawMachineAnimationsSparkle_30: -447709002
+      clawMachineAnimationsSparkle_31: -437293888
+      clawMachineAnimationsSparkle_32: 1501705093
+      clawMachineAnimationsSparkle_4: 1138133132
+      clawMachineAnimationsSparkle_5: 734411540
+      clawMachineAnimationsSparkle_6: 271778961
+      clawMachineAnimationsSparkle_7: -1734809888
+      clawMachineAnimationsSparkle_8: -989371800
+      clawMachineAnimationsSparkle_9: 842403677
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

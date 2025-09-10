@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4c8b90a8c93e44dadb26a3e6f3c3b4, type: 3}
+  m_Name: DiaryItemData
+  m_EditorClassIdentifier: 
+  itemName: Diary
+  itemDescription: A diary that can keep notes of english is not my first language,
+    dps os lorenzo resovle o que escrever aki, akakakakakkaka opssdgjvkhfl sdflgkjhy
+    vbglfyukgjdsxh yg H;IU
+  itemIcon: {fileID: 21300000, guid: b8a0afda9cf8350488724d793afb7feb, type: 3}
+  itemWorldSprite: {fileID: 21300000, guid: b8a0afda9cf8350488724d793afb7feb, type: 3}
+  itemAnimatorController: {fileID: 0}
+  itemType: 1
+  itemEvent: {fileID: 11400000, guid: 4a17e1b2e8a8c9741944605b922b8aa0, type: 2}
