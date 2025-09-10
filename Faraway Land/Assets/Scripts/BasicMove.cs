@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasicMove : MonoBehaviour
 {
- public float moveSpeed = 5f;
+    public float moveSpeed = 5f;
     public Rigidbody2D rb;
     Vector2 movement;
 

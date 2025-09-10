@@ -3022,6 +3022,7 @@ MonoBehaviour:
   - {fileID: 4687339628744466830}
   - {fileID: 3712041545973002092}
   - {fileID: 2796046508313537680}
+  _premiu: {fileID: 11400000, guid: d42a18b7894b059428b735d382dbee12, type: 2}
 --- !u!1 &4033511416941427464
 GameObject:
   m_ObjectHideFlags: 0
@@ -8194,4 +8195,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1056382476144645138}
-  afk: {fileID: 0}

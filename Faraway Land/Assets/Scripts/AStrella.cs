@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AStrella : MonoBehaviour
 {
-   public static AStrella instance;
+    public static AStrella instance;
 
     private void Awake()
     {
@@ -17,7 +17,7 @@ public class AStrella : MonoBehaviour
         List<Node> openSet = new List<Node>();
 
 
-        foreach(Node n in FindObjectsOfType<Node>())
+        foreach (Node n in FindObjectsOfType<Node>())
         {
             n.gScore = float.MaxValue;
         }
@@ -26,14 +26,14 @@ public class AStrella : MonoBehaviour
         start.hScore = Vector2.Distance(start.transform.position, end.transform.position);
         openSet.Add(start);
 
-        while (openSet.Count > 0) 
-        { 
+        while (openSet.Count > 0)
+        {
             int lowestF = default;
 
-            for (int i = 0; i < openSet.Count; i++) 
+            for (int i = 0; i < openSet.Count; i++)
             {
-                if (openSet[i].FScore() < openSet[lowestF].FScore()) 
-                { 
+                if (openSet[i].FScore() < openSet[lowestF].FScore())
+                {
                     lowestF = i;
                 }
             }
@@ -41,13 +41,13 @@ public class AStrella : MonoBehaviour
             Node currentNode = openSet[lowestF];
             openSet.Remove(currentNode);
 
-            if (currentNode == end) 
-            { 
+            if (currentNode == end)
+            {
                 List<Node> path = new List<Node>();
 
                 path.Insert(0, end);
 
-                while (currentNode != start) 
+                while (currentNode != start)
                 {
                     currentNode = currentNode.cameFrom;
                     path.Add(currentNode);
@@ -60,23 +60,23 @@ public class AStrella : MonoBehaviour
             {
                 float heldScore = currentNode.gScore + Vector2.Distance(currentNode.transform.position, connectedNode.transform.position);
 
-                if (heldScore < connectedNode.gScore) 
-                { 
+                if (heldScore < connectedNode.gScore)
+                {
                     connectedNode.cameFrom = currentNode;
                     connectedNode.gScore = heldScore;
                     connectedNode.hScore = Vector2.Distance(connectedNode.transform.position, end.transform.position);
 
-                    if(!openSet.Contains(connectedNode))
+                    if (!openSet.Contains(connectedNode))
                     {
                         openSet.Add(connectedNode);
                     }
                 }
             }
         }
-        
-        
-        
-        
+
+
+
+
         return null;
     }
 
@@ -85,10 +85,10 @@ public class AStrella : MonoBehaviour
         Node foundNode = null;
         float minDistance = float.MaxValue;
 
-        foreach(Node node in NodesInScene())
+        foreach (Node node in NodesInScene())
         {
             float currentDistance = Vector2.Distance(position, node.transform.position);
-            if(currentDistance < minDistance)
+            if (currentDistance < minDistance)
             {
                 minDistance = currentDistance;
                 foundNode = node;
@@ -102,10 +102,10 @@ public class AStrella : MonoBehaviour
         Node foundNode = null;
         float maxDistance = 0;
 
-        foreach(Node node in NodesInScene())
+        foreach (Node node in NodesInScene())
         {
             float currentDistance = Vector2.Distance(position, node.transform.position);
-            if(currentDistance > maxDistance)
+            if (currentDistance > maxDistance)
             {
                 maxDistance = currentDistance;
                 foundNode = node;
