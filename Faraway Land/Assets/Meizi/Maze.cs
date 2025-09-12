@@ -8,7 +8,13 @@ public enum MazeStructure
 {
     Wall, // BLACK;
     Path, // WHITE;
+
     Stairs, // RED;
+    Tube, // BLUE;
+
+    Triangles, // YELLOW
+    Sacks, // CYAN
+    Spinner, // MAGENTA
 
     Origin, // GREEN;
 }
@@ -28,6 +34,21 @@ public class Maze : MonoBehaviour
     [SerializeField] private Transform _player;
     [SerializeField] private GameObject _blockPrefab;
     [SerializeField] private Texture2D[] _mazeImages;
+
+    [SerializeField] private GameObject _triangleTest;
+
+    // Basic type
+    private readonly Color WALL_COLOR = new Color(0f, 0f, 0f); // #000000
+    private readonly Color PATH_COLOR = new Color(1f, 1f, 1f); // #FFFFFF
+    // Stair type
+    private readonly Color STAIRS_COLOR = new Color(1f, 0f, 0f); // #FF0000
+    private readonly Color TUBE_COLOR = new Color(0f, 0f, 1f); // #0000FF
+    // Structure type
+    private readonly Color TRIANGLES_COLOR = new Color(1f, 1f, 0f); // #FFFF00
+    private readonly Color SACKS_COLOR = new Color(0f, 1f, 1f); // #00FFFF
+    private readonly Color SPINNER_COLOR = new Color(1f, 0f, 1f); // #FF00FF
+    // Origin
+    private readonly Color ORIGIN_COLOR = new Color(0f, 1f, 0f); // #00FF00
 
     private int floors;
     private int height;
@@ -61,7 +82,7 @@ public class Maze : MonoBehaviour
                 bool found = false;
                 for (int x = 0; x < this._mazeImages[z].width; x++)
                 {
-                    if (floorPixels[pixelIndex] == Color.green)
+                    if (floorPixels[pixelIndex] == ORIGIN_COLOR)
                     {
                         this.maxLeft = Mathf.Max(this.maxLeft, x);
                         this.maxRight = Mathf.Max(this.maxRight, this._mazeImages[z].width - x);
@@ -99,7 +120,7 @@ public class Maze : MonoBehaviour
                 bool found = false;
                 for (int x = 0; x < this._mazeImages[z].width; x++)
                 {
-                    if (floorPixels[pixelIndex] == Color.green)
+                    if (floorPixels[pixelIndex] == ORIGIN_COLOR)
                     {
                         floorOffset = new Vector2(x, y);
                         found = true;
@@ -121,17 +142,21 @@ public class Maze : MonoBehaviour
             for (int y = 0; y < this.height; y++)
             {
                 for (int x = 0; x < this.width; x++)
-                {   
+                {
                     if (y < minY || y > maxY || x < minX || x > maxX)
                     {
                         this._mazeData[z, y, x] = new MazeData(MazeStructure.Wall);
                         continue;
                     }
-                     
-                    if (floorPixels[pixelIndex] == Color.white) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Path); }
-                    if (floorPixels[pixelIndex] == Color.black) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Wall); }
-                    if (floorPixels[pixelIndex] == Color.red) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Stairs); }
-                    if (floorPixels[pixelIndex] == Color.green) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Origin); }
+
+                    if (floorPixels[pixelIndex] == PATH_COLOR) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Path); }
+                    if (floorPixels[pixelIndex] == WALL_COLOR) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Wall); }
+
+                    if (floorPixels[pixelIndex] == STAIRS_COLOR) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Stairs); }
+
+                    if (floorPixels[pixelIndex] == TRIANGLES_COLOR) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Triangles); }
+
+                    if (floorPixels[pixelIndex] == ORIGIN_COLOR) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Origin); }
 
                     pixelIndex++;
                 }
@@ -188,6 +213,25 @@ public class Maze : MonoBehaviour
 
                             if (z > 0 && this._mazeData[z - 1, y, x].mazeStructure == MazeStructure.Stairs) { cFlag = false; }
                             if (z < this.floors - 1 && this._mazeData[z + 1, y, x].mazeStructure == MazeStructure.Stairs) { gFlag = false; }
+
+                            break;
+
+                        case MazeStructure.Triangles:
+
+                            Quaternion rotation = Quaternion.identity; // olha em direcao ao Z (padrao)
+
+                            if (
+                                ((y > 0 && this._mazeData[z, y - 1, x].mazeStructure == MazeStructure.Wall) && (y < this.height - 1 && this._mazeData[z, y + 1, x].mazeStructure == MazeStructure.Wall))
+                                || (y <= 0 && (y < this.height - 1 && this._mazeData[z, y + 1, x].mazeStructure == MazeStructure.Wall))
+                                || (y >= this.height - 1 && (y > 0 && this._mazeData[z, y - 1, x].mazeStructure == MazeStructure.Wall))
+                                )
+                            {
+                                // olha em direcao ao X
+                                rotation = Quaternion.Euler(Vector3.up * 90f);
+                            }
+
+                            GameObject newPiece = GameObject.Instantiate(this._triangleTest, newBlock.transform.position, rotation);
+                            newPiece.transform.parent = newBlock.transform;
 
                             break;
                     }

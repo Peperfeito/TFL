@@ -233,7 +233,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -308,11 +308,13 @@ MonoBehaviour:
   _player: {fileID: 209493116}
   _blockPrefab: {fileID: 8338132405859876197, guid: 2dd23d7cbb5576e45af56f3beb8fb58e, type: 3}
   _mazeImages:
+  - {fileID: 2800000, guid: f09660ef874770e428f4a3d4153b7099, type: 3}
   - {fileID: 2800000, guid: 5fabed6beb3e9254788aee7d957819d0, type: 3}
   - {fileID: 2800000, guid: 799458c5648b78b4085706be6cacaf2e, type: 3}
   - {fileID: 2800000, guid: 4acde79fd08e04d4bbb8c6a35b32615b, type: 3}
   - {fileID: 2800000, guid: c71dd324520d7204497fda5e0ae84e2b, type: 3}
   - {fileID: 2800000, guid: e1db3a77863beb745b86208893469579, type: 3}
+  _triangleTest: {fileID: 8338132405859876197, guid: fe5b879c4ca9a824096b29b241a51c77, type: 3}
 --- !u!1 &913518582
 GameObject:
   m_ObjectHideFlags: 0
