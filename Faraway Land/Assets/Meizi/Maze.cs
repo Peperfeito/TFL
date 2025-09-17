@@ -35,7 +35,16 @@ public class Maze : MonoBehaviour
     [SerializeField] private GameObject _blockPrefab;
     [SerializeField] private Texture2D[] _mazeImages;
 
-    [SerializeField] private GameObject _triangleTest;
+    [SerializeField] private GameObject _sacks;
+    [SerializeField] private GameObject _triangles;
+    [SerializeField] private GameObject _stairs;
+
+    [SerializeField] private GameObject _tubinX;
+    [SerializeField] private GameObject _tubinY;
+    [SerializeField] private GameObject _tubinZ;
+
+    [SerializeField] private Color[] _tubeColors;
+    [SerializeField] private Color[] _plateColors;
 
     // Basic type
     private readonly Color WALL_COLOR = new Color(0f, 0f, 0f); // #000000
@@ -62,6 +71,8 @@ public class Maze : MonoBehaviour
 
     private void Start()
     {
+        Random.InitState(69);
+
         this.floors = this._mazeImages.Length;
         this.height = 0;
         this.width = 0;
@@ -101,9 +112,6 @@ public class Maze : MonoBehaviour
 
         this.height = this.maxBottom + this.maxTop;
         this.width = this.maxLeft + this.maxRight;
-
-        Debug.Log(this.height);
-        Debug.Log(this.width);
 
         this._mazeData = new MazeData[this.floors, this.height, this.width];
 
@@ -155,6 +163,7 @@ public class Maze : MonoBehaviour
                     if (floorPixels[pixelIndex] == STAIRS_COLOR) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Stairs); }
 
                     if (floorPixels[pixelIndex] == TRIANGLES_COLOR) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Triangles); }
+                    if (floorPixels[pixelIndex] == SACKS_COLOR) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Sacks); }
 
                     if (floorPixels[pixelIndex] == ORIGIN_COLOR) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Origin); }
 
@@ -187,15 +196,20 @@ public class Maze : MonoBehaviour
                     bool sFlag = y <= 0 || (y > 0 && this._mazeData[z, y - 1, x].mazeStructure == MazeStructure.Wall);
                     bool eFlag = x >= this.width - 1 || (x < this.height - 1 && this._mazeData[z, y, x + 1].mazeStructure == MazeStructure.Wall);
                     bool wFlag = x <= 0 || (x > 0 && this._mazeData[z, y, x - 1].mazeStructure == MazeStructure.Wall);
+                    bool cFlag = z <= 0 || (z > 0 && this._mazeData[z - 1, y, x].mazeStructure == MazeStructure.Wall);
                     bool gFlag = true;
-                    bool cFlag = true;
 
-                    Transform nWall = newBlock.transform.GetChild(0);
-                    Transform sWall = newBlock.transform.GetChild(1);
-                    Transform eWall = newBlock.transform.GetChild(2);
-                    Transform wWall = newBlock.transform.GetChild(3);
-                    Transform ground = newBlock.transform.GetChild(4);
-                    Transform cieling = newBlock.transform.GetChild(5);
+                    Transform structureAnchor = newBlock.transform.GetChild(0);
+                    Transform walls = newBlock.transform.GetChild(1);
+                    Transform plates = newBlock.transform.GetChild(2);
+
+                    Transform nWall = walls.transform.GetChild(0);
+                    Transform sWall = walls.transform.GetChild(1);
+                    Transform eWall = walls.transform.GetChild(2);
+                    Transform wWall = walls.transform.GetChild(3);
+
+                    Transform ground = plates.transform.GetChild(0);
+                    Transform cieling = plates.transform.GetChild(1);
 
                     nWall.gameObject.SetActive(nFlag);
                     sWall.gameObject.SetActive(sFlag);
@@ -206,19 +220,22 @@ public class Maze : MonoBehaviour
                     {
                         case MazeStructure.Stairs:
 
-                            nWall.GetChild(0).gameObject.SetActive(nFlag);
-                            sWall.GetChild(0).gameObject.SetActive(sFlag);
-                            eWall.GetChild(0).gameObject.SetActive(eFlag);
-                            wWall.GetChild(0).gameObject.SetActive(wFlag);
+                            GameObject newStair = GameObject.Instantiate(this._stairs, structureAnchor, false);
 
                             if (z > 0 && this._mazeData[z - 1, y, x].mazeStructure == MazeStructure.Stairs) { cFlag = false; }
                             if (z < this.floors - 1 && this._mazeData[z + 1, y, x].mazeStructure == MazeStructure.Stairs) { gFlag = false; }
+
+                            MeshRenderer stairRend = newStair.GetComponent<MeshRenderer>();
+                            for (int i = 0; i < stairRend.materials.Length; i++)
+                            {
+                                stairRend.materials[i].color = this._plateColors[Random.Range(0, this._tubeColors.Length)];
+                            }
 
                             break;
 
                         case MazeStructure.Triangles:
 
-                            Quaternion rotation = Quaternion.identity; // olha em direcao ao Z (padrao)
+                            GameObject newPiece = GameObject.Instantiate(this._triangles, structureAnchor, false); // olha em direcao ao Z (padrao)
 
                             if (
                                 ((y > 0 && this._mazeData[z, y - 1, x].mazeStructure == MazeStructure.Wall) && (y < this.height - 1 && this._mazeData[z, y + 1, x].mazeStructure == MazeStructure.Wall))
@@ -226,18 +243,76 @@ public class Maze : MonoBehaviour
                                 || (y >= this.height - 1 && (y > 0 && this._mazeData[z, y - 1, x].mazeStructure == MazeStructure.Wall))
                                 )
                             {
-                                // olha em direcao ao X
-                                rotation = Quaternion.Euler(Vector3.up * 90f);
+                                newPiece.transform.rotation = Quaternion.Euler(new Vector3(-90f, 90f, 0f)); // olha em direcao ao X
                             }
 
-                            GameObject newPiece = GameObject.Instantiate(this._triangleTest, newBlock.transform.position, rotation);
-                            newPiece.transform.parent = newBlock.transform;
+                            MeshRenderer rend = newPiece.GetComponent<MeshRenderer>();
+                            for (int i = 0; i < rend.materials.Length; i++)
+                            {
+                                rend.materials[i].color = this._tubeColors[Random.Range(0, this._tubeColors.Length)];
+                            }
+
+                            break;
+                        
+                        case MazeStructure.Sacks:
+
+                            GameObject newSack = GameObject.Instantiate(this._sacks, structureAnchor, false);
+
+                            MeshRenderer sackRend = newSack.GetComponent<MeshRenderer>();
+                            for (int i = 0; i < sackRend.materials.Length; i++)
+                            {
+                                sackRend.materials[i].color = sackRend.materials[i].name.ToLower() == "string" ? Color.black : this._tubeColors[Random.Range(0, this._tubeColors.Length)];
+                            }
 
                             break;
                     }
 
-                    ground.gameObject.SetActive(gFlag);
                     cieling.gameObject.SetActive(cFlag);
+                    cieling.GetComponent<MeshRenderer>().material.color = this._plateColors[Random.Range(0, this._plateColors.Length)];
+                    ground.gameObject.SetActive(gFlag);
+                    ground.GetComponent<MeshRenderer>().material.color = this._plateColors[Random.Range(0, this._plateColors.Length)];
+
+                    /* Tubin */
+                    
+                    // chao
+                    this.SpawnTubin(this._tubinX, newBlock.transform, Vector3.forward); // ground top
+                    if (sFlag) { this.SpawnTubin(this._tubinX, newBlock.transform, Vector3.back); } // ground bottom
+                    this.SpawnTubin(this._tubinZ, newBlock.transform, Vector3.right);// ground right
+                    if (wFlag) { this.SpawnTubin(this._tubinZ, newBlock.transform, Vector3.left); } // ground left
+                    
+                    // teto
+                    if (cFlag)
+                    {
+                        this.SpawnTubin(this._tubinX, newBlock.transform, Vector3.forward + (Vector3.up * 2)); // cieling top
+                        if (sFlag) { this.SpawnTubin(this._tubinX, newBlock.transform, Vector3.back + (Vector3.up * 2)); } // cieling bottom
+                        this.SpawnTubin(_tubinZ, newBlock.transform, Vector3.right + (Vector3.up * 2)); // cieling right
+                        if (wFlag) { this.SpawnTubin(_tubinZ, newBlock.transform, Vector3.left + (Vector3.up * 2)); } // cieling left
+                    }
+
+                    // vertical v2
+                    if (nFlag || eFlag)
+                    {
+                        this.SpawnTubin(_tubinY, newBlock.transform, Vector3.forward + Vector3.up + Vector3.right); // TR
+                    }
+
+                    if (nFlag && (wFlag || (y < this.height - 1 && x > 0 && this._mazeData[z, y + 1, x - 1].mazeStructure != MazeStructure.Wall)))
+                    {
+                        this.SpawnTubin(this._tubinY, newBlock.transform, Vector3.forward + Vector3.up + Vector3.left); // TL
+                    }
+
+                    if (!nFlag && (wFlag && (y < this.height - 1 && x > 0 && this._mazeData[z, y + 1, x - 1].mazeStructure == MazeStructure.Wall)))
+                    {
+                        this.SpawnTubin(this._tubinY, newBlock.transform, Vector3.forward + Vector3.up + Vector3.left); // TL
+                    }
+
+                    if (sFlag)
+                    {
+                        this.SpawnTubin(this._tubinY, newBlock.transform, Vector3.back + Vector3.up + Vector3.right); // BR
+                        if (wFlag)
+                        {
+                            this.SpawnTubin(this._tubinY, newBlock.transform, Vector3.back + Vector3.up + Vector3.left); // BL
+                        }
+                    }
                 }
             }
         }
@@ -352,5 +427,13 @@ public class Maze : MonoBehaviour
     private float RotationAngle(Vector3 lookDirection)
     {
         return ((Vector3.Angle(Vector3.forward, lookDirection) * Mathf.Sign(Vector3.Dot(Vector3.up, Vector3.Cross(Vector3.forward, lookDirection)))) + 360) % 360;
+    }
+
+    private void SpawnTubin(GameObject prefab, Transform parent, Vector3 position)
+    {
+        GameObject newTubin = GameObject.Instantiate(prefab, parent, false);
+        newTubin.transform.localPosition = position;
+
+        newTubin.GetComponent<MeshRenderer>().material.color = this._tubeColors[Random.Range(0, this._tubeColors.Length)];
     }
 }

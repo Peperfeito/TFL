@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 209493116}
-  _blockPrefab: {fileID: 8338132405859876197, guid: 2dd23d7cbb5576e45af56f3beb8fb58e, type: 3}
+  _blockPrefab: {fileID: 8338132405859876197, guid: ae8f1afa6a004b041a02ed0eb653cf34, type: 3}
   _mazeImages:
   - {fileID: 2800000, guid: f09660ef874770e428f4a3d4153b7099, type: 3}
   - {fileID: 2800000, guid: 5fabed6beb3e9254788aee7d957819d0, type: 3}
@@ -314,7 +314,36 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 4acde79fd08e04d4bbb8c6a35b32615b, type: 3}
   - {fileID: 2800000, guid: c71dd324520d7204497fda5e0ae84e2b, type: 3}
   - {fileID: 2800000, guid: e1db3a77863beb745b86208893469579, type: 3}
-  _triangleTest: {fileID: 8338132405859876197, guid: fe5b879c4ca9a824096b29b241a51c77, type: 3}
+  _sacks: {fileID: 919132149155446097, guid: de03a23d93697a2498aa55ade302dcfc, type: 3}
+  _triangles: {fileID: 919132149155446097, guid: a91350bb8ddadd043a915b402866fa98, type: 3}
+  _stairs: {fileID: 919132149155446097, guid: 687970c20238a154e9a8f7cb15e94798, type: 3}
+  _tubinX: {fileID: 6882833249108818995, guid: ed5da45b5ca6c53418b4eef6c85c2ffe, type: 3}
+  _tubinY: {fileID: 8740679272852757882, guid: 3bc3ca1304fdd5e43a2f03ea897a5d12, type: 3}
+  _tubinZ: {fileID: 5174984382280564333, guid: 1ed2d59b4b0cc1d4a91160e4aa0485d8, type: 3}
+  _tubeColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 0.50980395, b: 0, a: 1}
+  - {r: 1, g: 0.9137255, b: 0, a: 1}
+  - {r: 0.6784314, g: 1, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.03529412, a: 1}
+  - {r: 0, g: 1, b: 0.74509805, a: 1}
+  - {r: 0, g: 0.6431373, b: 1, a: 1}
+  - {r: 0, g: 0.13725491, b: 1, a: 1}
+  - {r: 0.46666667, g: 0.12941177, b: 0.8392157, a: 1}
+  - {r: 0.8392157, g: 0.12941177, b: 0.78039217, a: 1}
+  - {r: 0.8392157, g: 0.12941177, b: 0.41568628, a: 1}
+  _plateColors:
+  - {r: 0.627451, g: 0.09411765, b: 0.09411765, a: 1}
+  - {r: 0.8862745, g: 0.627451, b: 0.36078432, a: 1}
+  - {r: 0.8862745, g: 0.7882353, b: 0.36078432, a: 1}
+  - {r: 0.5568628, g: 0.8862745, b: 0.36078432, a: 1}
+  - {r: 0.36078432, g: 0.8862745, b: 0.4862745, a: 1}
+  - {r: 0.36078432, g: 0.8862745, b: 0.6981132, a: 1}
+  - {r: 0.36078432, g: 0.85882354, b: 0.8862745, a: 1}
+  - {r: 0.36078432, g: 0.4862745, b: 0.8862745, a: 1}
+  - {r: 0.5568628, g: 0.36078432, b: 0.8862745, a: 1}
+  - {r: 0.8862745, g: 0.36078432, b: 0.84313726, a: 1}
+  - {r: 0.8862745, g: 0.36078432, b: 0.46666667, a: 1}
 --- !u!1 &913518582
 GameObject:
   m_ObjectHideFlags: 0
