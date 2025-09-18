@@ -165,7 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 433050817}
   m_Layer: 0
-  m_Name: BACK
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 1617662478}
   - component: {fileID: 1617662480}
   m_Layer: 0
-  m_Name: CAR
+  m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 1830496655}
   - component: {fileID: 1830496654}
   m_Layer: 0
-  m_Name: TREE
+  m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 2072656709}
   - component: {fileID: 2072656708}
   m_Layer: 0
-  m_Name: PIXEL
+  m_Name: Pixel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -652,6 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Car: {fileID: 1617662479}
+  rivalCar: []
   Background: {fileID: 433050817}
   screenWidth: 160
   screenHeight: 100
