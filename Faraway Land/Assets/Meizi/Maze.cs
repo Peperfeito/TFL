@@ -330,31 +330,56 @@ public class Maze : MonoBehaviour
         }
     }
 
+    private bool _movingForward = false;
+    private bool _justMovedForward = false;
+    private float _moveForwardDelay = .3f;
+    private float _moveForwardDelayTimer = 0f;
+
     private void Update()
     {
         this._positionTimer += Time.deltaTime;
         if (this._positionTimer >= 1f) this._positionTimer = 1f;
         this._rotationTimer += Time.deltaTime;
         if (this._rotationTimer >= 1f) this._rotationTimer = 1f;
+        this._moveForwardDelayTimer -= Time.deltaTime;
+        if (this._moveForwardDelayTimer <= 0f) this._moveForwardDelayTimer = 0f;
 
         // Movement
+        this._justMovedForward = false;
         if (Input.GetKeyDown(KeyCode.W))
+        {
+            this._moveForwardDelayTimer = 0f;
+            this._movingForward = true;
+            this._justMovedForward = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            this._moveForwardDelayTimer = this._moveForwardDelay;
+            this._movingForward = false;
+        }
+
+        if (this._movingForward && this._moveForwardDelayTimer <= 0f)
         {
             Vector3 nextPosition = this._targetPosition + this._facingDirection;
             if (nextPosition.x >= 0 && nextPosition.x < this.width && nextPosition.z >= 0 && nextPosition.z < this.height && this._mazeData[this.floors - 1 - (int)nextPosition.y, (int)nextPosition.z, (int)nextPosition.x].mazeStructure != MazeStructure.Wall)
             {
                 this._targetPosition += this._facingDirection;
                 this._positionTimer = 0f;
+                this._moveForwardDelayTimer = this._moveForwardDelay;
             }
             else if
                 (
-                this._mazeData[this.floors - 1 - (int)this._targetPosition.y, (int)this._targetPosition.z, (int)this._targetPosition.x].mazeStructure == MazeStructure.Stairs
+                this._justMovedForward
+                && this._mazeData[this.floors - 1 - (int)this._targetPosition.y, (int)this._targetPosition.z, (int)this._targetPosition.x].mazeStructure == MazeStructure.Stairs
                 && (this.floors - 1 - (int)this._targetPosition.y) > 0
                 && this._mazeData[this.floors - 1 - (int)this._targetPosition.y - 1, (int)this._targetPosition.z, (int)this._targetPosition.x].mazeStructure == MazeStructure.Stairs
                 )
             {
                 this._targetPosition.y += 1;
                 this._positionTimer = 0f;
+
+                this._moveForwardDelayTimer = this._moveForwardDelay;
             }
         }
 
