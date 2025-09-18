@@ -69,6 +69,13 @@ public class Maze : MonoBehaviour
     private int maxTop;
     private int maxBottom;
 
+    private float _positionTimer = 1f;
+    private float _rotationTimer = 1f;
+
+    Vector3 _targetPosition = Vector3.zero;
+    Vector3 _facingDirection = Vector3.forward;
+    Quaternion _targetRotation = Quaternion.identity;
+
     private void Start()
     {
         Random.InitState(69);
@@ -116,6 +123,7 @@ public class Maze : MonoBehaviour
         this._mazeData = new MazeData[this.floors, this.height, this.width];
 
         // Init Maze Data
+        bool spawnFound = false;
         for (int z = 0; z < this.floors; z++)
         {
             Color[] floorPixels = this._mazeImages[z].GetPixels();
@@ -157,6 +165,12 @@ public class Maze : MonoBehaviour
                         continue;
                     }
 
+                    if (!spawnFound && z == this.floors - 1 && floorPixels[pixelIndex] == PATH_COLOR)
+                    {
+                        this._targetPosition = new Vector3(x, 0f, y);
+                        spawnFound = true;
+                    }
+
                     if (floorPixels[pixelIndex] == PATH_COLOR) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Path); }
                     if (floorPixels[pixelIndex] == WALL_COLOR) { this._mazeData[z, y, x] = new MazeData(MazeStructure.Wall); }
 
@@ -184,9 +198,7 @@ public class Maze : MonoBehaviour
                     if (this._mazeData[z, y, x].mazeStructure == MazeStructure.Wall) continue;
 
                     float xPos = x * 2f;
-                    //float xPos = x * 2f;
                     float yPos = y * 2f;
-                    //float yPos = y * 2f;
                     float zPos = (this.floors - 1 - z) * 2f;
 
                     GameObject newBlock = GameObject.Instantiate(this._blockPrefab, new Vector3(xPos, zPos, yPos), Quaternion.identity);
@@ -318,13 +330,6 @@ public class Maze : MonoBehaviour
         }
     }
 
-    private float _positionTimer = 1f;
-    private float _rotationTimer = 1f;
-
-    Vector3 _targetPosition = Vector3.zero;
-    Vector3 _facingDirection = Vector3.forward;
-    Quaternion _targetRotation = Quaternion.identity;
-
     private void Update()
     {
         this._positionTimer += Time.deltaTime;
@@ -335,7 +340,8 @@ public class Maze : MonoBehaviour
         // Movement
         if (Input.GetKeyDown(KeyCode.W))
         {
-            if (!Physics.Raycast(this._player.transform.position, this._player.transform.forward, 2f))
+            Vector3 nextPosition = this._targetPosition + this._facingDirection;
+            if (nextPosition.x >= 0 && nextPosition.x < this.width && nextPosition.z >= 0 && nextPosition.z < this.height && this._mazeData[this.floors - 1 - (int)nextPosition.y, (int)nextPosition.z, (int)nextPosition.x].mazeStructure != MazeStructure.Wall)
             {
                 this._targetPosition += this._facingDirection;
                 this._positionTimer = 0f;
