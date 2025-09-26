@@ -39,12 +39,16 @@ public class Maze : MonoBehaviour
     [SerializeField] private GameObject _triangles;
     [SerializeField] private GameObject _stairs;
 
+    [SerializeField] private GameObject _cordaSaco;
     [SerializeField] private GameObject _tubinX;
     [SerializeField] private GameObject _tubinY;
     [SerializeField] private GameObject _tubinZ;
+    [SerializeField] private GameObject _tubinEscada;
 
-    [SerializeField] private Color[] _tubeColors;
+    [SerializeField] private Color[] _verticalTubeColors;
+    [SerializeField] private Color[] _horizontalTubeColors;
     [SerializeField] private Color[] _plateColors;
+    [SerializeField] private Color[] _structureColors;
 
     // Basic type
     private readonly Color WALL_COLOR = new Color(0f, 0f, 0f); // #000000
@@ -240,8 +244,13 @@ public class Maze : MonoBehaviour
                             MeshRenderer stairRend = newStair.GetComponent<MeshRenderer>();
                             for (int i = 0; i < stairRend.materials.Length; i++)
                             {
-                                stairRend.materials[i].color = this._plateColors[Random.Range(0, this._tubeColors.Length)];
+                                stairRend.materials[i].color = this._structureColors[Random.Range(0, this._structureColors.Length)];
                             }
+
+                            this.SpawnTubin(this._tubinEscada, newBlock.transform, Vector3.back + Vector3.up + Vector3.left, true); // BL
+                            this.SpawnTubin(this._tubinEscada, newBlock.transform, Vector3.back + Vector3.up + Vector3.right, true); // BR
+                            this.SpawnTubin(this._tubinEscada, newBlock.transform, Vector3.forward + Vector3.up + Vector3.left, true); // TL
+                            this.SpawnTubin(this._tubinEscada, newBlock.transform, Vector3.forward + Vector3.up + Vector3.right, true); // TR
 
                             break;
 
@@ -261,7 +270,7 @@ public class Maze : MonoBehaviour
                             MeshRenderer rend = newPiece.GetComponent<MeshRenderer>();
                             for (int i = 0; i < rend.materials.Length; i++)
                             {
-                                rend.materials[i].color = this._tubeColors[Random.Range(0, this._tubeColors.Length)];
+                                rend.materials[i].color = this._structureColors[Random.Range(0, this._structureColors.Length)];
                             }
 
                             break;
@@ -273,7 +282,7 @@ public class Maze : MonoBehaviour
                             MeshRenderer sackRend = newSack.GetComponent<MeshRenderer>();
                             for (int i = 0; i < sackRend.materials.Length; i++)
                             {
-                                sackRend.materials[i].color = sackRend.materials[i].name.ToLower() == "string" ? Color.black : this._tubeColors[Random.Range(0, this._tubeColors.Length)];
+                                sackRend.materials[i].color = sackRend.materials[i].name.ToLower() == "string" ? Color.black : this._structureColors[Random.Range(0, this._structureColors.Length)];
                             }
 
                             break;
@@ -304,25 +313,25 @@ public class Maze : MonoBehaviour
                     // vertical v2
                     if (nFlag || eFlag)
                     {
-                        this.SpawnTubin(_tubinY, newBlock.transform, Vector3.forward + Vector3.up + Vector3.right); // TR
+                        this.SpawnTubin(this._tubinY, newBlock.transform, Vector3.forward + Vector3.up + Vector3.right, true); // TR
                     }
 
                     if (nFlag && (wFlag || (y < this.height - 1 && x > 0 && this._mazeData[z, y + 1, x - 1].mazeStructure != MazeStructure.Wall)))
                     {
-                        this.SpawnTubin(this._tubinY, newBlock.transform, Vector3.forward + Vector3.up + Vector3.left); // TL
+                        this.SpawnTubin(this._tubinY, newBlock.transform, Vector3.forward + Vector3.up + Vector3.left, true); // TL
                     }
 
                     if (!nFlag && (wFlag && (y < this.height - 1 && x > 0 && this._mazeData[z, y + 1, x - 1].mazeStructure == MazeStructure.Wall)))
                     {
-                        this.SpawnTubin(this._tubinY, newBlock.transform, Vector3.forward + Vector3.up + Vector3.left); // TL
+                        this.SpawnTubin(this._tubinY, newBlock.transform, Vector3.forward + Vector3.up + Vector3.left, true); // TL
                     }
 
                     if (sFlag)
                     {
-                        this.SpawnTubin(this._tubinY, newBlock.transform, Vector3.back + Vector3.up + Vector3.right); // BR
+                        this.SpawnTubin(this._tubinY, newBlock.transform, Vector3.back + Vector3.up + Vector3.right, true); // BR
                         if (wFlag)
                         {
-                            this.SpawnTubin(this._tubinY, newBlock.transform, Vector3.back + Vector3.up + Vector3.left); // BL
+                            this.SpawnTubin(this._tubinY, newBlock.transform, Vector3.back + Vector3.up + Vector3.left, true); // BL
                         }
                     }
                 }
@@ -460,11 +469,11 @@ public class Maze : MonoBehaviour
         return ((Vector3.Angle(Vector3.forward, lookDirection) * Mathf.Sign(Vector3.Dot(Vector3.up, Vector3.Cross(Vector3.forward, lookDirection)))) + 360) % 360;
     }
 
-    private void SpawnTubin(GameObject prefab, Transform parent, Vector3 position)
+    private void SpawnTubin(GameObject prefab, Transform parent, Vector3 position, bool isVertical = false)
     {
         GameObject newTubin = GameObject.Instantiate(prefab, parent, false);
         newTubin.transform.localPosition = position;
 
-        newTubin.GetComponent<MeshRenderer>().material.color = this._tubeColors[Random.Range(0, this._tubeColors.Length)];
+        newTubin.GetComponent<MeshRenderer>().material.color = isVertical ? this._verticalTubeColors[Random.Range(0, this._verticalTubeColors.Length)] : this._horizontalTubeColors[Random.Range(0, this._horizontalTubeColors.Length)];
     }
 }
