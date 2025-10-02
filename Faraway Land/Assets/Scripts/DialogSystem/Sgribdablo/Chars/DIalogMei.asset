@@ -15,4 +15,9 @@ MonoBehaviour:
   characterName: MEI
   frameColor: {r: 0.8113208, g: 0.7158713, b: 0, a: 1}
   textColor: {r: 1, g: 0.9211027, b: 0.4764151, a: 1}
-  characterPic: {fileID: 1960816246, guid: b74545f1f7ae9664299519e90d4a2a5b, type: 3}
+  characterBaseImage: {fileID: 21300000, guid: bf8b7d0f4d5c15c4ba73b5960355c2e0, type: 3}
+  characterNeutralExpression: {fileID: 21300000, guid: bd9cf5edea394144fa2d0885337bbc57, type: 3}
+  characterHappyExpression: {fileID: 21300000, guid: 3f5a669c0f4dbba4a9db2004ff38f2f5, type: 3}
+  characterSadExpression: {fileID: 21300000, guid: d17772cbb62c9c848a6c0af695f341b7, type: 3}
+  characterEmbarassedExpression: {fileID: 21300000, guid: a964df60a0449ab48bd7264e60b6a9d5, type: 3}
+  characterAngryExpression: {fileID: 21300000, guid: b05c8f2f8de38d5428adeea947ff4395, type: 3}
