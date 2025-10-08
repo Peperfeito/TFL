@@ -15,4 +15,9 @@ MonoBehaviour:
   characterName: Ash
   frameColor: {r: 1, g: 1, b: 1, a: 1}
   textColor: {r: 1, g: 1, b: 1, a: 1}
-  characterPic: {fileID: -1023032857, guid: a28e10852c9272c4697624c2a75087c6, type: 3}
+  characterBaseImage: {fileID: 21300000, guid: ce5dc464099dbcc4d8884dbf329d58e3, type: 3}
+  characterNeutralExpression: {fileID: 21300000, guid: cca856e2b7e798e488853d70f651b3df, type: 3}
+  characterHappyExpression: {fileID: 21300000, guid: df07953f0ae3a904bb4636dc12362f4f, type: 3}
+  characterSadExpression: {fileID: 21300000, guid: 286453060744c53498575238c890f535, type: 3}
+  characterEmbarassedExpression: {fileID: 21300000, guid: c37e0c3b9e9210c43b937621b2f918c6, type: 3}
+  characterAngryExpression: {fileID: 21300000, guid: 359227df5861dba41acd11176a015821, type: 3}

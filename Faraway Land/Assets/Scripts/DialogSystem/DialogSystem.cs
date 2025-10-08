@@ -13,12 +13,14 @@ public class DialogSystem : MonoBehaviour
     [SerializeField] private GameObject _box;
     private Image _boxImage;
     [SerializeField] private Transform _charLeft;
-    private Image _charLeftPic;
+    private Image _charLeftBaseImage;
+    private Image _charLeftExpression;
     private Image _charLeftNamePlate;
     private TextMeshProUGUI _charLeftName;
     private GameObject _charLeftNamePlateOverlay;
     [SerializeField] private Transform _charRight;
-    private Image _charRightPic;
+    private Image _charRightBaseImage;
+    private Image _charRightExpression;
     private Image _charRightNamePlate;
     private TextMeshProUGUI _charRightName;
     private GameObject _charRightNamePlateOverlay;
@@ -60,15 +62,17 @@ public class DialogSystem : MonoBehaviour
 
         this._boxImage = this._box.GetComponent<Image>();
 
-        this._charLeftPic = this._charLeft.GetChild(0).GetComponent<Image>();
-        this._charLeftNamePlate = this._charLeft.GetChild(1).GetComponent<Image>();
+        this._charLeftBaseImage = this._charLeft.GetChild(0).GetComponent<Image>();
+        this._charLeftExpression = this._charLeft.GetChild(1).GetComponent<Image>();
+        this._charLeftNamePlate = this._charLeft.GetChild(2).GetComponent<Image>();
         this._charLeftName = this._charLeftNamePlate.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        this._charLeftNamePlateOverlay = this._charLeft.GetChild(2).gameObject;
+        this._charLeftNamePlateOverlay = this._charLeft.GetChild(3).gameObject;
 
-        this._charRightPic = this._charRight.GetChild(0).GetComponent<Image>();
-        this._charRightNamePlate = this._charRight.GetChild(1).GetComponent<Image>();
+        this._charRightBaseImage = this._charRight.GetChild(0).GetComponent<Image>();
+        this._charRightExpression = this._charRight.GetChild(1).GetComponent<Image>();
+        this._charRightNamePlate = this._charRight.GetChild(2).GetComponent<Image>();
         this._charRightName = this._charRightNamePlate.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        this._charRightNamePlateOverlay = this._charRight.GetChild(2).gameObject;
+        this._charRightNamePlateOverlay = this._charRight.GetChild(3).gameObject;
 
         this._optionButtons = new TextMeshProUGUI[this._optionBox.childCount];
         for (int i = 0; i < this._optionButtons.Length; i++)
@@ -153,6 +157,7 @@ public class DialogSystem : MonoBehaviour
     {
         DialogInfo dialogInfo = this._currentDialog.dialogChain[this._dialogChainIndex];
         DialogCharacter speakingCharacter = this._currentDialog.characters[dialogInfo.characterIndex];
+        Sprite[] expressions = speakingCharacter.GetExpressions();
 
         this._boxImage.color = speakingCharacter.frameColor;
         this._textBox.text = dialogInfo.text;
@@ -163,16 +168,22 @@ public class DialogSystem : MonoBehaviour
             this._charLeftName.text = speakingCharacter.characterName;
             this._charLeftName.color = speakingCharacter.textColor;
             this._charLeftNamePlate.color = speakingCharacter.frameColor;
-            this._charLeftPic.sprite = speakingCharacter.characterPic;
-            this._charLeftPic.color = Color.white;
-            this._charLeftPic.rectTransform.anchoredPosition = Vector2.zero;
+            
+            this._charLeftBaseImage.sprite = speakingCharacter.characterBaseImage;
+            this._charLeftBaseImage.color = Color.white;
+            this._charLeftBaseImage.rectTransform.anchoredPosition = Vector2.zero;
+            this._charLeftExpression.sprite = expressions[(int)dialogInfo.characterExpression];
+            this._charLeftExpression.color = Color.white;
+            this._charLeftExpression.rectTransform.anchoredPosition = Vector2.zero;
             this._charLeft.gameObject.SetActive(true);
             this._charLeftNamePlateOverlay.SetActive(false);
 
             if (this._charRight.gameObject.activeSelf)
             {
-                this._charRightPic.color = Color.white * this._inactiveColorAlpha;
-                this._charRightPic.rectTransform.anchoredPosition = Vector2.up * -this._inactiveHeightOffset;
+                this._charRightBaseImage.color = Color.white * this._inactiveColorAlpha;
+                this._charRightBaseImage.rectTransform.anchoredPosition = Vector2.up * -this._inactiveHeightOffset;
+                this._charRightExpression.color = Color.white * this._inactiveColorAlpha;
+                this._charRightExpression.rectTransform.anchoredPosition = Vector2.up * -this._inactiveHeightOffset;
                 this._charRightNamePlateOverlay.SetActive(true);
             }
         }
@@ -182,16 +193,21 @@ public class DialogSystem : MonoBehaviour
             this._charRightName.text = speakingCharacter.characterName;
             this._charRightName.color = speakingCharacter.textColor;
             this._charRightNamePlate.color = speakingCharacter.frameColor;
-            this._charRightPic.sprite = speakingCharacter.characterPic;
-            this._charRightPic.color = Color.white;
-            this._charRightPic.rectTransform.anchoredPosition = Vector2.zero;
+            this._charRightBaseImage.sprite = speakingCharacter.characterBaseImage;
+            this._charRightBaseImage.color = Color.white;
+            this._charRightBaseImage.rectTransform.anchoredPosition = Vector2.zero;
+            this._charRightExpression.sprite = expressions[(int)dialogInfo.characterExpression];
+            this._charRightExpression.color = Color.white;
+            this._charRightExpression.rectTransform.anchoredPosition = Vector2.zero;
             this._charRight.gameObject.SetActive(true);
             this._charRightNamePlateOverlay.SetActive(false);
 
             if (this._charLeft.gameObject.activeSelf)
             {
-                this._charLeftPic.color = Color.white * this._inactiveColorAlpha;
-                this._charLeftPic.rectTransform.anchoredPosition = Vector2.up * -this._inactiveHeightOffset;
+                this._charLeftBaseImage.color = Color.white * this._inactiveColorAlpha;
+                this._charLeftBaseImage.rectTransform.anchoredPosition = Vector2.up * -this._inactiveHeightOffset;
+                this._charLeftExpression.color = Color.white * this._inactiveColorAlpha;
+                this._charLeftExpression.rectTransform.anchoredPosition = Vector2.up * -this._inactiveHeightOffset;
                 this._charLeftNamePlateOverlay.SetActive(true);
             }
         }

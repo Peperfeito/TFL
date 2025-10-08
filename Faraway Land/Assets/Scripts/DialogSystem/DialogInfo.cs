@@ -4,6 +4,7 @@ using UnityEngine;
 public struct DialogInfo
 {
     public int characterIndex;
+    public CharacterExpression characterExpression;
     public DialogSide dialogSide;
     [TextArea] public string text;
     

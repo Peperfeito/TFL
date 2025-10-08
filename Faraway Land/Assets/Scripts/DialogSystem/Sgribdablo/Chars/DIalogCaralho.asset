@@ -15,4 +15,9 @@ MonoBehaviour:
   characterName: Caralho
   frameColor: {r: 0.14901961, g: 0.7294118, b: 0.6862745, a: 1}
   textColor: {r: 0.36044857, g: 0.9433962, b: 0.900069, a: 1}
-  characterPic: {fileID: 1371090615, guid: 6486334b7fefc3244a886b6d3783aef0, type: 3}
+  characterBaseImage: {fileID: 21300000, guid: 8646eba09d6d76044a0cb87507d35bb5, type: 3}
+  characterNeutralExpression: {fileID: 21300000, guid: 6b90750c2d481c846a6df1b70bd6774d, type: 3}
+  characterHappyExpression: {fileID: 21300000, guid: 74fb5d12f23095948b0c06549553e6b5, type: 3}
+  characterSadExpression: {fileID: 21300000, guid: a5a375e8571b54145acc65415543dc55, type: 3}
+  characterEmbarassedExpression: {fileID: 21300000, guid: 9b780c61e5eaa894192e40a03f6c0ddb, type: 3}
+  characterAngryExpression: {fileID: 21300000, guid: fd6d5ddee432898469c3f8619403e55e, type: 3}
