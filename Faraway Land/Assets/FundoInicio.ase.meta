@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -77,6 +78,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +91,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -522,166 +525,191 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1767523933
+    uuid:
+      value0: 3596213265
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -698754031
     name: FundoInicio
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: FundoInicio_Frame_0
+    - name: Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: 675515e1be7cc314d9fd0a800490c2b0
-    - name: FundoInicio_Frame_1
+    - name: Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: a351b7797ea5e3448ada41be07b4ebcc
-    - name: FundoInicio_Frame_2
+    - name: Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: 42ea5320efce002428df485b50bc7dba
-    - name: FundoInicio_Frame_3
+    - name: Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: dd56b2f4d8cd8534694188f83e7007fb
-    - name: FundoInicio_Frame_4
+    - name: Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: 21b3469581c79ac4282df80bf290bb5d
-    - name: FundoInicio_Frame_5
+    - name: Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: e96cf3afa62724f419256eb474639961
-    - name: FundoInicio_Frame_6
+    - name: Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: 6484a7f238fa66442b0c7990c75caff1
-    - name: FundoInicio_Frame_7
+    - name: Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: 2cd948eb2dfc93c4eb389fea6124bcba
-    - name: FundoInicio_Frame_8
+    - name: Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: 7c438fbce1acc6e47aa6aab9b9772dd0
-    - name: FundoInicio_Frame_9
+    - name: Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: 6c36fddc952c0834bb7d1f0be9967576
-    - name: FundoInicio_Frame_10
+    - name: Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: dfb74f8f7577e3846bb96e3fc072d60b
-    - name: FundoInicio_Frame_11
+    - name: Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: d0809022381412c44baf8601fc72e696
-    - name: FundoInicio_Frame_12
+    - name: Frame_12
       frameIndex: 12
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: 53f02901fc1e31f45ac1b361b2114373
-    - name: FundoInicio_Frame_13
+    - name: Frame_13
       frameIndex: 13
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: 2dc10ae8b6074914ea14c7feea6cec2a
-    - name: FundoInicio_Frame_14
+    - name: Frame_14
       frameIndex: 14
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: 8129ac13ea01ee543b4b5c55e2969db0
-    - name: FundoInicio_Frame_15
+    - name: Frame_15
       frameIndex: 15
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: fbcd6328d8c90ff44987f0973afaac9e
-    - name: FundoInicio_Frame_16
+    - name: Frame_16
       frameIndex: 16
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: 46211949f6c55fe41b4a1885497b4c7b
-    - name: FundoInicio_Frame_17
+    - name: Frame_17
       frameIndex: 17
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: bf37d2d7c5814364ea58be2e98938611
-    - name: FundoInicio_Frame_18
+    - name: Frame_18
       frameIndex: 18
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
         width: 960
         height: 480
       spriteId: b9c6cbec3bd96a54597d318aab61ff11
-    - name: FundoInicio_Frame_19
+    - name: Frame_19
       frameIndex: 19
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -739,6 +767,8 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 960, y: 480}
+  previousTextureSize: {x: 4096, y: 4096}
