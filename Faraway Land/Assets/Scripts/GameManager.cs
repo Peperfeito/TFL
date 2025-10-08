@@ -11,6 +11,8 @@ public class GameManager : IPersistentSingleton<GameManager>
 
     private MinigameController[] _minigames;
 
+    public double playerSeed;
+
     protected override void Awake()
     {
         base.Awake();
@@ -18,6 +20,7 @@ public class GameManager : IPersistentSingleton<GameManager>
         this._minigames = new MinigameController[(int)Minigames._COUNT];
         this._inventory = new Inventory();
         this._inventory.AddItem(this._diary);
+
     }
 
     private void Start()
