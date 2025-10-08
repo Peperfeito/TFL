@@ -8,5 +8,23 @@ public class DialogCharacter : ScriptableObject
     public string characterName;
     public Color frameColor;
     public Color textColor;
-    public Sprite characterPic;
+    public Sprite characterBaseImage;
+    [Header("Expressions")]
+    public Sprite characterNeutralExpression;
+    public Sprite characterHappyExpression;
+    public Sprite characterSadExpression;
+    public Sprite characterEmbarassedExpression;
+    public Sprite characterAngryExpression;
+
+    public Sprite[] GetExpressions()
+    {
+        return new Sprite[]
+        {
+            characterNeutralExpression,
+            characterHappyExpression,
+            characterSadExpression,
+            characterEmbarassedExpression,
+            characterAngryExpression,
+        };
+    }
 }

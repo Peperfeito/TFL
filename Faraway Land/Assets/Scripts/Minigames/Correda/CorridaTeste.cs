@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [System.Serializable] public struct VecTrack
 {
@@ -21,6 +22,8 @@ using UnityEngine;
 public class CorridaTeste : MonoBehaviour
 {
     public Transform Car;
+    public Transform[] rivalCar; List<Vector2> defaultRivalCarPoses = new List<Vector2>(); 
+
     public Transform Background;
     public int screenWidth = 160;
     public int screenHeight = 100;
@@ -84,6 +87,11 @@ public class CorridaTeste : MonoBehaviour
         squareHolderSecond = new GameObject();
         squareHolderSecond.name = "squareHolderTwo";
 
+        for(int i = 0; i < rivalCar.Length    ; i++)
+        {
+            defaultRivalCarPoses.Add(rivalCar[i].position);
+        }
+       
         for(int y = 0; y < screenHeight; y++)
         {
             for(int x = -100;  x < screenWidth + 100; x++)
@@ -428,8 +436,34 @@ public class CorridaTeste : MonoBehaviour
         int nCarPos = screenWidth / 2 + ((int)(screenWidth * fCarPos) / 2) - 7;
         Car.position = new Vector2 (nCarPos, Car.position.y);
 
+        for(int i = 0; i < rivalCar.Length; i++)
+        {
+            float fRivalPerspective = (float)(rivalCar[i].transform.position.y - screenHeight / 2) / (screenHeight / 2.0f);
+            float fRivalCarPosY = fSpeed > 0 ? rivalCar[i].position.y + 10 * fSpeed * Time.deltaTime : rivalCar[i].position.y - 40 * Time.deltaTime;
+            rivalCar[i].transform.position = new Vector2(defaultRivalCarPoses[i].x + (fCurvature * Mathf.Pow(1.0f - fRivalPerspective, 3)) * screenWidth, fRivalCarPosY);
+
+            if (rivalCar[i].transform.position.x < 150 && rivalCar[i].transform.position.x > 2 && rivalCar[i].transform.position.y < 103 && rivalCar[i].transform.position.y > 6)
+            {
+                rivalCar[i].transform.localScale = new Vector2(0.9f - 1 * Mathf.Pow(-1.0f + fRivalPerspective, 2), 0.9f - 1 * Mathf.Pow(-1.0f + fRivalPerspective, 2));
+                if (rivalCar[i].transform.localScale.x < 0)
+                {
+                    rivalCar[i].GetComponent<SpriteRenderer>().enabled = false;
+                }
+                else
+                {
+                    rivalCar[i].GetComponent<SpriteRenderer>().enabled = true;
+                }
+            }
+        }
+        
         kartAnimation.SetInteger("InputH", (int)(vecTrack[nTrackSection - 1].curva * 10));
         kartAnimation.SetFloat("AnimationSpeeders", fSpeed);
+        
+        for(int i = 0; i< rivalCar.Length; i++)
+        
+        {
+            rivalCar[i].GetComponent<Animator>().SetInteger("InputH", (int)(vecTrack[nTrackSection - 1].curva * 10));
+        }
         
         Background.transform.position = new Vector3 (Background.transform.position.x - vecTrack[nTrackSection - 1].curva * fSpeed, Background.transform.position.y - fDistance/50000 * fSpeed);
 

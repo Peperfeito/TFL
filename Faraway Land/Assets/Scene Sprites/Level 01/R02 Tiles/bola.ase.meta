@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -77,6 +78,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +91,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -602,198 +605,227 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1340679142
+    uuid:
+      value0: 3739843842
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: -555123454
     name: bola
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: bola_Frame_0
+    - name: Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: 6adabed2151c43043a830e2f7b5574fd
-    - name: bola_Frame_1
+    - name: Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 17
         width: 31
         height: 31
       spriteId: 89fb42a7aa6c3c843a7008e67b3c1a88
-    - name: bola_Frame_2
+    - name: Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: 172c2fd93a112ee41abba9673426bdf6
-    - name: bola_Frame_3
+    - name: Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 17
         width: 31
         height: 31
       spriteId: e84d77542f9eba340b6097171c437b68
-    - name: bola_Frame_4
+    - name: Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: ff5e87a914a333b43aeb52b26e976edc
-    - name: bola_Frame_5
+    - name: Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: 7602c36ebdc3c4b4d8d0c7b0ddfed296
-    - name: bola_Frame_6
+    - name: Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 31
       spriteId: 95f8a47a5d429c847a291f06521676c6
-    - name: bola_Frame_7
+    - name: Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: 8faa53dbae97f4e49afc8b2311db15ab
-    - name: bola_Frame_8
+    - name: Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: e34ea89ee0024724c9aecf65c8938015
-    - name: bola_Frame_9
+    - name: Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: 522931105d840b843af3d0197bca3212
-    - name: bola_Frame_10
+    - name: Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: c271c674c54307744a0cef58a1511ed9
-    - name: bola_Frame_11
+    - name: Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: e2733a1499a5c6c4680220216dc4c5ff
-    - name: bola_Frame_12
+    - name: Frame_12
       frameIndex: 12
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: f7e45a5b3615ea14a90e52971d6782cf
-    - name: bola_Frame_13
+    - name: Frame_13
       frameIndex: 13
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: 190a3be9616929d4ba930aa7d3d0f22e
-    - name: bola_Frame_14
+    - name: Frame_14
       frameIndex: 14
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: 3465dcaac82e85e4b950a1a39ece6733
-    - name: bola_Frame_15
+    - name: Frame_15
       frameIndex: 15
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: ff1351eccaf22ce48be89fd431d32820
-    - name: bola_Frame_16
+    - name: Frame_16
       frameIndex: 16
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: c424ae6130eb4d0449c72f60840de133
-    - name: bola_Frame_17
+    - name: Frame_17
       frameIndex: 17
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: 8df38648dea2b06458a8eb60518b8406
-    - name: bola_Frame_18
+    - name: Frame_18
       frameIndex: 18
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: 7b4dcb16d3da8a34690ff92272322dec
-    - name: bola_Frame_19
+    - name: Frame_19
       frameIndex: 19
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: 8cda968b13ca4a64a987b8b90f5f59bf
-    - name: bola_Frame_20
+    - name: Frame_20
       frameIndex: 20
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: 45c1888ac319f1a4899bfcc835ab59fa
-    - name: bola_Frame_21
+    - name: Frame_21
       frameIndex: 21
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: 5746a21f1760eaf4eb95bc9e6fa09f53
-    - name: bola_Frame_22
+    - name: Frame_22
       frameIndex: 22
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
         width: 32
         height: 32
       spriteId: 4d255d6aed11fe94bb0db02d4d378162
-    - name: bola_Frame_23
+    - name: Frame_23
       frameIndex: 23
+      additiveSortOrder: 0
       cellRect:
         x: 16
         y: 16
@@ -803,6 +835,8 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 64, y: 64}
+  previousTextureSize: {x: 256, y: 256}
