@@ -16,7 +16,32 @@ public class MinigameController : MonoBehaviour
         this._minigameObject = this.transform.GetChild(0).gameObject;
     }
 
-    public virtual void EnableMinigame() { }
-    public virtual void DisableMinigame() { }
-    public virtual void CompleteMinigame() { }
+    public virtual bool EnableMinigame(bool skipCondition = false)
+    {
+        if (this._isComplete || skipCondition) return false;
+
+        this._minigameObject.SetActive(true);
+
+        this._playerCamera = Camera.main;
+        this._playerCamera.gameObject.SetActive(false);
+
+        FindObjectOfType<FadeEffect>().FadeOut();
+
+        this._isRunning = true;
+
+        return true;
+    }
+
+    public virtual void DisableMinigame()
+    {
+        this._playerCamera.gameObject.SetActive(true);
+        this._minigameObject.SetActive(false);
+
+        this._isRunning = false;
+    }
+
+    public virtual void CompleteMinigame()
+    {
+
+    }
 }

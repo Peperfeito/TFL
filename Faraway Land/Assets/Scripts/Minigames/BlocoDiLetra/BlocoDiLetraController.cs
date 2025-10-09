@@ -22,26 +22,15 @@ public class BlocoDiLetraController : MinigameController
         if (Input.GetKeyDown(KeyCode.Escape)) { this.DisableMinigame(); }
     }
 
-    public override void EnableMinigame()
+    public override bool EnableMinigame(bool skipCondition = false)
     {
-        if (this._isComplete) { return; }
-
-        this._minigameObject.SetActive(true);
-
-        this._playerCamera = Camera.main;
-        this._playerCamera.gameObject.SetActive(false);
-
-        FindObjectOfType<FadeEffect>().FadeOut();
-
-        this._isRunning = true;
+        if (!base.EnableMinigame()) return false;
+        return true;
     }
 
     public override void DisableMinigame()
     {
-        this._playerCamera.gameObject.SetActive(true);
-        this._minigameObject.SetActive(false);
-
-        this._isRunning = false;
+        base.DisableMinigame();
     }
 
     public override void CompleteMinigame()

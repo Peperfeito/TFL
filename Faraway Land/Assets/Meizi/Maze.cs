@@ -80,8 +80,16 @@ public class Maze : MonoBehaviour
     Vector3 _facingDirection = Vector3.forward;
     Quaternion _targetRotation = Quaternion.identity;
 
-    private void Start()
+    private bool _hasInit = false;
+
+    public bool InitMaze()
     {
+        if (this._hasInit)
+        {
+            // colocar a camera no inicio do maze
+            return false;
+        }
+
         Random.InitState(69);
 
         this.floors = this._mazeImages.Length;
@@ -274,7 +282,7 @@ public class Maze : MonoBehaviour
                             }
 
                             break;
-                        
+
                         case MazeStructure.Sacks:
 
                             GameObject newSack = GameObject.Instantiate(this._sacks, structureAnchor, false);
@@ -294,13 +302,13 @@ public class Maze : MonoBehaviour
                     ground.GetComponent<MeshRenderer>().material.color = this._plateColors[Random.Range(0, this._plateColors.Length)];
 
                     /* Tubin */
-                    
+
                     // chao
                     this.SpawnTubin(this._tubinX, newBlock.transform, Vector3.forward); // ground top
                     if (sFlag) { this.SpawnTubin(this._tubinX, newBlock.transform, Vector3.back); } // ground bottom
                     this.SpawnTubin(this._tubinZ, newBlock.transform, Vector3.right);// ground right
                     if (wFlag) { this.SpawnTubin(this._tubinZ, newBlock.transform, Vector3.left); } // ground left
-                    
+
                     // teto
                     if (cFlag)
                     {
@@ -337,6 +345,9 @@ public class Maze : MonoBehaviour
                 }
             }
         }
+
+        this._hasInit = true;
+        return true;
     }
 
     private bool _movingForward = false;
@@ -346,6 +357,8 @@ public class Maze : MonoBehaviour
 
     private void Update()
     {
+        if (!this._hasInit) return;
+
         this._positionTimer += Time.deltaTime;
         if (this._positionTimer >= 1f) this._positionTimer = 1f;
         this._rotationTimer += Time.deltaTime;

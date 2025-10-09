@@ -4,6 +4,7 @@ public enum Minigames
     _LV1_START_,
     BlocoDiLetra,
     BocaDoPaiacu,
+    Brinquedaum,
     Correda,
     Clawdia,
     Sidescroll,

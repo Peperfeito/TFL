@@ -90,33 +90,24 @@ public class BocaDoPaiacuController : MinigameController
         }
     }
 
-    public override void EnableMinigame()
+    public override bool EnableMinigame(bool skipCondition = false)
     {
-        if (this._isComplete || !GameManager.Instance.HasItemInInventory(this._chave)) { return; }
-
-        this._minigameObject.SetActive(true);
-
-        this._playerCamera = Camera.main;
-        this._playerCamera.gameObject.SetActive(false);
+        if (!base.EnableMinigame(!GameManager.Instance.HasItemInInventory(this._chave))) return false;
 
         this._barraDeForcaInstance = Instantiate(this._barraDeForca, GameObject.Find("GameplayCanvas").transform);
         this._medidorDeForca = this._barraDeForcaInstance.transform.GetChild(0).GetComponent<Image>();
 
-        FindObjectOfType<FadeEffect>().FadeOut();
-
         this._bolinha.transform.position = this._ancora.position;
         lastPosition = this._bolinha.transform.position;
 
-        this._isRunning = true;
+        return true;
     }
 
     public override void DisableMinigame()
     {
-        this._playerCamera.gameObject.SetActive(true);
-        this._minigameObject.SetActive(false);
         Destroy(this._barraDeForcaInstance);
-
-        this._isRunning = false;
+        
+        base.DisableMinigame();
     }
 
     public override void CompleteMinigame()
