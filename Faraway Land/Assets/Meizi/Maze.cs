@@ -29,9 +29,40 @@ public struct MazeData // TODO: talvez tirar maze data, pq ta meio que inutil ag
     }
 }
 
+public enum EnemyPersonalities
+{
+    Agressive,
+    Passive,
+    Coward,
+    Dumb,
+}
+
+[System.Serializable]
+public class MazeEnemy
+{
+    public EnemyPersonalities personality; // Set in Unity Inspector
+
+    private GameObject _enemyObject;
+    private Vector3 _position;
+
+    public void InitEnemy(GameObject enemyObject, Vector3 startPosition)
+    {
+        this._enemyObject = enemyObject;
+        this._position = startPosition;
+
+        enemyObject.transform.position = startPosition; // ?
+    }
+
+    public void UpdateEnemy(Vector3 playerPosition)
+    {
+        // como que eu vou fazer isso, mds??? 
+    }
+}
+
 public class Maze : MonoBehaviour
 {
     [SerializeField] private Transform _player;
+    [SerializeField] private Animator _animator;
     [SerializeField] private GameObject _blockPrefab;
     [SerializeField] private Texture2D[] _mazeImages;
 
@@ -49,6 +80,9 @@ public class Maze : MonoBehaviour
     [SerializeField] private Color[] _horizontalTubeColors;
     [SerializeField] private Color[] _plateColors;
     [SerializeField] private Color[] _structureColors;
+
+    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private MazeEnemy[] _enemies;
 
     // Basic type
     private readonly Color WALL_COLOR = new Color(0f, 0f, 0f); // #000000
@@ -346,6 +380,13 @@ public class Maze : MonoBehaviour
             }
         }
 
+        // Spawn Enemies
+        foreach (MazeEnemy enemy in this._enemies)
+        {
+            GameObject newEnemy = GameObject.Instantiate(_enemyPrefab, this.transform);
+            enemy.InitEnemy(newEnemy, Vector3.zero);
+        }
+
         this._hasInit = true;
         return true;
     }
@@ -354,6 +395,15 @@ public class Maze : MonoBehaviour
     private bool _justMovedForward = false;
     private float _moveForwardDelay = .3f;
     private float _moveForwardDelayTimer = 0f;
+
+    private void Start()
+    {
+        this.InitMaze();
+
+        this._animator.transform.position = Camera.main.ViewportToWorldPoint(new Vector3(1f, -.1f, 0.5f));
+    }
+
+
 
     private void Update()
     {
@@ -365,6 +415,13 @@ public class Maze : MonoBehaviour
         if (this._rotationTimer >= 1f) this._rotationTimer = 1f;
         this._moveForwardDelayTimer -= Time.deltaTime;
         if (this._moveForwardDelayTimer <= 0f) this._moveForwardDelayTimer = 0f;
+
+        // Flash
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            bool current = this._animator.GetBool("Flashlight");
+            this._animator.SetBool("Flashlight", !current);
+        }
 
         // Movement
         this._justMovedForward = false;

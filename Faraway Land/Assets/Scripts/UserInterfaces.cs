@@ -5,4 +5,5 @@ public enum UserInterfaces
     Dialog,
     Letter,
     Diary,
+    Minigame,
 }

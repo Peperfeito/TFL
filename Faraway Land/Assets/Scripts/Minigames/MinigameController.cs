@@ -20,6 +20,8 @@ public class MinigameController : MonoBehaviour
     {
         if (this._isComplete || skipCondition) return false;
 
+        GameManager.Instance.currentUserInterface = UserInterfaces.Minigame;
+
         this._minigameObject.SetActive(true);
 
         this._playerCamera = Camera.main;
@@ -34,6 +36,8 @@ public class MinigameController : MonoBehaviour
 
     public virtual void DisableMinigame()
     {
+        GameManager.Instance.currentUserInterface = UserInterfaces.None;
+
         this._playerCamera.gameObject.SetActive(true);
         this._minigameObject.SetActive(false);
 
