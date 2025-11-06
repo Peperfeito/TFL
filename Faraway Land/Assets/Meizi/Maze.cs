@@ -81,6 +81,11 @@ public class Maze : MonoBehaviour
     [SerializeField] private Color[] _plateColors;
     [SerializeField] private Color[] _structureColors;
 
+    [SerializeField] private Texture2D[] _verticalTubeSprites;
+    [SerializeField] private Texture2D[] _horizontalTubeSprites;
+    [SerializeField] private Texture2D[] _plateSprites;
+    [SerializeField] private Texture2D[] _structureSprites;
+
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private MazeEnemy[] _enemies;
 
@@ -286,7 +291,8 @@ public class Maze : MonoBehaviour
                             MeshRenderer stairRend = newStair.GetComponent<MeshRenderer>();
                             for (int i = 0; i < stairRend.materials.Length; i++)
                             {
-                                stairRend.materials[i].color = this._structureColors[Random.Range(0, this._structureColors.Length)];
+                                //stairRend.materials[i].color = this._structureColors[Random.Range(0, this._structureColors.Length)];
+                                stairRend.materials[i].mainTexture = this._structureSprites[Random.Range(0, this._structureSprites.Length)];
                             }
 
                             this.SpawnTubin(this._tubinEscada, newBlock.transform, Vector3.back + Vector3.up + Vector3.left, true); // BL
@@ -312,7 +318,8 @@ public class Maze : MonoBehaviour
                             MeshRenderer rend = newPiece.GetComponent<MeshRenderer>();
                             for (int i = 0; i < rend.materials.Length; i++)
                             {
-                                rend.materials[i].color = this._structureColors[Random.Range(0, this._structureColors.Length)];
+                                //rend.materials[i].color = this._structureColors[Random.Range(0, this._structureColors.Length)];
+                                rend.materials[i].mainTexture = this._structureSprites[Random.Range(0, this._structureSprites.Length)];
                             }
 
                             break;
@@ -324,16 +331,19 @@ public class Maze : MonoBehaviour
                             MeshRenderer sackRend = newSack.GetComponent<MeshRenderer>();
                             for (int i = 0; i < sackRend.materials.Length; i++)
                             {
-                                sackRend.materials[i].color = sackRend.materials[i].name.ToLower() == "string" ? Color.black : this._structureColors[Random.Range(0, this._structureColors.Length)];
+                                //sackRend.materials[i].color = sackRend.materials[i].name.ToLower() == "string" ? Color.black : this._structureColors[Random.Range(0, this._structureColors.Length)];
+                                sackRend.materials[i].mainTexture = this._structureSprites[Random.Range(0, this._structureSprites.Length)];
                             }
 
                             break;
                     }
 
                     cieling.gameObject.SetActive(cFlag);
-                    cieling.GetComponent<MeshRenderer>().material.color = this._plateColors[Random.Range(0, this._plateColors.Length)];
+                    //cieling.GetComponent<MeshRenderer>().material.color = this._plateColors[Random.Range(0, this._plateColors.Length)];
+                    cieling.GetComponent<MeshRenderer>().material.mainTexture = this._plateSprites[Random.Range(0, this._plateSprites.Length)];
                     ground.gameObject.SetActive(gFlag);
-                    ground.GetComponent<MeshRenderer>().material.color = this._plateColors[Random.Range(0, this._plateColors.Length)];
+                    //ground.GetComponent<MeshRenderer>().material.color = this._plateColors[Random.Range(0, this._plateColors.Length)];
+                    ground.GetComponent<MeshRenderer>().material.mainTexture = this._plateSprites[Random.Range(0, this._plateSprites.Length)];
 
                     /* Tubin */
 
@@ -544,6 +554,7 @@ public class Maze : MonoBehaviour
         GameObject newTubin = GameObject.Instantiate(prefab, parent, false);
         newTubin.transform.localPosition = position;
 
-        newTubin.GetComponent<MeshRenderer>().material.color = isVertical ? this._verticalTubeColors[Random.Range(0, this._verticalTubeColors.Length)] : this._horizontalTubeColors[Random.Range(0, this._horizontalTubeColors.Length)];
+        //newTubin.GetComponent<MeshRenderer>().material.color = isVertical ? this._verticalTubeColors[Random.Range(0, this._verticalTubeColors.Length)] : this._horizontalTubeColors[Random.Range(0, this._horizontalTubeColors.Length)];
+        newTubin.GetComponentInChildren<MeshRenderer>().material.mainTexture = isVertical ? this._verticalTubeSprites[Random.Range(0, this._verticalTubeSprites.Length)] : this._horizontalTubeSprites[Random.Range(0, this._horizontalTubeSprites.Length)];
     }
 }

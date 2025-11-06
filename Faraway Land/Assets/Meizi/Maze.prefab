@@ -210,6 +210,25 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0, a: 1}
   _structureColors:
   - {r: 0, g: 1, b: 0, a: 1}
+  _verticalTubeSprites:
+  - {fileID: 2800000, guid: ef7d4b79422990e429f66a776cbdcd7f, type: 3}
+  - {fileID: 2800000, guid: 491e39d3b453ed1419dfc64c34f6b2fc, type: 3}
+  - {fileID: 2800000, guid: 9b79aaa258912664aa178386e8717c3d, type: 3}
+  _horizontalTubeSprites:
+  - {fileID: 2800000, guid: cb38b8a3f46da494286e1ed64e68a031, type: 3}
+  - {fileID: 2800000, guid: 6f42cf1e030fa954aa37f384540b28ac, type: 3}
+  - {fileID: 2800000, guid: 3166c482ee6c4e6429d22170189d064e, type: 3}
+  _plateSprites:
+  - {fileID: 2800000, guid: 6f4ab33dec3fb114cb31bfd31686a517, type: 3}
+  - {fileID: 2800000, guid: d2b0b2de8f7498349962511bb6bdc3e0, type: 3}
+  - {fileID: 2800000, guid: 078401677ef207147975205983639c13, type: 3}
+  - {fileID: 2800000, guid: 4b575698dabda2642a1c9b2f90a23c89, type: 3}
+  - {fileID: 2800000, guid: 70550ef25b73dd445bae5b95aae359a2, type: 3}
+  - {fileID: 2800000, guid: 8853b4c145b7f2045a9abff06bcf8b24, type: 3}
+  _structureSprites:
+  - {fileID: 2800000, guid: aeadb994656749548bb2a0cbc3078603, type: 3}
+  - {fileID: 2800000, guid: 3584dc87afc51264191b19d732c940f4, type: 3}
+  - {fileID: 2800000, guid: 4641d7a0eedbf75449001d5e462a5270, type: 3}
   _enemyPrefab: {fileID: 8032483403094626155, guid: 73e50bb3ae937f34aa152dcfac83b8a3, type: 3}
   _enemies:
   - personality: 0
